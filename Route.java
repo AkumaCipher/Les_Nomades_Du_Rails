@@ -10,13 +10,13 @@ public class Route {
         this.couleur = new String("red");
     }
 
-    public Route(int taille, Ville[] destination, String couleur){
+    public Route(int taille, Ville[] destination, String couleur) {
         this.taille = taille;
         this.destination = destination;
         this.couleur = new String(couleur);
     }
 
-    public Route(int taille, Ville destination1, Ville destination2, String couleur){
+    public Route(int taille, Ville destination1, Ville destination2, String couleur) {
         this.taille = taille;
         this.destination[0] = destination1;
         this.destination[1] = destination2;
