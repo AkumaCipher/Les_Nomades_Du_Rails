@@ -20,4 +20,16 @@ public class Ville {
         this.voisins.put(voisin, distance);
     }
 
+    public Map<Ville, Integer> getVoisins() {
+        return this.voisins;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }
