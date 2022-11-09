@@ -13,14 +13,20 @@ public class Route {
     public Route(int taille, Ville[] destination, String couleur){
         this.taille = taille;
         this.destination = destination;
-        this.couleur = couleur;
+        this.couleur = new String(couleur);
     }
 
     public Route(int taille, Ville destination1, Ville destination2, String couleur){
         this.taille = taille;
         this.destination[0] = destination1;
         this.destination[1] = destination2;
-        this.couleur = couleur;
+        this.couleur = new String(couleur);
+    }
+
+    public Route(Route other){
+        this.taille = other.getTaille();
+        this.destination = other.getDestination();
+        this.couleur = new String(other.getCouleur());
     }
 
     public int getTaille() {
