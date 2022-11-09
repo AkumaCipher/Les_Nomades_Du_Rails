@@ -3,6 +3,26 @@ public class Route {
     private Ville[] destination = new Ville[2];
     private String couleur;
 
+    public Route() {
+        this.taille = 2;
+        this.destination[0] = new Ville();
+        this.destination[1] = new Ville();
+        this.couleur = new String("red");
+    }
+
+    public Route(int taille, Ville[] destination, String couleur){
+        this.taille = taille;
+        this.destination = destination;
+        this.couleur = couleur;
+    }
+
+    public Route(int taille, Ville destination1, Ville destination2, String couleur){
+        this.taille = taille;
+        this.destination[0] = destination1;
+        this.destination[1] = destination2;
+        this.couleur = couleur;
+    }
+
     public int getTaille() {
         return this.taille;
     }
