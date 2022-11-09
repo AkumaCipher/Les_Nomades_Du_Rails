@@ -16,6 +16,13 @@ public class Ville {
         this.name = nom;
     }
 
+    public Ville(String nom, Ville voisin, int distance) {
+        this.name = nom;
+        this.voisins = new HashMap<>();
+        this.voisins.put(voisin, distance);
+    }
+
+
     public void setVoisin(Ville voisin, int distance) {
         this.voisins.put(voisin, distance);
     }
