@@ -1,5 +1,5 @@
 public class Route {
     private int taille;
-    private Ville destination = Ville[2];
+    private Ville[] destination = new Ville[2];
     private String couleur;
 }
