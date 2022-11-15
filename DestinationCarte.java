@@ -1,6 +1,7 @@
 public class DestinationCarte {
     private Ville[] villeDestination = new Ville[2];
     private int point;
+    protected String type = new String("Destination");
 
     public DestinationCarte(){
         this.villeDestination[0] = new Ville();
@@ -39,5 +40,4 @@ public class DestinationCarte {
     public void setPoint(int point) {
         this.point = point;
     }
-
 }
