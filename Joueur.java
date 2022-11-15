@@ -6,14 +6,14 @@ public class Joueur {
     
     public Joueur(){
         this.nom = new String("Defaut");
-        this.cartesDestination = new PaquetCarte(3);
-        this.cartesWagon = new PaquetCarte(5);
+        this.cartesDestination = new PaquetCarte(3, new String("Destination"));
+        this.cartesWagon = new PaquetCarte(5, new String("Wagon"));
         this.point = 0;
     }
     public Joueur(String nom){
         this.nom = new String(nom);
-        this.cartesDestination = new PaquetCarte(3);
-        this.cartesWagon = new PaquetCarte(5);
+        this.cartesDestination = new PaquetCarte(3, new String("Destination"));
+        this.cartesWagon = new PaquetCarte(5, new String("Wagon"));
         this.point = 0;
     }
     public Joueur(String nom, PaquetCarte cartesDestination, PaquetCarte cartesWagon, int point){
