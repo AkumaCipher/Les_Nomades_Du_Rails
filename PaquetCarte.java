@@ -3,17 +3,21 @@ import java.util.ArrayList;
 public class PaquetCarte {
     private ArrayList<Carte> paquet = new ArrayList<Carte>();
     protected int nbrCartes;
+    protected String typeCarte;
 
     public PaquetCarte(){
         this.nbrCartes = 0;
+        this.typeCarte = new String("Wagon");
     }
 
-    public PaquetCarte(int nbrCartes){
+    public PaquetCarte(int nbrCartes, String carte){
         this.nbrCartes = nbrCartes;
+        this.typeCarte = new String(carte);
     }
     public PaquetCarte(PaquetCarte other){
         this.paquet = other.getPaquet();
         this.nbrCartes = other.getNbrCartes();
+        this.typeCarte = other.getTypeCarte();
     }
 
     public ArrayList<Carte> getPaquet() {
@@ -22,17 +26,28 @@ public class PaquetCarte {
     public int getNbrCartes() {
         return this.nbrCartes;
     }
+    public String getTypeCarte() {
+        return this.typeCarte;
+    }
 
     public void setPaquet(ArrayList<Carte> paquet) {
         this.paquet = paquet;
     }
 
+    public void setTypeCarte(String typeCarte) {
+        this.typeCarte = typeCarte;
+    }
     public void setNbrCartes(int nbrCartes) {
         this.nbrCartes = nbrCartes;
     }
 
     public void addCarte(Carte carte){
-        paquet.add(carte);
-        this.nbrCartes += 1;
+        if (this.typeCarte.equals(carte.getType())){
+            paquet.add(carte);
+            this.nbrCartes += 1;
+        }
+        else{
+            System.out.println(new String("Un probléme de type est survenue, le type attendu est ") + new String(this.typeCarte) + new String(" mais nous avons recu ce type : ") + new String(carte.getType()));
+        }
     }
 }
