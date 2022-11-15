@@ -1,6 +1,7 @@
 public class WagonCarte extends Carte {
     private String couleurWagon;
     private boolean joker;
+    protected String type = new String("Wagon");
 
     public WagonCarte() {
         this.couleurWagon = new String("red");
@@ -37,5 +38,4 @@ public class WagonCarte extends Carte {
     public void setJoker(boolean joker) {
         this.joker = joker;
     }
-
 }
