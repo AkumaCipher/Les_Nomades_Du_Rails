@@ -13,8 +13,9 @@ public class WagonCarte extends Carte {
         this.joker = false;
     }
 
-    public WagonCarte(String couleur, boolean joker) {
-        this.couleurWagon = new String(couleur);
+    // Les joker n'ont pas de couleur
+    public WagonCarte(boolean joker) {
+        this.couleurWagon = new String("joker");
         this.joker = joker;
     }
 

@@ -7,9 +7,10 @@ public class main {
         Plateau plat = new Plateau();
         
         ArrayList<Ville> ville = plat.get_ville();
+        ArrayList<Carte> carte = plat.get_wagon_carte();
 
-        for (int i=0;i<ville.size();i++){
-            System.out.println(ville.get(i).getName());
+        for (int i=0;i<carte.size();i++){
+            System.out.println(carte.get(i).getType());
         }
-    } 
+    }           
 }

@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class PaquetCarte {
     private ArrayList<Carte> paquet = new ArrayList<Carte>();
@@ -13,11 +13,30 @@ public class PaquetCarte {
     public PaquetCarte(int nbrCartes, String carte){
         this.nbrCartes = nbrCartes;
         this.typeCarte = new String(carte);
+
     }
+
     public PaquetCarte(PaquetCarte other){
         this.paquet = other.getPaquet();
         this.nbrCartes = other.getNbrCartes();
         this.typeCarte = other.getTypeCarte();
+    }
+
+    // Definit un paquet de carte wagon au debut de la partie
+    public PaquetCarte(String carte){
+        ArrayList<String> couleur = new ArrayList(Arrays.asList("white", "blue", "yellow", "green", "red", "purple", "black", "brown"));
+        this.typeCarte = new String(carte);
+        if (carte=="Wagon"){
+            this.nbrCartes = 110;
+            for (int i = 0; i<8; i++){
+                for (int j = 0; j<12; j++){
+                    this.paquet.add(new WagonCarte(couleur.get(i)));
+                }
+            }
+            for (int k = 0; k<14;k++){
+                this.paquet.add(new WagonCarte(true));
+            }
+        }
     }
 
     public ArrayList<Carte> getPaquet() {
