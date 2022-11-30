@@ -26,7 +26,7 @@ public class PaquetCarte {
     public PaquetCarte(String carte){
         ArrayList<String> couleur = new ArrayList(Arrays.asList("white", "blue", "yellow", "green", "red", "purple", "black", "brown"));
         this.typeCarte = new String(carte);
-        if (carte=="Wagon"){
+        if (carte.equals(new String("Wagon"))){
             this.nbrCartes = 110;
             for (int i = 0; i<8; i++){
                 for (int j = 0; j<12; j++){
@@ -35,6 +35,20 @@ public class PaquetCarte {
             }
             for (int k = 0; k<14;k++){
                 this.paquet.add(new WagonCarte(true));
+            }
+        }
+        if(carte.equals(new String("Destination"))){
+            ArrayList<String[]> liste = new ArrayList<String[]>();
+            ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Atlanta", "Boston", "Calgary", "Charleston","Chicago", "Dallas", "Denver","Duluth", "El Paso", "Helena", "Houston", "Kansas City", "Las Vegas", "Little Rock", "Los Angeles","Miami", "Montreal", "Nashville", "New Orleans", "New York", "Oklahoma City", "Omaha","Phoenix", "Pittsburgh", "Portland", "Raleigh", "Saint Louis", "San Francisco", "Santa Fe", "Sault St Marie", "Seattle", "Vancouver", "Washington", "Winnipeg" ));                                           
+            this.nbrCartes = 30;
+            for (int i = 0; i < this.nbrCartes; i++){
+                String[] temp = new String[2];
+                temp[0] = nom_ville.get(0);
+                for (int j = 0; j < nom_ville.size() - 1; j++){
+                    temp[1] = nom_ville.get(1);
+                    liste.add(temp);
+                }
+                nom_ville.remove(0);
             }
         }
     }

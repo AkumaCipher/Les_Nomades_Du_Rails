@@ -1,6 +1,6 @@
 public class DestinationCarte {
-    private Ville[] villeDestination = new Ville[2];
-    private int point;
+    protected Ville[] villeDestination = new Ville[2];
+    protected int point;
     protected String type = new String("Destination");
 
     public DestinationCarte(){
