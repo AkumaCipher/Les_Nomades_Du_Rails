@@ -38,7 +38,6 @@ public class PaquetCarte {
             }
         }
         if(carte.equals(new String("Destination"))){
-            ArrayList<String[]> liste = new ArrayList<String[]>();
             ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Dolk","Aillk","Kuri","Rimu","Kolg","Guine","Varass","Trarbe","Nita","Solis","Xewood","Fefield","Brosa","Erbolis","Danir","Ouaïbe","New Varass","Bafao","Sandre","Motlen","Soles","Draille","Qimyss" ));                                           
             this.nbrCartes = 30;
             for (int i = 0; i < this.nbrCartes; i++){
