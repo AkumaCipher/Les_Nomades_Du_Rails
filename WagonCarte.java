@@ -24,6 +24,10 @@ public class WagonCarte extends Carte {
         this.joker = other.isJoker();
     }
 
+    public String toString(){
+        return this.type+" : "+this.couleurWagon+" " ;
+    }
+
     public String getCouleurWagon() {
         return this.couleurWagon;
     }
@@ -38,5 +42,9 @@ public class WagonCarte extends Carte {
 
     public void setJoker(boolean joker) {
         this.joker = joker;
+    }
+
+    public String getType(){
+        return this.type;
     }
 }

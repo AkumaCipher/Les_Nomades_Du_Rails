@@ -7,15 +7,21 @@ public class Joueur {
     public Joueur(){
         this.nom = new String("Defaut");
         this.cartesDestination = new PaquetCarte(3, new String("Destination"));
-        this.cartesWagon = new PaquetCarte(5, new String("Wagon"));
+        this.cartesWagon = new PaquetCarte(4, new String("Wagon"));
         this.point = 0;
     }
-    public Joueur(String nom){
+
+    // Definit un joueur par son nom et pioche ses cartes de base on lui fait connaitre les pioches
+    public Joueur(String nom,PaquetCarte wagonPioche,PaquetCarte destinationPioche){
         this.nom = new String(nom);
         this.cartesDestination = new PaquetCarte(3, new String("Destination"));
-        this.cartesWagon = new PaquetCarte(5, new String("Wagon"));
+        this.cartesWagon = new PaquetCarte(4, new String("Wagon"));
+        this.cartesWagon.pioche(4, wagonPioche);
+        this.cartesDestination.pioche(3,destinationPioche);
         this.point = 0;
     }
+
+
     public Joueur(String nom, PaquetCarte cartesDestination, PaquetCarte cartesWagon, int point){
         this.nom = new String(nom);
         this.cartesDestination = new PaquetCarte(cartesDestination);

@@ -22,6 +22,9 @@ public class Ville {
         this.voisins.put(voisin, distance);
     }
 
+    public String toString(){
+        return this.name;
+    }
 
     public void setVoisin(Ville voisin, int distance) {
         this.voisins.put(voisin, distance);

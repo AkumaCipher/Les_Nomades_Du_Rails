@@ -10,10 +10,10 @@ public class PaquetCarte {
         this.typeCarte = new String("Wagon");
     }
 
+    // Definit un paquet de carte vide d'un joueur avec sa taille et le type de carte qu'il doit recevoir
     public PaquetCarte(int nbrCartes, String carte){
         this.nbrCartes = nbrCartes;
         this.typeCarte = new String(carte);
-
     }
 
     public PaquetCarte(PaquetCarte other){
@@ -39,18 +39,23 @@ public class PaquetCarte {
         }
         if(carte.equals(new String("Destination"))){
             ArrayList<String[]> liste = new ArrayList<String[]>();
-            ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Atlanta", "Boston", "Calgary", "Charleston","Chicago", "Dallas", "Denver","Duluth", "El Paso", "Helena", "Houston", "Kansas City", "Las Vegas", "Little Rock", "Los Angeles","Miami", "Montreal", "Nashville", "New Orleans", "New York", "Oklahoma City", "Omaha","Phoenix", "Pittsburgh", "Portland", "Raleigh", "Saint Louis", "San Francisco", "Santa Fe", "Sault St Marie", "Seattle", "Vancouver", "Washington", "Winnipeg" ));                                           
+            ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Dolk","Aillk","Kuri","Rimu","Kolg","Guine","Varass","Trarbe","Nita","Solis","Xewood","Fefield","Brosa","Erbolis","Danir","Ouaïbe","New Varass","Bafao","Sandre","Motlen","Soles","Draille","Qimyss" ));                                           
             this.nbrCartes = 30;
             for (int i = 0; i < this.nbrCartes; i++){
-                String[] temp = new String[2];
-                temp[0] = nom_ville.get(0);
-                for (int j = 0; j < nom_ville.size() - 1; j++){
-                    temp[1] = nom_ville.get(1);
-                    liste.add(temp);
-                }
-                nom_ville.remove(0);
+                int alea = (int)(Math.random() * (nom_ville.size()-1));
+                int alea2 = (int)(Math.random() * (nom_ville.size()-1));
+                // Pour l'instant pas fini de fixer les points
+                this.paquet.add(new DestinationCarte(new Ville(nom_ville.get(alea)),new Ville(nom_ville.get(alea2)), 0));
             }
         }
+    }
+
+    public String toString(){
+        String chaine = new String();
+        for (int i =0;i<this.nbrCartes;i++){
+            chaine = chaine + this.getCarte(i).toString() + "| "; 
+        }
+        return chaine;
     }
 
     public ArrayList<Carte> getPaquet() {
@@ -61,6 +66,10 @@ public class PaquetCarte {
     }
     public String getTypeCarte() {
         return this.typeCarte;
+    }
+    
+    public Carte getCarte(int indice){
+        return this.paquet.get(indice);
     }
 
     public void setPaquet(ArrayList<Carte> paquet) {
@@ -74,10 +83,26 @@ public class PaquetCarte {
         this.nbrCartes = nbrCartes;
     }
 
+    public void removeCarte(int indice){
+        this.paquet.remove(this.paquet.get(indice));
+        this.setNbrCartes(this.getNbrCartes()-1);
+        if (this.nbrCartes == 0){
+            System.out.println("Paquet vide");
+        }
+    }
+
+    public void pioche(int nbcarte,PaquetCarte pioche){
+        for (int i=0 ; i<nbcarte ; i++){
+            int alea = (int)(Math.random() * pioche.getNbrCartes());
+            this.addCarte(pioche.getCarte(alea));
+            pioche.removeCarte(alea);
+        }
+    }
+
     public void addCarte(Carte carte){
         if (this.typeCarte.equals(carte.getType())){
-            paquet.add(carte);
-            this.nbrCartes += 1;
+            this.paquet.add(carte);
+            //this.nbrCartes += 1;
         }
         else{
             System.out.println(new String("Un probléme de type est survenue, le type attendu est ") + new String(this.typeCarte) + new String(" mais nous avons recu ce type : ") + new String(carte.getType()));

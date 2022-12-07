@@ -1,4 +1,4 @@
-public class DestinationCarte {
+public class DestinationCarte extends Carte {
     protected Ville[] villeDestination = new Ville[2];
     protected int point;
     protected String type = new String("Destination");
@@ -24,6 +24,9 @@ public class DestinationCarte {
         this.point = other.getPoint();
     }
 
+    public String toString(){
+        return this.type+" : "+this.villeDestination[0]+" -> "+this.villeDestination[1]+" " ;
+    }
 
     public Ville[] getVilleDestination() {
         return this.villeDestination;
@@ -39,5 +42,9 @@ public class DestinationCarte {
 
     public void setPoint(int point) {
         this.point = point;
+    }
+
+    public String getType(){
+        return this.type;
     }
 }

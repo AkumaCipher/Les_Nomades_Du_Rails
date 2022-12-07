@@ -4,13 +4,18 @@ public class main {
 
     public static void main(String[] args){
 
-        Plateau plat = new Plateau();
-        
-        ArrayList<Ville> ville = plat.get_ville();
-        ArrayList<Carte> carte = plat.get_wagon_carte();
+        // Pour jouer a 2
 
-        for (int i=0;i<carte.size();i++){
-            System.out.println(carte.get(i).getType());
-        }
+        Plateau p = new Plateau();
+        Joueur j1 = new Joueur("Bob",p.get_wagon_carte(),p.get_destination_carte());
+        Joueur j2 = new Joueur("John",p.get_wagon_carte(),p.get_destination_carte());
+
+        System.out.println("    --- Joueur 1 ---");
+        System.out.println(j1.getCartesDestination().toString());
+        System.out.println(j1.getCartesWagon().toString()+"\n");
+
+        System.out.println("    --- Joueur 2 ---");
+        System.out.println(j2.getCartesDestination().toString());
+        System.out.println(j2.getCartesWagon().toString()+"\n");
     }           
 }
