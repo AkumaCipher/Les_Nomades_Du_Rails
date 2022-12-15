@@ -22,8 +22,8 @@ public class PaquetCarte {
         this.typeCarte = other.getTypeCarte();
     }
 
-    // Definit un paquet de carte wagon au debut de la partie
-    public PaquetCarte(String carte){
+    // Definit un paquet de carte wagon au debut de la partie 
+    public PaquetCarte(String carte,Plateau p){
         ArrayList<String> couleur = new ArrayList(Arrays.asList("white", "blue", "yellow", "green", "red", "purple", "black", "brown"));
         this.typeCarte = new String(carte);
         if (carte.equals(new String("Wagon"))){
@@ -43,8 +43,8 @@ public class PaquetCarte {
             for (int i = 0; i < this.nbrCartes; i++){
                 int alea = (int)(Math.random() * (nom_ville.size()-1));
                 int alea2 = (int)(Math.random() * (nom_ville.size()-1));
-                // Pour l'instant pas fini de fixer les points
-                this.paquet.add(new DestinationCarte(new Ville(nom_ville.get(alea)),new Ville(nom_ville.get(alea2)), 0));
+                // Les points sont fixés mais la fonction qui les définit peut etre optimisée
+                this.paquet.add(new DestinationCarte(new Ville(nom_ville.get(alea)),new Ville(nom_ville.get(alea2)), p));
             }
         }
     }

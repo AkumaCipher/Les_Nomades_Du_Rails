@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class DestinationCarte extends Carte {
     protected Ville[] villeDestination = new Ville[2];
     protected int point;
@@ -13,10 +15,10 @@ public class DestinationCarte extends Carte {
         this.point = point;
     }
 
-    public DestinationCarte(Ville destination1, Ville destination2, int point){
+    public DestinationCarte(Ville destination1, Ville destination2, Plateau p){
         this.villeDestination[0] = destination1;
         this.villeDestination[1] = destination2;
-        this.point = point;
+        this.point = p.get_chemin_court(destination1.getName(), destination2.getName(), new ArrayList<>());
     }
 
     public DestinationCarte(DestinationCarte other){
@@ -25,7 +27,7 @@ public class DestinationCarte extends Carte {
     }
 
     public String toString(){
-        return this.type+" : "+this.villeDestination[0]+" -> "+this.villeDestination[1]+" " ;
+        return this.type+" : "+this.villeDestination[0]+" -> "+this.villeDestination[1]+" = "+this.point+" points" ;
     }
 
     public Ville[] getVilleDestination() {

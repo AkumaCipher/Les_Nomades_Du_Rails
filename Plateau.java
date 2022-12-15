@@ -117,8 +117,8 @@ public class Plateau {
         list_ville.get(22).setVoisin(list_ville.get(20), 3);
         list_ville.get(22).setVoisin(list_ville.get(21), 3);
 
-        this.wagon_carte = new PaquetCarte("Wagon");
-        this.destination_carte = new PaquetCarte("Destination");
+        this.wagon_carte = new PaquetCarte("Wagon",this);
+        this.destination_carte = new PaquetCarte("Destination",this);
     }
 
     public ArrayList<Ville> get_ville(){
@@ -151,26 +151,27 @@ public class Plateau {
         return false;
     }
 
+    // Permet un affichage pour les test des tableau
     public void tabString (ArrayList<Ville> tab){
         String chaine = "[ ";
         for (int i=0;i<tab.size();i++){
-            System.out.println(tab.get(i));
+            // System.out.println(tab.get(i));
             chaine += tab.get(i)+", ";
         } 
         chaine+="]";
-        System.out.println(chaine);
+        // System.out.println(chaine);
     }
 
     // Permet d'avoir le chemin entre 2 villes (pas encore optimal) afin de calculer les point des cartes destination générés aleatoirement
     public int get_chemin_court(String depart , String arrive ,ArrayList<Ville> deja_parcouru){
-        System.out.println("------------------- "+depart+" ------------------");
+        //System.out.println("------------------- "+depart+" ------------------");
         int chemin=0;
         int v1 = this.get_index_ville(depart);
         int v2 = this.get_index_ville(arrive);
         for (Map.Entry mapentry : list_ville.get(v1).getVoisins().entrySet()){
-            System.out.println("Voisin de "+depart+" : "+mapentry.getKey());
+            //System.out.println("Voisin de "+depart+" : "+mapentry.getKey());
             if (mapentry.getKey().equals(list_ville.get(v2))){
-                System.out.println(mapentry.getKey()+" - "+list_ville.get(v2));
+                //System.out.println(mapentry.getKey()+" - "+list_ville.get(v2));
                 int x = ((Number)mapentry.getValue()).intValue();
                 chemin+=x;
                 return chemin;
@@ -180,10 +181,9 @@ public class Plateau {
         for (Map.Entry ville : list_ville.get(v1).getVoisins().entrySet()){
             String new_ville = ville.getKey().toString();
             if (this.parcouru(list_ville.get(this.get_index_ville(new_ville)), deja_parcouru)== false){
-                //deja_parcouru.add(list_ville.get(this.get_index_ville(new_ville)));
                 int x = ((Number)ville.getValue()).intValue();
                 chemin+=x;
-                System.out.println(""+ville.getKey()+","+arrive);
+                //System.out.println(""+ville.getKey()+","+arrive);
                 this.tabString(deja_parcouru);
                 return chemin +this.get_chemin_court(new_ville, arrive,deja_parcouru);
             }
