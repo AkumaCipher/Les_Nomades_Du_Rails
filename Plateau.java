@@ -1,6 +1,8 @@
 
 import java.util.*;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
+
 public class Plateau {
 
     private ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Dolk","Aillk","Kuri","Rimu","Kolg","Guine","Varass","Trarbe","Nita","Solis","Xewood","Fefield","Brosa","Erbolis","Danir","Ouaïbe","New Varass","Bafao","Sandre","Motlen","Soles","Draille","Qimyss"));                                          
@@ -128,6 +130,67 @@ public class Plateau {
     }
     public PaquetCarte get_destination_carte(){
         return this.destination_carte;
+    }
+
+    public int get_index_ville(String ville){
+        for (int i=0;i<nom_ville.size();i++){
+            if (nom_ville.get(i)==(ville)) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+
+    public Boolean parcouru (Object ville , ArrayList<Ville> liste){
+        for (int i=0; i<liste.size();i++){
+            if (ville.equals(liste.get(i))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void tabString (ArrayList<Ville> tab){
+        String chaine = "[ ";
+        for (int i=0;i<tab.size();i++){
+            System.out.println(tab.get(i));
+            chaine += tab.get(i)+", ";
+        } 
+        chaine+="]";
+        System.out.println(chaine);
+    }
+
+    // Permet d'avoir le chemin entre 2 villes (pas encore optimal) afin de calculer les point des cartes destination générés aleatoirement
+    public int get_chemin_court(String depart , String arrive ,ArrayList<Ville> deja_parcouru){
+        System.out.println("------------------- "+depart+" ------------------");
+        int chemin=0;
+        int v1 = this.get_index_ville(depart);
+        int v2 = this.get_index_ville(arrive);
+        for (Map.Entry mapentry : list_ville.get(v1).getVoisins().entrySet()){
+            System.out.println("Voisin de "+depart+" : "+mapentry.getKey());
+            if (mapentry.getKey().equals(list_ville.get(v2))){
+                System.out.println(mapentry.getKey()+" - "+list_ville.get(v2));
+                int x = ((Number)mapentry.getValue()).intValue();
+                chemin+=x;
+                return chemin;
+            }
+        }
+        deja_parcouru.add(list_ville.get(v1));
+        for (Map.Entry ville : list_ville.get(v1).getVoisins().entrySet()){
+            String new_ville = ville.getKey().toString();
+            if (this.parcouru(list_ville.get(this.get_index_ville(new_ville)), deja_parcouru)== false){
+                //deja_parcouru.add(list_ville.get(this.get_index_ville(new_ville)));
+                int x = ((Number)ville.getValue()).intValue();
+                chemin+=x;
+                System.out.println(""+ville.getKey()+","+arrive);
+                this.tabString(deja_parcouru);
+                return chemin +this.get_chemin_court(new_ville, arrive,deja_parcouru);
+            }
+        }
+        
+        
+        return chemin;
     }
 
 }
