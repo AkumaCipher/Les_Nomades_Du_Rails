@@ -21,7 +21,6 @@ public class App extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("./acceuil.fxml"));
             window.setScene(new Scene(root));
             window.setTitle("Game");
-            //window.setMaximized(true);
             window.show();
         } catch (Exception e){
             e.printStackTrace();

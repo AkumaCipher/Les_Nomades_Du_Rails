@@ -11,5 +11,9 @@ public abstract class Carte {
     }
 
     public abstract String getLink();
+
+    public abstract String getCouleur();
+
+    
     
 }

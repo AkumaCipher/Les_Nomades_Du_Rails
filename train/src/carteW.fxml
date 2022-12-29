@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="bottom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="878.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+   <children>
+      <ImageView fx:id="closebutton" fitHeight="38.0" fitWidth="46.0" layoutX="832.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@design/cross.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

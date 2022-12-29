@@ -5,6 +5,7 @@ public class PaquetCarte {
     private ArrayList<Carte> paquet = new ArrayList<Carte>();
     protected int nbrCartes;
     protected String typeCarte;
+    public ArrayList<String> couleur = new ArrayList(Arrays.asList("blanc", "bleu", "jaune", "vert", "rouge", "violet", "noire", "orange"));
 
     public PaquetCarte(){
         this.nbrCartes = 0;
@@ -25,7 +26,6 @@ public class PaquetCarte {
 
     // Definit un paquet de carte wagon au debut de la partie 
     public PaquetCarte(String carte,Plateau p){
-        ArrayList<String> couleur = new ArrayList(Arrays.asList("blanc", "bleu", "jaune", "vert", "rouge", "violet", "noire", "orange"));
         this.typeCarte = new String(carte);
         if (carte.equals(new String("Wagon"))){
             this.nbrCartes = 110;

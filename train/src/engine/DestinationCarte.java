@@ -54,4 +54,8 @@ public class DestinationCarte extends Carte {
     public String getLink(){
         return "error";
     }
+
+    public String getCouleur(){
+        return "error";
+    }
 }
