@@ -12,18 +12,29 @@
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onScroll="#exit" prefHeight="889.0" prefWidth="1601.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
    <children>
+      <AnchorPane fx:id="cartePane2" layoutX="1275.0" layoutY="40.0" onMouseClicked="#hideCardDestination" prefHeight="600.0" prefWidth="238.0" style="-fx-background-color: white; visibility: false;">
+         <children>
+            <ImageView fx:id="destination1" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="destination2" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="destination3" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="carteville1" layoutX="40.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="carteville2" layoutX="40.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="carteville3" layoutX="40.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Button layoutX="160.0" layoutY="300.0" mnemonicParsing="false" onAction="#nextCardDestination" text="Suivant" />
+         </children>
+      </AnchorPane>
       <BorderPane fx:id="cartePane" layoutX="371.0" onMouseClicked="#hideCardWagon" prefHeight="894.0" prefWidth="878.0">
          <bottom>
             <AnchorPane opacity="0.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
-      <Button layoutX="1281.0" layoutY="745.0" mnemonicParsing="false" onAction="#play" text="Button" />
+      <Button layoutX="1281.0" layoutY="745.0" mnemonicParsing="false" onMouseClicked="#play" text="Play" />
       <ImageView fitHeight="178.0" fitWidth="181.0" layoutX="51.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../design/wagon_icone.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="183.0" fitWidth="167.0" layoutX="1382.0" layoutY="25.0" onMouseClicked="#showCardDestination" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="carteD" fitHeight="183.0" fitWidth="167.0" layoutX="1305.0" layoutY="60.0" onMouseClicked="#showCardDestination" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../design/carted.png" />
          </image>
@@ -50,13 +61,12 @@
             </ImageView>
          </children>
       </VBox>
-      <ImageView fx:id="face1" fitHeight="65.0" fitWidth="40.0" layoutX="539.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="665.0" fitWidth="1015.0" layoutX="367.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="665.0" fitWidth="1015.0" layoutX="340.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@design/newpays.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="face1" fitHeight="150.0" fitWidth="104.0" layoutX="1300.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face1" fitHeight="150.0" fitWidth="104.0" layoutX="1300.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="face2" fitHeight="150.0" fitWidth="104.0" layoutX="1420.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="face3" fitHeight="150.0" fitWidth="104.0" layoutX="1301.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="face4" fitHeight="150.0" fitWidth="104.0" layoutX="1416.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" />

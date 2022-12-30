@@ -1,8 +1,5 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
-
 import engine.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -53,6 +48,26 @@ public class MainSceneController {
     @FXML
     private Text text1;
 
+    // Carte destination Joueur
+    @FXML
+    private AnchorPane cartePane2;
+    @FXML
+    private ImageView carteD;
+    @FXML
+    private ImageView destination1;
+    @FXML
+    private ImageView destination2;
+    @FXML
+    private ImageView destination3;
+    @FXML
+    private Text carteville1;
+    @FXML
+    private Text carteville2;
+    @FXML
+    private Text carteville3;
+    int indiceD =0;
+
+
     // Carte wagon révélés
     @FXML
     private ImageView face1;
@@ -91,8 +106,12 @@ public class MainSceneController {
     }
 
     // Bouton debut de tour
-    public void play(ActionEvent event) throws Exception{
+    public void play(MouseEvent event) throws Exception{
         System.out.println("Partie commence");
+        System.out.println(p.get_destination_carte());
+        // On ferme les fenetres ouvertes
+        this.hideCardDestination(event);
+        this.hideCardWagon(event);
 
         // Changement de joueur et de tour
         if(joueur.equals(j0) && tour!=0){
@@ -217,10 +236,59 @@ public class MainSceneController {
     // Affichage carte destination 
     public void showCardDestination(MouseEvent event)throws Exception{
         // Nettoyer l'affichage
+        indiceD=0;
         face1.setVisible(false);
         face2.setVisible(false);
         face3.setVisible(false);
         face4.setVisible(false);
         face5.setVisible(false);
+        cartePane2.setVisible(true);
+        carteD.setVisible(false);
+        // Image et texte des cartes mis a jour
+        destination1.setImage(f1);
+        destination2.setImage(f2);
+        destination3.setImage(f3);
+        carteville1.setText(joueur.getCartesDestination().getCarte(0).getDepart()+" --> "+joueur.getCartesDestination().getCarte(0).getArrive());
+        carteville2.setText(joueur.getCartesDestination().getCarte(1).getDepart()+" --> "+joueur.getCartesDestination().getCarte(1).getArrive());
+        carteville3.setText(joueur.getCartesDestination().getCarte(2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(2).getArrive());
+        // Indice des cartes affichés
+        indiceD+=3;
+    }
+
+    // Cache les cartes destination
+    public void hideCardDestination(MouseEvent event)throws Exception{
+        // On cache et reaffiche comme avant
+        cartePane2.setVisible(false);
+        face1.setVisible(true);
+        face2.setVisible(true);
+        face3.setVisible(true);
+        face4.setVisible(true);
+        face5.setVisible(true);
+        carteD.setVisible(true);
+    }
+
+    // Defilent les cartes destination disposibles 
+    public void nextCardDestination(ActionEvent event)throws Exception{
+        int taille = joueur.getCartesDestination().getPaquet().size();
+        if (taille>indiceD){
+            if (taille-indiceD >3){
+                carteville1.setText(joueur.getCartesDestination().getCarte(indiceD).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD).getArrive());
+                carteville2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+1).getArrive());
+                carteville3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+2).getArrive());
+                indiceD+=3;
+            }
+            else{
+                carteville1.setText(joueur.getCartesDestination().getCarte(indiceD).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD).getArrive());
+                carteville2.setText(null);
+                carteville3.setText(null);
+                if (taille-indiceD>=2){
+                    carteville2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+1).getArrive());
+                }
+                if (taille-indiceD==3){
+                    carteville3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+2).getArrive());
+                }
+                indiceD=0;
+            }
+        }
     }
 }

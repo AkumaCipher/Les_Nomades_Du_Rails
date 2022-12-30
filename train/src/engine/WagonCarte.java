@@ -56,4 +56,11 @@ public class WagonCarte extends Carte {
             return ".\\wagon\\"+this.couleurWagon+".png";
         }
     }
+
+    public String getDepart(){
+        return "error";
+    }
+    public String getArrive(){
+        return "error";
+    }
 }

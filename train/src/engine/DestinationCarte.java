@@ -58,4 +58,11 @@ public class DestinationCarte extends Carte {
     public String getCouleur(){
         return "error";
     }
+
+    public String getDepart(){
+        return this.villeDestination[0].getName();
+    }
+    public String getArrive(){
+        return this.villeDestination[1].getName();
+    }
 }

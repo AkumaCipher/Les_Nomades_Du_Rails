@@ -14,6 +14,9 @@ public abstract class Carte {
 
     public abstract String getCouleur();
 
+    public abstract String getDepart();
+    public abstract String getArrive();
+
     
     
 }

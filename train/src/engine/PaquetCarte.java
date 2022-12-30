@@ -6,6 +6,7 @@ public class PaquetCarte {
     protected int nbrCartes;
     protected String typeCarte;
     public ArrayList<String> couleur = new ArrayList(Arrays.asList("blanc", "bleu", "jaune", "vert", "rouge", "violet", "noire", "orange"));
+    ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Dolk","Aillk","Kuri","Rimu","Kolg","Guine","Varass","Trarbe","Nita","Solis","Xewood","Fefield","Brosa","Erbolis","Danir","Ouaïbe","New Varass","Bafao","Sandre","Motlen","Soles","Draille","Qimyss" ));
 
     public PaquetCarte(){
         this.nbrCartes = 0;
@@ -38,14 +39,18 @@ public class PaquetCarte {
                 this.paquet.add(new WagonCarte(true));
             }
         }
-        if(carte.equals(new String("Destination"))){
-            ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Dolk","Aillk","Kuri","Rimu","Kolg","Guine","Varass","Trarbe","Nita","Solis","Xewood","Fefield","Brosa","Erbolis","Danir","Ouaïbe","New Varass","Bafao","Sandre","Motlen","Soles","Draille","Qimyss" ));                                           
+        if(carte.equals(new String("Destination"))){                                           
             this.nbrCartes = 30;
-            for (int i = 0; i < this.nbrCartes; i++){
-                int alea = (int)(Math.random() * (nom_ville.size()-1));
-                int alea2 = (int)(Math.random() * (nom_ville.size()-1));
-                // Les points sont fixés mais la fonction qui les définit peut etre optimisée
-                this.paquet.add(new DestinationCarte(new Ville(nom_ville.get(alea)),new Ville(nom_ville.get(alea2)), p));
+            ArrayList<String> paquetMelange = nom_ville;
+            int taille=0;
+            while (taille<30){
+                Collections.shuffle(paquetMelange);
+                for (int i=0;i<paquetMelange.size()/2;i++){
+                    if (taille<30){
+                        this.paquet.add(new DestinationCarte(new Ville(paquetMelange.get(i*2)),new Ville(paquetMelange.get(i*2+1)), p));
+                        taille+=1;
+                    }
+                }
             }
         }
     }
