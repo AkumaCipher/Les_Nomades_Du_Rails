@@ -23,9 +23,35 @@
             <Button layoutX="160.0" layoutY="300.0" mnemonicParsing="false" onAction="#nextCardDestination" text="Suivant" />
          </children>
       </AnchorPane>
-      <BorderPane fx:id="cartePane" layoutX="371.0" onMouseClicked="#hideCardWagon" prefHeight="894.0" prefWidth="878.0">
+      <BorderPane fx:id="cartePane" layoutX="300.0" prefHeight="894.0" prefWidth="878.0">
          <bottom>
-            <AnchorPane opacity="0.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <AnchorPane fx:id="bottom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="1000.0" style="-fx-background-color: white; visibility: hidden;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="closebutton" fitHeight="38.0" fitWidth="46.0" layoutX="954.0" onMouseClicked="#hideCardWagon" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@design/cross.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="wagon1" fitHeight="150.0" fitWidth="100.0" layoutX="5.0" layoutY="40.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon2" fitHeight="150.0" fitWidth="100.0" layoutX="110.0" layoutY="40.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon3" fitHeight="150.0" fitWidth="100.0" layoutX="215.0" layoutY="40.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon4" fitHeight="150.0" fitWidth="100.0" layoutX="320.0" layoutY="40.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon5" fitHeight="150.0" fitWidth="100.0" layoutX="425.0" layoutY="40.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon6" fitHeight="150.0" fitWidth="100.0" layoutX="530.0" layoutY="40.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon7" fitHeight="150.0" fitWidth="100.0" layoutX="635.0" layoutY="40.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon8" fitHeight="150.0" fitWidth="100.0" layoutX="740.0" layoutY="40.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon9" fitHeight="150.0" fitWidth="100.0" layoutX="850.0" layoutY="40.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
+                  <Text layoutX="80.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="185.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="290.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="395.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="500.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="605.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fx:id="Txt7" layoutX="710.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="815.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="920.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+               </children>
+            </AnchorPane>
          </bottom>
       </BorderPane>
       <Button layoutX="1281.0" layoutY="745.0" mnemonicParsing="false" onMouseClicked="#play" text="Play" />
@@ -71,7 +97,7 @@
       <ImageView fx:id="face3" fitHeight="150.0" fitWidth="104.0" layoutX="1301.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="face4" fitHeight="150.0" fitWidth="104.0" layoutX="1416.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="face5" fitHeight="150.0" fitWidth="104.0" layoutX="1414.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="text1" layoutX="640.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" style="visibility: hidden;" text="Choisissez une carte a retirer" wrappingWidth="313.60003662109375">
+      <Text fx:id="text1" layoutX="600.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" style="visibility: hidden;" text="Choisissez une carte a retirer" wrappingWidth="432.00006103515625">
          <font>
             <Font size="24.0" />
          </font>

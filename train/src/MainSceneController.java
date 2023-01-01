@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import engine.*;
@@ -7,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -44,9 +46,20 @@ public class MainSceneController {
     @FXML
     private BorderPane cartePane;
     @FXML
+    private AnchorPane bottom;
+    @FXML
     private ImageView carteW;
     @FXML
     private Text text1;
+    @FXML 
+    private ImageView closebutton;
+    boolean elimine1 = false;
+    boolean elimine2 = false;
+    Map<String, Integer> dic = new HashMap<>();
+    ArrayList<ImageView> listeW = new ArrayList<>();
+    ArrayList<Text> listeT = new ArrayList<>();
+    ArrayList<String> ordre = new ArrayList<>();
+    
 
     // Carte destination Joueur
     @FXML
@@ -105,13 +118,44 @@ public class MainSceneController {
         stage.show();
     }
 
+    public void setupWagon(){
+        // Recuperation des prochaines images pour les wagons
+
+        // On recupere la liste des images prévus 
+        int indice =0;
+        for (Node n : bottom.getChildren()){
+            if(n instanceof ImageView && indice!=0){
+                listeW.add((ImageView)n);
+            }
+            indice+=1;
+        }
+        
+        // On recupere la liste des textes pour les numero des cartes 
+        for (Node n : bottom.getChildren()){
+            if(n instanceof Text ){
+                listeT.add((Text)n);
+            }
+        } 
+    }
+
     // Bouton debut de tour
     public void play(MouseEvent event) throws Exception{
-        System.out.println("Partie commence");
-        System.out.println(p.get_destination_carte());
-        // On ferme les fenetres ouvertes
-        this.hideCardDestination(event);
-        this.hideCardWagon(event);
+
+        // Carte a eliminer au premier tour 
+        if (elimine1==false && tour==1 && joueur.equals(j0)){
+            return;
+        }else if(elimine2==false && tour==1 && joueur.equals(j1)){
+            return;
+        }
+
+        // Initialisation des images et textes wagons
+        if (tour==0){
+            this.setupWagon();
+        }// Sinon on ferme les fenetres ouvertes
+        else{
+            this.hideCardDestination(event);
+            this.hideCardWagon(event);
+        }
 
         // Changement de joueur et de tour
         if(joueur.equals(j0) && tour!=0){
@@ -119,6 +163,12 @@ public class MainSceneController {
         }else{
             joueur=j0;
             tour+=1;
+        }
+
+        if (tour==1){
+            text1.setStyle("visibility : visible;");
+        }else{
+            text1.setStyle("visibility: hidden");
         }
 
         // Affichage carte wagon révélé
@@ -168,68 +218,53 @@ public class MainSceneController {
     // Affichage des cartes wagon du joueur
     public void showCardWagon(MouseEvent event)throws Exception{
         if (tour!=0){
+            
+            this.setdic();
+            ordre.clear();
 
-            AnchorPane view =FXMLLoader.load(getClass().getResource("carteW.fxml"));
-
-            // Dictionnaire des cartes présentes
-            Map<String, Integer> dic = new HashMap<>();
-            for (int i=0;i<joueur.getCartesWagon().getPaquet().size();i++){
-                String couleur =joueur.getCartesWagon().getCarte(i).getCouleur();
-                if (dic.containsKey(couleur)){
-                    dic.replace(couleur, dic.get(couleur)+1);
-                }else{
-                    dic.put(joueur.getCartesWagon().getCarte(i).getCouleur(),1);
+            // On rempli les images par les cartes a afficher
+            int indiceImage =0;
+            for (int i=0;i<joueur.getCartesWagon().couleur.size();i++){
+                if (dic.get(joueur.getCartesWagon().couleur.get(i)) != null){
+                    Image img = new Image(".\\wagon\\"+joueur.getCartesWagon().couleur.get(i)+".png",100,150,true,true);
+                    listeW.get(indiceImage).setImage(img);
+                    ordre.add(joueur.getCartesWagon().couleur.get(i));
+                    // Nombre d'exemplaire de la carte
+                    if (dic.get(joueur.getCartesWagon().couleur.get(i))>1){
+                        listeT.get(indiceImage).setText(Integer.toString(dic.get(joueur.getCartesWagon().couleur.get(i))));
+                    }
+                    indiceImage+=1;
+                }
+            }
+            // On rajoute le joker si present
+            if (dic.get("joker") != null){
+                Image img = new Image(".\\wagon\\joker.png",100,150,true,true);
+                listeW.get(indiceImage).setImage(img);
+                ordre.add("joker");
+                // Nombre de joker 
+                if (dic.get("joker") > 1){
+                    listeT.get(indiceImage).setText(Integer.toString(dic.get("joker")));
                 }
             }
 
             // Affichage de chaque carte
-            int j =0;
-            for (int i=0;i<joueur.getCartesWagon().couleur.size();i++){
-                if (dic.get(joueur.getCartesWagon().couleur.get(i)) != null){
-                    Image img = new Image(".\\wagon\\"+joueur.getCartesWagon().couleur.get(i)+".png",100,150,true,true);
-                    ImageView iv = new ImageView(img);
-                    iv.setLayoutX(100*j);
-                    iv.setLayoutY(40);
-                    view.getChildren().add(iv);
-                    // Le nombre de fois qu'on possède la carte
-                    if (dic.get(joueur.getCartesWagon().couleur.get(i))>1){
-                        Text number = new Text(Integer.toString(dic.get(joueur.getCartesWagon().couleur.get(i))));
-                        number.setStyle("color:red;");
-                        number.setLayoutX(100*j+75);
-                        number.setLayoutY(170);
-                        view.getChildren().add(number);
-                    }
-                    j+=1;
-                }
-            }if (dic.get("joker") != null){
-                Image img = new Image(".\\wagon\\joker.png",100,150,true,true);
-                ImageView iv = new ImageView(img);
-                iv.setLayoutX(100*j);
-                iv.setLayoutY(40);
-                view.getChildren().add(iv);
-                // Le nombre de joker
-                if (dic.get("joker") > 1){
-                    Text number = new Text(Integer.toString(dic.get("joker")));
-                    number.setLayoutX(100*j+75);
-                    number.setLayoutY(170);
-                    view.getChildren().add(number);
-                }
-            }
-
-            cartePane.setBottom(view);
             carteW.setVisible(false);
+            bottom.setStyle("visibility:visible;-fx-background-color:white;");
 
-            if (tour==1){
-                text1.setStyle("visibility : visible;");
-            }else{
-
-            }
         } 
     }
 
     // Cacher les cartes wagon
     public void hideCardWagon(MouseEvent event)throws Exception{
-        cartePane.setBottom(null);
+        // nettoyage des images et textes precedents
+        for (ImageView image : listeW){
+            image.setImage(null);
+        }
+        for (Text texte : listeT){
+            texte.setText(null);
+        }
+        dic.clear();
+        bottom.setStyle("visibility:hidden;");
         carteW.setVisible(true);
     }
 
@@ -291,4 +326,43 @@ public class MainSceneController {
             }
         }
     }
+
+    // Retirer une carte de la liste au debut 
+    public void removeCard(MouseEvent event) throws Exception{
+        if (tour==1&&((joueur.equals(j0) && elimine1==false) || (joueur.equals(j1) && elimine2==false))){
+            String id = event.getPickResult().getIntersectedNode().getId();
+            int num = Character.getNumericValue(id.charAt(5));
+            int indiceCarte=0;
+            while (joueur.getCartesWagon().getCarte(indiceCarte).getCouleur().equals(ordre.get(num-1))==false){
+                indiceCarte+=1;
+            }
+            text1.setText("Vous supprimez la carte wagon " + joueur.getCartesWagon().getCarte(indiceCarte).getCouleur());
+            joueur.getCartesWagon().removeCarte(indiceCarte);
+            this.hideCardWagon(event);
+            this.showCardWagon(event);
+            if(joueur.equals(j0)){
+                elimine1=true;
+            }else{
+                elimine2=true;
+            }
+        }
+    }
+
+    // Change le message affiché
+    public void changeMessage(String message){
+        text1.setText(message);
+    }
+
+    // Dictionnaire des cartes présentes
+    public void setdic(){
+        for (int i=0;i<joueur.getCartesWagon().getPaquet().size();i++){
+            String couleur =joueur.getCartesWagon().getCarte(i).getCouleur();
+            if (dic.containsKey(couleur)){
+                dic.replace(couleur, dic.get(couleur)+1);
+            }else{
+                dic.put(joueur.getCartesWagon().getCarte(i).getCouleur(),1);
+            }
+        }
+    }
+
 }
