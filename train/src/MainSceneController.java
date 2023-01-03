@@ -58,7 +58,6 @@ public class MainSceneController {
     Map<String, Integer> dic = new HashMap<>();
     ArrayList<ImageView> listeW = new ArrayList<>();
     ArrayList<Text> listeT = new ArrayList<>();
-    ArrayList<String> ordre = new ArrayList<>();
     
 
     // Carte destination Joueur
@@ -78,7 +77,10 @@ public class MainSceneController {
     private Text carteville2;
     @FXML
     private Text carteville3;
+    @FXML
+    private Button conserveButton;
     int indiceD =0;
+    int indice2 =0;
 
 
     // Carte wagon révélés
@@ -98,6 +100,8 @@ public class MainSceneController {
     Image f3 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(2).getLink());
     Image f4 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(3).getLink());
     Image f5 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(4).getLink());
+
+    Image vide = new Image(".\\wagon\\cartevide.png",100,150,true,true);
 
     // Creation nouvelle partie
     public void newPartie(ActionEvent event) throws Exception{
@@ -166,7 +170,7 @@ public class MainSceneController {
         }
 
         if (tour==1){
-            text1.setStyle("visibility : visible;");
+            text1.setStyle("visibility : visible;-fx-text-alignment:center;");
         }else{
             text1.setStyle("visibility: hidden");
         }
@@ -217,10 +221,8 @@ public class MainSceneController {
 
     // Affichage des cartes wagon du joueur
     public void showCardWagon(MouseEvent event)throws Exception{
-        if (tour!=0){
-            
+        if (tour!=0){  
             this.setdic();
-            ordre.clear();
 
             // On rempli les images par les cartes a afficher
             int indiceImage =0;
@@ -228,7 +230,6 @@ public class MainSceneController {
                 if (dic.get(joueur.getCartesWagon().couleur.get(i)) != null){
                     Image img = new Image(".\\wagon\\"+joueur.getCartesWagon().couleur.get(i)+".png",100,150,true,true);
                     listeW.get(indiceImage).setImage(img);
-                    ordre.add(joueur.getCartesWagon().couleur.get(i));
                     // Nombre d'exemplaire de la carte
                     if (dic.get(joueur.getCartesWagon().couleur.get(i))>1){
                         listeT.get(indiceImage).setText(Integer.toString(dic.get(joueur.getCartesWagon().couleur.get(i))));
@@ -240,7 +241,6 @@ public class MainSceneController {
             if (dic.get("joker") != null){
                 Image img = new Image(".\\wagon\\joker.png",100,150,true,true);
                 listeW.get(indiceImage).setImage(img);
-                ordre.add("joker");
                 // Nombre de joker 
                 if (dic.get("joker") > 1){
                     listeT.get(indiceImage).setText(Integer.toString(dic.get("joker")));
@@ -280,12 +280,23 @@ public class MainSceneController {
         cartePane2.setVisible(true);
         carteD.setVisible(false);
         // Image et texte des cartes mis a jour
-        destination1.setImage(f1);
-        destination2.setImage(f2);
-        destination3.setImage(f3);
+        if (tour==1 && joueur.equals(j0) && elimine1==false){
+            conserveButton.setStyle("visibility:visible;");
+        }else if (tour==1 && joueur.equals(j1) && elimine2==false){
+            conserveButton.setStyle("visibility:visible;");
+        }else{
+            conserveButton.setStyle("visibility:hidden;");
+        }
+        int taille = joueur.getCartesDestination().getPaquet().size();
+        destination1.setImage(vide);
         carteville1.setText(joueur.getCartesDestination().getCarte(0).getDepart()+" --> "+joueur.getCartesDestination().getCarte(0).getArrive());
-        carteville2.setText(joueur.getCartesDestination().getCarte(1).getDepart()+" --> "+joueur.getCartesDestination().getCarte(1).getArrive());
-        carteville3.setText(joueur.getCartesDestination().getCarte(2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(2).getArrive());
+        if (taille>=2){
+            destination2.setImage(vide);
+            carteville2.setText(joueur.getCartesDestination().getCarte(1).getDepart()+" --> "+joueur.getCartesDestination().getCarte(1).getArrive());
+        }if (taille>=3){
+            destination3.setImage(vide);
+            carteville3.setText(joueur.getCartesDestination().getCarte(2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(2).getArrive());
+        }
         // Indice des cartes affichés
         indiceD+=3;
     }
@@ -293,6 +304,12 @@ public class MainSceneController {
     // Cache les cartes destination
     public void hideCardDestination(MouseEvent event)throws Exception{
         // On cache et reaffiche comme avant
+        destination1.setImage(null);
+        destination2.setImage(null);
+        destination3.setImage(null);
+        carteville1.setText(null);
+        carteville2.setText(null);
+        carteville3.setText(null);
         cartePane2.setVisible(false);
         face1.setVisible(true);
         face2.setVisible(true);
@@ -306,20 +323,32 @@ public class MainSceneController {
     public void nextCardDestination(ActionEvent event)throws Exception{
         int taille = joueur.getCartesDestination().getPaquet().size();
         if (taille>indiceD){
+            indice2+=3;
+            if (indice2>taille){
+                indice2=0;
+            }
             if (taille-indiceD >3){
+                destination1.setImage(vide);
+                destination2.setImage(vide);
+                destination3.setImage(vide);
                 carteville1.setText(joueur.getCartesDestination().getCarte(indiceD).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD).getArrive());
                 carteville2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+1).getArrive());
                 carteville3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+2).getArrive());
                 indiceD+=3;
             }
             else{
+                destination1.setImage(vide);
+                destination2.setImage(null);
+                destination3.setImage(null);
                 carteville1.setText(joueur.getCartesDestination().getCarte(indiceD).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD).getArrive());
                 carteville2.setText(null);
                 carteville3.setText(null);
                 if (taille-indiceD>=2){
+                    destination2.setImage(vide);
                     carteville2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+1).getArrive());
                 }
                 if (taille-indiceD==3){
+                    destination3.setImage(vide);
                     carteville3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+2).getArrive());
                 }
                 indiceD=0;
@@ -331,20 +360,17 @@ public class MainSceneController {
     public void removeCard(MouseEvent event) throws Exception{
         if (tour==1&&((joueur.equals(j0) && elimine1==false) || (joueur.equals(j1) && elimine2==false))){
             String id = event.getPickResult().getIntersectedNode().getId();
-            int num = Character.getNumericValue(id.charAt(5));
-            int indiceCarte=0;
-            while (joueur.getCartesWagon().getCarte(indiceCarte).getCouleur().equals(ordre.get(num-1))==false){
-                indiceCarte+=1;
-            }
-            text1.setText("Vous supprimez la carte wagon " + joueur.getCartesWagon().getCarte(indiceCarte).getCouleur());
-            joueur.getCartesWagon().removeCarte(indiceCarte);
-            this.hideCardWagon(event);
-            this.showCardWagon(event);
+            int num = Character.getNumericValue(id.charAt(11));
+            int index =num+indice2-1;
+            text1.setText(joueur.getNom()+" supprime : "+joueur.getCartesDestination().getCarte(index));
+            joueur.getCartesDestination().removeCarte(index);
             if(joueur.equals(j0)){
                 elimine1=true;
             }else{
                 elimine2=true;
             }
+            this.hideCardDestination(event);
+            this.showCardDestination(event);
         }
     }
 
@@ -365,4 +391,13 @@ public class MainSceneController {
         }
     }
 
+    public void ConserveCarte(MouseEvent event) throws Exception{
+        if(joueur.equals(j0)){
+            elimine1=true;
+        }else{
+            elimine2=true;
+        }
+        this.hideCardDestination(event);
+        this.changeMessage(joueur.getNom()+" conserve ses cartes ");
+    }
 }
