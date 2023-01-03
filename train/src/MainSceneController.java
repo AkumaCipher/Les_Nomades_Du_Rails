@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.lang.Thread;
 import engine.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -79,6 +80,8 @@ public class MainSceneController {
     private Text carteville3;
     @FXML
     private Button conserveButton;
+    @FXML
+    private Button nextButton;
     int indiceD =0;
     int indice2 =0;
 
@@ -296,6 +299,10 @@ public class MainSceneController {
         }if (taille>=3){
             destination3.setImage(vide);
             carteville3.setText(joueur.getCartesDestination().getCarte(2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(2).getArrive());
+        }if (taille>3){
+            nextButton.setStyle("visibility:visible;");
+        }else{
+            nextButton.setStyle("visibility:hidden;");
         }
         // Indice des cartes affichés
         indiceD+=3;
@@ -362,13 +369,13 @@ public class MainSceneController {
             String id = event.getPickResult().getIntersectedNode().getId();
             int num = Character.getNumericValue(id.charAt(11));
             int index =num+indice2-1;
-            text1.setText(joueur.getNom()+" supprime : "+joueur.getCartesDestination().getCarte(index));
             joueur.getCartesDestination().removeCarte(index);
             if(joueur.equals(j0)){
                 elimine1=true;
             }else{
                 elimine2=true;
             }
+            this.changeMessage("Piochez 2 cartes, dans la pioche ou dans les cartes révélés");
             this.hideCardDestination(event);
             this.showCardDestination(event);
         }
@@ -398,6 +405,18 @@ public class MainSceneController {
             elimine2=true;
         }
         this.hideCardDestination(event);
-        this.changeMessage(joueur.getNom()+" conserve ses cartes ");
+        this.changeMessage("Piochez 2 cartes, dans la pioche ou dans les cartes révélés");
+    }
+
+    // Change la couleur d'une carte survolée
+    public void survol(MouseEvent event){
+        ImageView carteSurvol = (ImageView) event.getSource();
+        carteSurvol.setStyle("-fx-opacity:0.5;");
+    }
+
+    // Remet a la normale une carte qui n'est plus survolée
+    public void normal(MouseEvent event){
+        ImageView carteSurvol = (ImageView) event.getSource();
+        carteSurvol.setStyle("-fx-opacity:1;");
     }
 }

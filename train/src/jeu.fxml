@@ -19,14 +19,14 @@
                   <Image url="@design/cross.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="destination1" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="40.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="destination2" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="230.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="destination3" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="420.0" onMouseClicked="#removeCard" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="destination1" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="40.0" onMouseClicked="#removeCard" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="destination2" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="230.0" onMouseClicked="#removeCard" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="destination3" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="420.0" onMouseClicked="#removeCard" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
             <Text fx:id="carteville1" layoutX="40.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
             <Text fx:id="carteville2" layoutX="40.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
             <Text fx:id="carteville3" layoutX="40.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
             <Button fx:id="conserveButton" layoutX="160.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#ConserveCarte" style="visibility: hidden;" text="Conserver" />
-            <Button layoutX="160.0" layoutY="300.0" mnemonicParsing="false" onAction="#nextCardDestination" text="Suivant" />
+            <Button fx:id="nextButton" layoutX="160.0" layoutY="300.0" mnemonicParsing="false" onAction="#nextCardDestination" style="visibility: hidden;" text="Suivant" />
          </children>
       </AnchorPane>
       <BorderPane fx:id="cartePane" layoutX="300.0" prefHeight="894.0" prefWidth="878.0">
@@ -38,15 +38,15 @@
                         <Image url="@design/cross.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="wagon1" fitHeight="150.0" fitWidth="100.0" layoutX="5.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="wagon2" fitHeight="150.0" fitWidth="100.0" layoutX="110.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="wagon3" fitHeight="150.0" fitWidth="100.0" layoutX="215.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="wagon4" fitHeight="150.0" fitWidth="100.0" layoutX="320.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="wagon5" fitHeight="150.0" fitWidth="100.0" layoutX="425.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="wagon6" fitHeight="150.0" fitWidth="100.0" layoutX="530.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="wagon7" fitHeight="150.0" fitWidth="100.0" layoutX="635.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="wagon8" fitHeight="150.0" fitWidth="100.0" layoutX="740.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="wagon9" fitHeight="150.0" fitWidth="100.0" layoutX="850.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon1" fitHeight="150.0" fitWidth="100.0" layoutX="5.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon2" fitHeight="150.0" fitWidth="100.0" layoutX="110.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon3" fitHeight="150.0" fitWidth="100.0" layoutX="215.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon4" fitHeight="150.0" fitWidth="100.0" layoutX="320.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon5" fitHeight="150.0" fitWidth="100.0" layoutX="425.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon6" fitHeight="150.0" fitWidth="100.0" layoutX="530.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon7" fitHeight="150.0" fitWidth="100.0" layoutX="635.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon8" fitHeight="150.0" fitWidth="100.0" layoutX="740.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="wagon9" fitHeight="150.0" fitWidth="100.0" layoutX="850.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
                   <Text layoutX="80.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                   <Text layoutX="185.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                   <Text layoutX="290.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
@@ -66,14 +66,14 @@
             <Image url="@../../design/wagon_icone.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="carteD" fitHeight="183.0" fitWidth="167.0" layoutX="1305.0" layoutY="60.0" onMouseClicked="#showCardDestination" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="carteD" fitHeight="150.0" fitWidth="100.0" layoutX="1305.0" layoutY="60.0" onMouseClicked="#showCardDestination" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../design/carted.png" />
+            <Image url="@wagon/cartevide.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="carteW" fitHeight="176.0" fitWidth="123.0" layoutX="300.0" layoutY="685.0" onMouseClicked="#showCardWagon" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="carteW" fitHeight="150.0" fitWidth="145.0" layoutX="300.0" layoutY="700.0" onMouseClicked="#showCardWagon" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../design/carted.png" />
+            <Image url="@wagon/logocartewagon.png" />
          </image>
       </ImageView>
       <VBox layoutX="25.0" layoutY="17.0" prefHeight="406.0" prefWidth="185.0" spacing="75.0">
@@ -98,11 +98,11 @@
             <Image url="@design/newpays.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="face1" fitHeight="150.0" fitWidth="104.0" layoutX="1300.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="face2" fitHeight="150.0" fitWidth="104.0" layoutX="1420.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="face3" fitHeight="150.0" fitWidth="104.0" layoutX="1301.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="face4" fitHeight="150.0" fitWidth="104.0" layoutX="1416.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="face5" fitHeight="150.0" fitWidth="104.0" layoutX="1414.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face1" fitHeight="150.0" fitWidth="104.0" layoutX="1300.0" layoutY="289.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face2" fitHeight="150.0" fitWidth="104.0" layoutX="1420.0" layoutY="289.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face3" fitHeight="150.0" fitWidth="104.0" layoutX="1301.0" layoutY="474.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face4" fitHeight="150.0" fitWidth="104.0" layoutX="1416.0" layoutY="476.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face5" fitHeight="150.0" fitWidth="104.0" layoutX="1414.0" layoutY="644.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="text1" layoutX="350.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" style="visibility: hidden; -fx-text-alignment: center;" text="Choisissez une carte a retirer" wrappingWidth="860.800048828125">
          <font>
             <Font size="24.0" />
