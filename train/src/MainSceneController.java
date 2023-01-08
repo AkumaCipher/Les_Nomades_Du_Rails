@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.print.attribute.standard.Destination;
+
 import java.lang.Thread;
 import engine.*;
 import javafx.event.ActionEvent;
@@ -10,12 +13,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -32,6 +38,10 @@ public class MainSceneController {
 
     engine.Joueur joueur = j0;
     int tour = 0;
+
+    // Page Acceuil
+    @FXML 
+    AnchorPane pageAcceuil ;
 
     // Page de jeu
     @FXML
@@ -98,11 +108,38 @@ public class MainSceneController {
     @FXML
     private ImageView face5;
 
-    Image f1 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(0).getLink());
-    Image f2 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(1).getLink());
-    Image f3 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(2).getLink());
-    Image f4 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(3).getLink());
-    Image f5 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(4).getLink());
+    // Jouer 
+    @FXML
+    private Button piocheDestination;
+    @FXML
+    private Button piocheWagon;
+    @FXML
+    private Button jouerPlateau;
+    @FXML
+    private ImageView piocheCarteWagon;
+    @FXML
+    private AnchorPane piocheDestinationPane;
+    @FXML
+    private ImageView piocheD1;
+    @FXML
+    private ImageView piocheD2;
+    @FXML
+    private ImageView piocheD3;
+    @FXML
+    private Text piocheD1Text;
+    @FXML
+    private Text piocheD2Text;
+    @FXML
+    private Text piocheD3Text;
+    @FXML
+    private Button piocheDButton;
+    @FXML
+    private Text piocheDText;
+    int piocheWagonCompte = 1000;
+    PaquetCarte piocheList = new PaquetCarte(3,"Destination");
+    ArrayList<Boolean> checkList = new ArrayList<>();
+    boolean joue = false;
+
 
     Image vide = new Image(".\\wagon\\cartevide.png",100,150,true,true);
 
@@ -113,6 +150,7 @@ public class MainSceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setFullScreen(true);
+        stage.setResizable(true);
         stage.show();
     }
 
@@ -147,79 +185,82 @@ public class MainSceneController {
 
     // Bouton debut de tour
     public void play(MouseEvent event) throws Exception{
+        if (joue==false){
+            // Carte a eliminer au premier tour 
+            if (elimine1==false && tour==1 && joueur.equals(j0)){
+                return;
+            }else if(elimine2==false && tour==1 && joueur.equals(j1)){
+                return;
+            }
 
-        // Carte a eliminer au premier tour 
-        if (elimine1==false && tour==1 && joueur.equals(j0)){
-            return;
-        }else if(elimine2==false && tour==1 && joueur.equals(j1)){
-            return;
-        }
+            // Options de jeu 
+            if (elimine1==true && elimine2==true){
+                piocheDestination.setStyle("visibility:visible;");
+                piocheWagon.setStyle("visibility:visible;");
+                jouerPlateau.setStyle("visibility:visible;");
+            }
 
-        // Initialisation des images et textes wagons
-        if (tour==0){
-            this.setupWagon();
-        }// Sinon on ferme les fenetres ouvertes
-        else{
-            this.hideCardDestination(event);
-            this.hideCardWagon(event);
-        }
+            // Initialisation des images et textes wagons
+            if (tour==0){
+                this.setupWagon();
+            }// Sinon on ferme les fenetres ouvertes
+            else{
+                this.hideCardDestination(event);
+                this.hideCardWagon(event);
+            }
 
-        // Changement de joueur et de tour
-        if(joueur.equals(j0) && tour!=0){
-            joueur=j1;
-        }else{
-            joueur=j0;
-            tour+=1;
-        }
+            // Changement de joueur et de tour
+            if(joueur.equals(j0) && tour!=0){
+                joueur=j1;
+            }else{
+                joueur=j0;
+                tour+=1;
+            }
 
-        if (tour==1){
-            text1.setStyle("visibility : visible;-fx-text-alignment:center;");
-        }else{
-            text1.setStyle("visibility: hidden");
-        }
+            if (tour==1){
+                text1.setStyle("visibility : visible;-fx-text-alignment:center;");
+            }else{
+                this.changeMessage("Choisissez votre action pour ce tour");
+            }
 
-        // Affichage carte wagon révélé
-        face1.setImage(f1);
-        face2.setImage(f2);
-        face3.setImage(f3);
-        face4.setImage(f4);
-        face5.setImage(f5);
+            // Affichage carte wagon révélé
+            this.setFace();
 
-        // Affichage nombre wagon du joueur
-        Text nbwagon = new Text(Integer.toString(joueur.getWagons()));
-        nbwagon.setLayoutX(100);
-        nbwagon.setLayoutY(800);
-        nbwagon.setStyle("-fx-font-size:30;");
-        rootPane.getChildren().addAll(nbwagon);
+            // Affichage nombre wagon du joueur
+            Text nbwagon = new Text(Integer.toString(joueur.getWagons()));
+            nbwagon.setLayoutX(250);
+            nbwagon.setLayoutY(650);
+            nbwagon.setStyle("-fx-font-size:30;");
+            rootPane.getChildren().addAll(nbwagon);
 
-        // Affichage des joueurs actuels 
-        if (joueur.equals(j0)){
-            joueur2.setStyle("-fx-opacity:0.4;");
-            joueur1.setStyle("-fx-opacity:1;");
-        }else{
-            joueur1.setStyle("-fx-opacity:0.4;");
-            joueur2.setStyle("-fx-opacity:1;");
-        }
+            // Affichage des joueurs actuels 
+            if (joueur.equals(j0)){
+                joueur2.setStyle("-fx-opacity:0.4;");
+                joueur1.setStyle("-fx-opacity:1;");
+            }else{
+                joueur1.setStyle("-fx-opacity:0.4;");
+                joueur2.setStyle("-fx-opacity:1;");
+            }
 
-        // Affichage statistiques joueurs
-        Text nom = new Text(j0.getNom());
-        nom.setLayoutX(100);
-        nom.setLayoutY(225);
+            // Affichage statistiques joueurs
+            Text nom = new Text(j0.getNom());
+            nom.setLayoutX(100);
+            nom.setLayoutY(225);
 
-        Text point = new Text(Integer.toString(j0.getPoint())+" points");
-        point.setLayoutX(100);
-        point.setLayoutY(250);
+            Text point = new Text(Integer.toString(j0.getPoint())+" points");
+            point.setLayoutX(100);
+            point.setLayoutY(250);
 
-        Text nom2 = new Text(j1.getNom());
-        nom2.setLayoutX(100);
-        nom2.setLayoutY(500);
+            Text nom2 = new Text(j1.getNom());
+            nom2.setLayoutX(100);
+            nom2.setLayoutY(500);
 
-        Text point2 = new Text(Integer.toString(j1.getPoint())+" points");
-        point2.setLayoutX(100);
-        point2.setLayoutY(525);
+            Text point2 = new Text(Integer.toString(j1.getPoint())+" points");
+            point2.setLayoutX(100);
+            point2.setLayoutY(525);
 
-        rootPane.getChildren().addAll(nom,nom2,point,point2);
-
+            rootPane.getChildren().addAll(nom,nom2,point,point2);
+            }
     }
 
     // Affichage des cartes wagon du joueur
@@ -375,7 +416,10 @@ public class MainSceneController {
             }else{
                 elimine2=true;
             }
-            this.changeMessage("Piochez 2 cartes, dans la pioche ou dans les cartes révélés");
+            this.changeMessage("Choisissez votre action pour ce tour");
+            piocheDestination.setStyle("visibility:visible;");
+            piocheWagon.setStyle("visibility:visible;");
+            jouerPlateau.setStyle("visibility:visible;");
             this.hideCardDestination(event);
             this.showCardDestination(event);
         }
@@ -405,7 +449,10 @@ public class MainSceneController {
             elimine2=true;
         }
         this.hideCardDestination(event);
-        this.changeMessage("Piochez 2 cartes, dans la pioche ou dans les cartes révélés");
+        this.changeMessage("Choisissez votre action pour ce tour");
+        piocheDestination.setStyle("visibility:visible;");
+        piocheWagon.setStyle("visibility:visible;");
+        jouerPlateau.setStyle("visibility:visible;");
     }
 
     // Change la couleur d'une carte survolée
@@ -419,4 +466,142 @@ public class MainSceneController {
         ImageView carteSurvol = (ImageView) event.getSource();
         carteSurvol.setStyle("-fx-opacity:1;");
     }
+
+    // Choix de piocher Wagon dans le tour
+    public void piocheCarteWagon(MouseEvent event) throws Exception{
+        this.changeMessage("Piochez vos carte wagon");
+        piocheWagonCompte=0;
+        joue=true;
+        piocheDestination.setStyle("visibility:hidden;");
+        piocheWagon.setStyle("visibility:hidden;");
+        jouerPlateau.setStyle("visibility:hidden;");
+        this.hideCardDestination(event);
+    }
+
+    // Pioche des carte face révélés dans le tour 
+    public void piocheFace(MouseEvent event) throws Exception{
+        if (piocheWagonCompte<2 && joue==true){
+            String id = event.getPickResult().getIntersectedNode().getId();
+            int num = Character.getNumericValue(id.charAt(4))-1;
+            if(piocheWagonCompte==1 && p.get_wagon_face().getCarte(num).getCouleur().equals("joker")){
+                this.changeMessage("Le joker ne peut pas etre pioché comme 2eme carte");
+            }else{
+                if(piocheWagonCompte==0 && p.get_wagon_face().getCarte(num).getCouleur().equals("joker")){
+                    piocheWagonCompte+=1;
+                }
+                joueur.getCartesWagon().getPaquet().add(p.get_wagon_face().getCarte(num));
+                p.removeCarteFace(num);
+                p.get_wagon_face().pioche(1, p.get_wagon_carte());
+                // Evite 3 joker sur les cartes face révélés
+                p.checkNbJoker();
+                this.setFace();
+                this.hideCardWagon(event);
+                this.showCardWagon(event);
+                this.changeMessage("Il reste une carte a piocher");
+                piocheWagonCompte+=1;
+            }
+            if (piocheWagonCompte==2){
+                joue=false;
+                this.play(event);
+            }
+        }
+    }
+
+    // Prendre dans la pioche Wagon
+    public void carteWagonPioche(MouseEvent event) throws Exception{
+        if (piocheWagonCompte<2){
+            joueur.getCartesWagon().pioche(1, p.get_wagon_carte());
+            this.hideCardWagon(event);
+            this.showCardWagon(event);
+            this.changeMessage("Il reste une carte a piocher");
+            piocheWagonCompte+=1;
+        }if (piocheWagonCompte==2){
+            joue=false;
+            this.play(event);
+        }
+    }
+
+    // Choix de piocher Destination dans le tour
+    public void piocheCarteDestination(MouseEvent event) throws Exception{
+        joue=true;
+        // Affichage du paneau de pioche
+        piocheDestinationPane.setStyle("visibility:visible;-fx-background-color:white;");
+        piocheDestination.setStyle("visibility:hidden;");
+        piocheWagon.setStyle("visibility:hidden;");
+        jouerPlateau.setStyle("visibility:hidden;");
+        this.showCardDestination(event);
+        for (Node n : rootPane.getChildren()){
+            n.setOpacity(0.5);
+        }
+        piocheDestinationPane.setOpacity(1);
+        cartePane2.setOpacity(1);
+        // Affichage des cartes
+        piocheList.pioche(3, p.get_destination_carte()); 
+        piocheD1Text.setText(piocheList.getCarte(0).getDepart()+" --> "+piocheList.getCarte(0).getArrive());
+        piocheD2Text.setText(piocheList.getCarte(1).getDepart()+" --> "+piocheList.getCarte(1).getArrive());
+        piocheD3Text.setText(piocheList.getCarte(2).getDepart()+" --> "+piocheList.getCarte(2).getArrive());
+        checkList.clear();
+        checkList.add(false);checkList.add(false);checkList.add(false);
+    }
+
+    // Validation du choix de pioche Destination
+    public void hidePiocheDestination(MouseEvent event) throws Exception{
+        if (joue==true){
+            // Recuperation des cartes
+            for (int i=0;i<checkList.size();i++){
+                if (checkList.get(i)==true){
+                    joueur.getCartesDestination().getPaquet().add(piocheList.getCarte(i));
+                    System.out.println(piocheList.getPaquet().get(i));
+                }else{
+                    p.get_destination_carte().getPaquet().add(piocheList.getCarte(i));
+                }
+            }
+            // Nettoyage des affichage Destination
+            piocheList.getPaquet().clear();
+            piocheD1.setEffect(null);
+            piocheD2.setEffect(null);
+            piocheD3.setEffect(null);
+            piocheDestinationPane.setStyle("visibility:hidden;");
+            for (Node n : rootPane.getChildren()){
+                n.setOpacity(1);
+            }
+            this.hideCardDestination(event);
+            this.showCardDestination(event);
+            joue=false;
+            this.play(event);
+        }
+    }
+
+    // Selectionner une carte de la pioche Destination
+    public void selectPiocheDestination(MouseEvent event)throws Exception{
+        String id = event.getPickResult().getIntersectedNode().getId();
+        int num = Character.getNumericValue(id.charAt(7))-1;
+        ImageView selectImage = (ImageView) event.getSource();
+        if (checkList.get(num)==false){
+            checkList.set(num, true);
+            Glow glow = new Glow(1);
+            selectImage.setEffect(glow);
+        }else{
+            checkList.set(num, false);
+            selectImage.setEffect(null);
+        }
+    }
+
+    // Mettre a jour les cartes Wagons révélés
+    public void setFace(){
+        Image f1 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(0).getLink());
+        Image f2 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(1).getLink());
+        Image f3 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(2).getLink());
+        Image f4 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(3).getLink());
+        Image f5 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(4).getLink());
+
+        face1.setImage(f1);
+        face2.setImage(f2);
+        face3.setImage(f3);
+        face4.setImage(f4);
+        face5.setImage(f5);
+
+    }
+
+
 }

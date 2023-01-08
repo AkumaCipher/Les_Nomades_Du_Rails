@@ -50,7 +50,7 @@ public class WagonCarte extends Carte {
     }
 
     public String getLink(){
-        if (this.isJoker()){
+        if (this.couleurWagon.equals("joker")){
             return ".\\wagon\\joker.png";
         }else{
             return ".\\wagon\\"+this.couleurWagon+".png";

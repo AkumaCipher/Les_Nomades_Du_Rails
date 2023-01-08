@@ -123,6 +123,7 @@ public class Plateau {
 
         this.wagon_face= new PaquetCarte(5, new String("Wagon"));
         this.wagon_face.pioche(5, this.wagon_carte);
+        this.checkNbJoker();
     }
 
     public ArrayList<Ville> get_ville(){
@@ -148,7 +149,6 @@ public class Plateau {
         }
         return 0;
     }
-
 
     public Boolean parcouru (Object ville , ArrayList<Ville> liste){
         for (int i=0; i<liste.size();i++){
@@ -201,4 +201,14 @@ public class Plateau {
         return chemin;
     }
 
+    public void removeCarteFace(int indice){
+        this.get_wagon_face().getPaquet().remove(indice);
+    }
+
+    public void checkNbJoker(){
+        while(this.get_wagon_face().nbcarte("joker")>=3){
+            this.wagon_face.getPaquet().clear();
+            this.wagon_face.pioche(5, this.wagon_carte);
+        }
+    }
 }

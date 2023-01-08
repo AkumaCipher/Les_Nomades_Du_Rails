@@ -61,7 +61,7 @@
          </bottom>
       </BorderPane>
       <Button layoutX="1281.0" layoutY="745.0" mnemonicParsing="false" onMouseClicked="#play" text="Play" />
-      <ImageView fitHeight="178.0" fitWidth="181.0" layoutX="51.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="145.0" fitWidth="145.0" layoutX="64.0" layoutY="568.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../design/wagon_icone.png" />
          </image>
@@ -98,15 +98,51 @@
             <Image url="@design/newpays.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="face1" fitHeight="150.0" fitWidth="104.0" layoutX="1300.0" layoutY="289.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="face2" fitHeight="150.0" fitWidth="104.0" layoutX="1420.0" layoutY="289.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="face3" fitHeight="150.0" fitWidth="104.0" layoutX="1301.0" layoutY="474.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="face4" fitHeight="150.0" fitWidth="104.0" layoutX="1416.0" layoutY="476.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="face5" fitHeight="150.0" fitWidth="104.0" layoutX="1414.0" layoutY="644.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face1" fitHeight="150.0" fitWidth="104.0" layoutX="1300.0" layoutY="289.0" onMouseClicked="#piocheFace" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face2" fitHeight="150.0" fitWidth="104.0" layoutX="1420.0" layoutY="289.0" onMouseClicked="#piocheFace" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face3" fitHeight="150.0" fitWidth="104.0" layoutX="1301.0" layoutY="474.0" onMouseClicked="#piocheFace" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face4" fitHeight="150.0" fitWidth="104.0" layoutX="1416.0" layoutY="476.0" onMouseClicked="#piocheFace" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="face5" fitHeight="150.0" fitWidth="104.0" layoutX="1414.0" layoutY="644.0" onMouseClicked="#piocheFace" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="text1" layoutX="350.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" style="visibility: hidden; -fx-text-alignment: center;" text="Choisissez une carte a retirer" wrappingWidth="860.800048828125">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
+      <Button fx:id="piocheWagon" layoutX="641.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#piocheCarteWagon" style="visibility: hidden;" text="Wagon" />
+      <Button fx:id="jouerPlateau" layoutX="728.0" layoutY="586.0" mnemonicParsing="false" style="visibility: hidden;" text="Jouer" />
+      <Button fx:id="piocheDestination" layoutX="809.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#piocheCarteDestination" style="visibility: hidden;" text="Destination" />
+      <AnchorPane fx:id="piocheDestinationPane" layoutX="500.0" layoutY="600.0" prefHeight="200.0" prefWidth="600.0" style="visibility: hidden;">
+         <children>
+            <Text fx:id="piocheDText" layoutX="40.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Selectionnez les cartes a garder" wrappingWidth="506.4034423828125">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="piocheD1" fitHeight="150.0" fitWidth="100.0" layoutX="40.0" layoutY="50.0" onMouseClicked="#selectPiocheDestination" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wagon/cartevide.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="piocheD2" fitHeight="150.0" fitWidth="100.0" layoutX="180.0" layoutY="50.0" onMouseClicked="#selectPiocheDestination" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wagon/cartevide.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="piocheD3" fitHeight="150.0" fitWidth="100.0" layoutX="320.0" layoutY="50.0" onMouseClicked="#selectPiocheDestination" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wagon/cartevide.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="piocheDButton" layoutX="480.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#hidePiocheDestination" text="Valider" />
+            <Text fx:id="piocheD1Text" layoutX="40.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="100.0" />
+            <Text fx:id="piocheD2Text" layoutX="180.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="100.0" />
+            <Text fx:id="piocheD3Text" layoutX="320.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="100.0" />
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="piocheCarteWagon" fitHeight="150.0" fitWidth="100.0" layoutX="85.0" layoutY="715.0" onMouseClicked="#carteWagonPioche" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@wagon/cartevide.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

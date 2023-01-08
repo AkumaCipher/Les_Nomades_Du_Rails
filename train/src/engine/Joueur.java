@@ -17,10 +17,10 @@ public class Joueur {
     // Definit un joueur par son nom et pioche ses cartes de base on lui fait connaitre les pioches
     public Joueur(String nom,PaquetCarte wagonPioche,PaquetCarte destinationPioche){
         this.nom = new String(nom);
-        this.cartesDestination = new PaquetCarte(4, new String("Destination"));
+        this.cartesDestination = new PaquetCarte(3, new String("Destination"));
         this.cartesWagon = new PaquetCarte(4, new String("Wagon"));
         this.cartesWagon.pioche(4, wagonPioche);
-        this.cartesDestination.pioche(4,destinationPioche);
+        this.cartesDestination.pioche(3,destinationPioche);
         this.point = 0;
         this.wagons=45;
     }

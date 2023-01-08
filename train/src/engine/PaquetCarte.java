@@ -104,6 +104,18 @@ public class PaquetCarte {
         }
     }
 
+    public int nbcarte(String couleur){
+        int nb =0;
+        if (this.typeCarte.equals("Wagon")){
+            for(Carte carte : this.paquet){
+                if(carte.getCouleur().equals(couleur)){
+                    nb+=1;
+                }
+            }
+        }
+        return nb;
+    }
+
     public void addCarte(Carte carte){
         if (this.typeCarte.equals(carte.getType())){
             this.paquet.add(carte);
@@ -113,4 +125,5 @@ public class PaquetCarte {
             System.out.println(new String("Un probléme de type est survenue, le type attendu est ") + new String(this.typeCarte) + new String(" mais nous avons recu ce type : ") + new String(carte.getType()));
         }
     }
+    
 }

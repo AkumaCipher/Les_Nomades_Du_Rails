@@ -1,0 +1,7 @@
+#pageAcceuil{
+    -fx-background-image: url("/wagon/fondacceuil.png");
+    -fx-background-repeat: no-repeat; 
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+}
