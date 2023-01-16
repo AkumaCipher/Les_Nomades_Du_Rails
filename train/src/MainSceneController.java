@@ -135,10 +135,88 @@ public class MainSceneController {
     private Button piocheDButton;
     @FXML
     private Text piocheDText;
+    @FXML
+    private ImageView route1;
+    @FXML
+    private ImageView route10;
+    @FXML
+    private ImageView route11;
+    @FXML
+    private ImageView route12;
+    @FXML
+    private ImageView route13;
+    @FXML
+    private ImageView route14;
+    @FXML
+    private ImageView route15;
+    @FXML
+    private ImageView route16;
+    @FXML
+    private ImageView route17;
+    @FXML
+    private ImageView route18;
+    @FXML
+    private ImageView route19;
+    @FXML
+    private ImageView route2;
+    @FXML
+    private ImageView route20;
+    @FXML
+    private ImageView route21;
+    @FXML
+    private ImageView route22;
+    @FXML
+    private ImageView route23;
+    @FXML
+    private ImageView route24;
+    @FXML
+    private ImageView route25;
+    @FXML
+    private ImageView route26;
+    @FXML
+    private ImageView route27;
+    @FXML
+    private ImageView route28;
+    @FXML
+    private ImageView route29;
+    @FXML
+    private ImageView route3;
+    @FXML
+    private ImageView route30;
+    @FXML
+    private ImageView route31;
+    @FXML
+    private ImageView route32;
+    @FXML
+    private ImageView route33;
+    @FXML
+    private ImageView route34;
+    @FXML
+    private ImageView route35;
+    @FXML
+    private ImageView route36;
+    @FXML
+    private ImageView route37;
+    @FXML
+    private ImageView route38;
+    @FXML
+    private ImageView route4;
+    @FXML
+    private ImageView route5;
+    @FXML
+    private ImageView route6;
+    @FXML
+    private ImageView route7;
+    @FXML
+    private ImageView route8;
+    @FXML
+    private ImageView route9;
     int piocheWagonCompte = 1000;
     PaquetCarte piocheList = new PaquetCarte(3,"Destination");
     ArrayList<Boolean> checkList = new ArrayList<>();
-    boolean joue = false;
+    boolean joueW = false;
+    boolean joueD = false;
+    boolean joueR = false;
 
 
     Image vide = new Image(".\\wagon\\cartevide.png",100,150,true,true);
@@ -185,7 +263,7 @@ public class MainSceneController {
 
     // Bouton debut de tour
     public void play(MouseEvent event) throws Exception{
-        if (joue==false){
+        if (joueW==false && joueD==false && joueR==false){
             // Carte a eliminer au premier tour 
             if (elimine1==false && tour==1 && joueur.equals(j0)){
                 return;
@@ -471,7 +549,7 @@ public class MainSceneController {
     public void piocheCarteWagon(MouseEvent event) throws Exception{
         this.changeMessage("Piochez vos carte wagon");
         piocheWagonCompte=0;
-        joue=true;
+        joueW=true;
         piocheDestination.setStyle("visibility:hidden;");
         piocheWagon.setStyle("visibility:hidden;");
         jouerPlateau.setStyle("visibility:hidden;");
@@ -480,7 +558,7 @@ public class MainSceneController {
 
     // Pioche des carte face révélés dans le tour 
     public void piocheFace(MouseEvent event) throws Exception{
-        if (piocheWagonCompte<2 && joue==true){
+        if (piocheWagonCompte<2 && joueW==true){
             String id = event.getPickResult().getIntersectedNode().getId();
             int num = Character.getNumericValue(id.charAt(4))-1;
             if(piocheWagonCompte==1 && p.get_wagon_face().getCarte(num).getCouleur().equals("joker")){
@@ -501,7 +579,7 @@ public class MainSceneController {
                 piocheWagonCompte+=1;
             }
             if (piocheWagonCompte==2){
-                joue=false;
+                joueW=false;
                 this.play(event);
             }
         }
@@ -516,14 +594,14 @@ public class MainSceneController {
             this.changeMessage("Il reste une carte a piocher");
             piocheWagonCompte+=1;
         }if (piocheWagonCompte==2){
-            joue=false;
+            joueW=false;
             this.play(event);
         }
     }
 
     // Choix de piocher Destination dans le tour
     public void piocheCarteDestination(MouseEvent event) throws Exception{
-        joue=true;
+        joueD=true;
         // Affichage du paneau de pioche
         piocheDestinationPane.setStyle("visibility:visible;-fx-background-color:white;");
         piocheDestination.setStyle("visibility:hidden;");
@@ -546,7 +624,7 @@ public class MainSceneController {
 
     // Validation du choix de pioche Destination
     public void hidePiocheDestination(MouseEvent event) throws Exception{
-        if (joue==true){
+        if (joueD==true){
             // Recuperation des cartes
             for (int i=0;i<checkList.size();i++){
                 if (checkList.get(i)==true){
@@ -567,7 +645,7 @@ public class MainSceneController {
             }
             this.hideCardDestination(event);
             this.showCardDestination(event);
-            joue=false;
+            joueD=false;
             this.play(event);
         }
     }
@@ -587,6 +665,35 @@ public class MainSceneController {
         }
     }
 
+    // Choix de jouer des cartes dans le tour 
+    public void joueRoute(MouseEvent event)throws Exception{
+        joueR=true;
+        piocheDestination.setStyle("visibility:hidden;");
+        piocheWagon.setStyle("visibility:hidden;");
+        jouerPlateau.setStyle("visibility:hidden;");
+    }
+
+    // Choix de la route a prendre
+    public void prendreRoute(MouseEvent event)throws Exception{
+        if (joueR==false){
+            return;
+        }
+
+        ImageView routePrise = (ImageView) event.getSource();
+        routePrise.setStyle("-fx-opacity:0.5;");
+
+        // Erreur a regler 2 chiffres id
+        String id = event.getPickResult().getIntersectedNode().getId();
+        int num = Character.getNumericValue(id.charAt(5));
+        if (id.length()>6){
+            num = Character.getNumericValue(id.charAt(5)+id.charAt(6));
+        }
+        System.out.println(num);
+        System.out.println(p.get_route().get(num-1).getCouleur());
+        joueR=false;
+        this.play(event);
+    }
+
     // Mettre a jour les cartes Wagons révélés
     public void setFace(){
         Image f1 = new javafx.scene.image.Image(p.get_wagon_face().getCarte(0).getLink());
@@ -603,5 +710,5 @@ public class MainSceneController {
 
     }
 
-
+    
 }

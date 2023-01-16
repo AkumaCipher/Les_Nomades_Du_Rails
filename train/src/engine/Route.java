@@ -8,7 +8,7 @@ public class Route {
         this.taille = 2;
         this.destination[0] = new Ville();
         this.destination[1] = new Ville();
-        this.couleur = new String("red");
+        this.couleur = new String("rouge");
     }
 
     public Route(int taille, Ville[] destination, String couleur) {

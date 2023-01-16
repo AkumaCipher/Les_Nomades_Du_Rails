@@ -95,7 +95,7 @@
       </VBox>
       <ImageView fitHeight="665.0" fitWidth="1015.0" layoutX="340.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@design/newpays.png" />
+            <Image url="@design/map.png" />
          </image>
       </ImageView>
       <ImageView fx:id="face1" fitHeight="150.0" fitWidth="104.0" layoutX="1300.0" layoutY="289.0" onMouseClicked="#piocheFace" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
@@ -109,7 +109,7 @@
          </font>
       </Text>
       <Button fx:id="piocheWagon" layoutX="641.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#piocheCarteWagon" style="visibility: hidden;" text="Wagon" />
-      <Button fx:id="jouerPlateau" layoutX="728.0" layoutY="586.0" mnemonicParsing="false" style="visibility: hidden;" text="Jouer" />
+      <Button fx:id="jouerPlateau" layoutX="728.0" layoutY="586.0" mnemonicParsing="false" onMouseClicked="#joueRoute" style="visibility: hidden;" text="Jouer" />
       <Button fx:id="piocheDestination" layoutX="809.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#piocheCarteDestination" style="visibility: hidden;" text="Destination" />
       <AnchorPane fx:id="piocheDestinationPane" layoutX="500.0" layoutY="600.0" prefHeight="200.0" prefWidth="600.0" style="visibility: hidden;">
          <children>
@@ -142,6 +142,196 @@
       <ImageView fx:id="piocheCarteWagon" fitHeight="150.0" fitWidth="100.0" layoutX="85.0" layoutY="715.0" onMouseClicked="#carteWagonPioche" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@wagon/cartevide.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route35" fitHeight="150.0" fitWidth="77.0" layoutX="943.0" layoutY="317.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="18.4">
+         <image>
+            <Image url="@wagon/r2_blanc.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route33" fitHeight="150.0" fitWidth="77.0" layoutX="1025.5" layoutY="269.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="64.0">
+         <image>
+            <Image url="@wagon/r2_jaune.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route27" fitHeight="150.0" fitWidth="77.0" layoutX="845.0" layoutY="325.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-28.5">
+         <image>
+            <Image url="@wagon/r2_jaune.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route36" fitHeight="150.0" fitWidth="77.0" layoutX="975.0" layoutY="379.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-66.7">
+         <image>
+            <Image url="@wagon/r2_rouge.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route23" fitHeight="150.0" fitWidth="77.0" layoutX="808.0" layoutY="445.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="6.0">
+         <image>
+            <Image url="@wagon/r2_jaune.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route37" fitHeight="150.0" fitWidth="77.0" layoutX="904.0" layoutY="436.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-16.0">
+         <image>
+            <Image url="@wagon/r2_bleu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route18" fitHeight="150.0" fitWidth="77.0" layoutX="748.0" layoutY="477.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="100.5">
+         <image>
+            <Image url="@wagon/r2_bleu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route14" fitHeight="150.0" fitWidth="77.0" layoutX="671.0" layoutY="298.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@wagon/r2_bleu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route16" fitHeight="150.0" fitWidth="77.0" layoutX="751.0" layoutY="353.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-3.5">
+         <image>
+            <Image url="@wagon/r2_vert.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route29" fitHeight="150.0" fitWidth="77.0" layoutX="845.0" layoutY="157.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-31.5">
+         <image>
+            <Image url="@wagon/r2_vert.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route6" fitHeight="150.0" fitWidth="77.0" layoutX="530.0" layoutY="486.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="37.9">
+         <image>
+            <Image url="@wagon/r2_vert.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route26" fitHeight="150.0" fitWidth="77.0" layoutX="888.5" layoutY="490.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="54.9">
+         <image>
+            <Image url="@wagon/r2_noire.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route22" fitHeight="150.0" fitWidth="77.0" layoutX="774.0" layoutY="140.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="57.0">
+         <image>
+            <Image url="@wagon/r2_noire.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route17" fitHeight="150.0" fitWidth="77.0" layoutX="731.0" layoutY="396.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="52.0">
+         <image>
+            <Image url="@wagon/r2_orange.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route24" fitHeight="150.0" fitWidth="77.0" layoutX="783.0" layoutY="393.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="117.0">
+         <image>
+            <Image url="@wagon/r2_violet.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route28" fitHeight="150.0" fitWidth="117.0" layoutX="801.0" layoutY="107.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="11.3">
+         <image>
+            <Image url="@wagon/r3_orange.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route30" fitHeight="150.0" fitWidth="117.0" layoutX="826.0" layoutY="242.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="52.1">
+         <image>
+            <Image url="@wagon/r3_orange.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route19" fitHeight="150.0" fitWidth="117.0" layoutX="667.0" layoutY="125.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-25.0">
+         <image>
+            <Image url="@wagon/r3_violet.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route21" fitHeight="150.0" fitWidth="117.0" layoutX="741.0" layoutY="245.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-55.0">
+         <image>
+            <Image url="@wagon/r3_violet.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route38" fitHeight="150.0" fitWidth="117.0" layoutX="900.0" layoutY="361.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="63.0">
+         <image>
+            <Image url="@wagon/r3_violet.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route31" fitHeight="150.0" fitWidth="117.0" layoutX="927.0" layoutY="262.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-32.5">
+         <image>
+            <Image url="@wagon/r3_rouge.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route11" fitHeight="150.0" fitWidth="117.0" layoutX="532.0" layoutY="288.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="10.8">
+         <image>
+            <Image url="@wagon/r3_rouge.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route1" fitHeight="150.0" fitWidth="117.0" layoutX="395.0" layoutY="462.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="127.9">
+         <image>
+            <Image url="@wagon/r3_rouge.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route2" fitHeight="150.0" fitWidth="117.0" layoutX="414.0" layoutY="490.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-32.7">
+         <image>
+            <Image url="@wagon/r3_bleu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route32" fitHeight="150.0" fitWidth="117.0" layoutX="927.0" layoutY="177.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="39.6">
+         <image>
+            <Image url="@wagon/r3_bleu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route4" fitHeight="150.0" fitWidth="117.0" layoutX="452.0" layoutY="340.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="101.0">
+         <image>
+            <Image url="@wagon/r3_noire.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route13" fitHeight="150.0" fitWidth="117.0" layoutX="603.0" layoutY="231.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+         <image>
+            <Image url="@wagon/r3_vert.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route9" fitHeight="150.0" fitWidth="38.0" layoutX="690.0" layoutY="357.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@wagon/r1_blanc.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route10" fitHeight="150.0" fitWidth="38.0" layoutX="650.0" layoutY="326.5" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-106.0">
+         <image>
+            <Image url="@wagon/r1_jaune.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route15" fitHeight="150.0" fitWidth="38.0" layoutX="731.0" layoutY="328.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="110.2">
+         <image>
+            <Image url="@wagon/r1_rouge.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route34" fitHeight="150.0" fitWidth="38.0" layoutX="1041.0" layoutY="323.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="161.6">
+         <image>
+            <Image url="@wagon/r1_vert.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route3" fitHeight="150.0" fitWidth="38.0" layoutX="496.0" layoutY="430.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="54.5">
+         <image>
+            <Image url="@wagon/r1_violet.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route8" fitHeight="104.0" fitWidth="154.0" layoutX="617.0" layoutY="525.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="4.0">
+         <image>
+            <Image url="@wagon/r4_blanc.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route25" fitHeight="104.0" fitWidth="154.0" layoutX="791.0" layoutY="532.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="1.0">
+         <image>
+            <Image url="@wagon/r4_vert.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route7" fitHeight="104.0" fitWidth="154.0" layoutX="568.0" layoutY="436.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-65.5">
+         <image>
+            <Image url="@wagon/r4_noire.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route5" fitHeight="104.0" fitWidth="154.0" layoutX="525.0" layoutY="403.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="144.8">
+         <image>
+            <Image url="@wagon/r4_orange.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route12" fitHeight="104.0" fitWidth="154.0" layoutX="512.0" layoutY="214.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="-39.3">
+         <image>
+            <Image url="@wagon/r4_blanc.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="route20" fitHeight="104.0" fitWidth="154.0" layoutX="673.0" layoutY="175.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="8.0">
+         <image>
+            <Image url="@wagon/r4_jaune.png" />
          </image>
       </ImageView>
    </children>

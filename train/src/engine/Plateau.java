@@ -9,6 +9,7 @@ public class Plateau {
 
 
     private ArrayList<Ville> list_ville = new ArrayList<Ville>();
+    private ArrayList<Route> list_route= new ArrayList<Route>();
     private PaquetCarte wagon_carte ;
     private PaquetCarte destination_carte ;
     private PaquetCarte wagon_face ;
@@ -17,7 +18,51 @@ public class Plateau {
         for (int i=0;i<this.nom_ville.size();i++){
             list_ville.add(new Ville(this.nom_ville.get(i)));
         }
-        
+
+        // Definition des routes 
+        list_route.add(new Route(3,list_ville.get(22),list_ville.get(20),"rouge"));
+        list_route.add(new Route(3,list_ville.get(22),list_ville.get(21),"bleu"));
+        list_route.add(new Route(1,list_ville.get(20),list_ville.get(21),"violet"));
+        list_route.add(new Route(3,list_ville.get(20),list_ville.get(12),"noir"));
+        list_route.add(new Route(4,list_ville.get(19),list_ville.get(21),"orange"));
+        list_route.add(new Route(2,list_ville.get(18),list_ville.get(21),"vert"));
+        list_route.add(new Route(4,list_ville.get(19),list_ville.get(18),"noir"));
+        list_route.add(new Route(4,list_ville.get(18),list_ville.get(17),"blanc"));
+        list_route.add(new Route(1,list_ville.get(19),list_ville.get(13),"blanc"));
+        list_route.add(new Route(1,list_ville.get(19),list_ville.get(11),"jaune"));
+
+        list_route.add(new Route(3,list_ville.get(11),list_ville.get(12),"rouge"));
+        list_route.add(new Route(4,list_ville.get(3),list_ville.get(12),"blanc"));
+        list_route.add(new Route(3,list_ville.get(3),list_ville.get(11),"vert"));
+        list_route.add(new Route(2,list_ville.get(11),list_ville.get(10),"bleu"));
+        list_route.add(new Route(1,list_ville.get(10),list_ville.get(13),"rouge"));
+        list_route.add(new Route(2,list_ville.get(13),list_ville.get(9),"vert"));
+        list_route.add(new Route(2,list_ville.get(13),list_ville.get(16),"orange"));
+        list_route.add(new Route(2,list_ville.get(17),list_ville.get(16),"bleu"));
+        list_route.add(new Route(3,list_ville.get(3),list_ville.get(1),"violet"));
+        list_route.add(new Route(4,list_ville.get(3),list_ville.get(2),"jaune"));
+
+        list_route.add(new Route(3,list_ville.get(10),list_ville.get(2),"violet"));
+        list_route.add(new Route(2,list_ville.get(2),list_ville.get(1),"noir"));
+        list_route.add(new Route(2,list_ville.get(15),list_ville.get(16),"jaune"));
+        list_route.add(new Route(2,list_ville.get(16),list_ville.get(9),"violet"));
+        list_route.add(new Route(4,list_ville.get(17),list_ville.get(14),"vert"));
+        list_route.add(new Route(2,list_ville.get(14),list_ville.get(15),"noir"));
+        list_route.add(new Route(2,list_ville.get(9),list_ville.get(7),"jaune"));
+        list_route.add(new Route(3,list_ville.get(0),list_ville.get(1),"orange"));
+        list_route.add(new Route(2,list_ville.get(0),list_ville.get(2),"vert"));
+        list_route.add(new Route(3,list_ville.get(2),list_ville.get(7),"orange"));
+
+        list_route.add(new Route(3,list_ville.get(7),list_ville.get(4),"rouge"));
+        list_route.add(new Route(3,list_ville.get(4),list_ville.get(0),"bleu"));
+        list_route.add(new Route(2,list_ville.get(4),list_ville.get(5),"jaune"));
+        list_route.add(new Route(1,list_ville.get(5),list_ville.get(6),"vert"));
+        list_route.add(new Route(2,list_ville.get(6),list_ville.get(7),"blanc"));
+        list_route.add(new Route(2,list_ville.get(6),list_ville.get(8),"rouge"));
+        list_route.add(new Route(2,list_ville.get(8),list_ville.get(15),"bleu"));
+        list_route.add(new Route(3,list_ville.get(7),list_ville.get(8),"violet"));
+
+
         // Definition des liaisons entre les villes 
         list_ville.get(0).setVoisin(list_ville.get(1), 3);
         list_ville.get(0).setVoisin(list_ville.get(2), 2);
@@ -128,6 +173,10 @@ public class Plateau {
 
     public ArrayList<Ville> get_ville(){
         return this.list_ville;
+    }
+
+    public ArrayList<Route> get_route(){
+        return this.list_route;
     }
 
     public PaquetCarte get_wagon_carte(){
