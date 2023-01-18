@@ -63,4 +63,15 @@ public class Route {
         this.couleur = couleur;
     }
 
+    public int getPoints(){
+        if (this.taille==1){
+            return 1;
+        }if (this.taille==2){
+            return 2;
+        }if (this.taille==3){
+            return 4;
+        }
+        return 7;
+    }
+
 }

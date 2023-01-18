@@ -1,8 +1,6 @@
 package engine;
 import java.util.*;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
-
 public class Plateau {
 
     private ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Dolk","Aillk","Kuri","Rimu","Kolg","Guine","Varass","Trarbe","Nita","Solis","Xewood","Fefield","Brosa","Erbolis","Danir","Ouaïbe","New Varass","Bafao","Sandre","Motlen","Soles","Draille","Qimyss"));                                          
@@ -23,10 +21,10 @@ public class Plateau {
         list_route.add(new Route(3,list_ville.get(22),list_ville.get(20),"rouge"));
         list_route.add(new Route(3,list_ville.get(22),list_ville.get(21),"bleu"));
         list_route.add(new Route(1,list_ville.get(20),list_ville.get(21),"violet"));
-        list_route.add(new Route(3,list_ville.get(20),list_ville.get(12),"noir"));
+        list_route.add(new Route(3,list_ville.get(20),list_ville.get(12),"noire"));
         list_route.add(new Route(4,list_ville.get(19),list_ville.get(21),"orange"));
         list_route.add(new Route(2,list_ville.get(18),list_ville.get(21),"vert"));
-        list_route.add(new Route(4,list_ville.get(19),list_ville.get(18),"noir"));
+        list_route.add(new Route(4,list_ville.get(19),list_ville.get(18),"noire"));
         list_route.add(new Route(4,list_ville.get(18),list_ville.get(17),"blanc"));
         list_route.add(new Route(1,list_ville.get(19),list_ville.get(13),"blanc"));
         list_route.add(new Route(1,list_ville.get(19),list_ville.get(11),"jaune"));
@@ -43,11 +41,11 @@ public class Plateau {
         list_route.add(new Route(4,list_ville.get(3),list_ville.get(2),"jaune"));
 
         list_route.add(new Route(3,list_ville.get(10),list_ville.get(2),"violet"));
-        list_route.add(new Route(2,list_ville.get(2),list_ville.get(1),"noir"));
+        list_route.add(new Route(2,list_ville.get(2),list_ville.get(1),"noire"));
         list_route.add(new Route(2,list_ville.get(15),list_ville.get(16),"jaune"));
         list_route.add(new Route(2,list_ville.get(16),list_ville.get(9),"violet"));
         list_route.add(new Route(4,list_ville.get(17),list_ville.get(14),"vert"));
-        list_route.add(new Route(2,list_ville.get(14),list_ville.get(15),"noir"));
+        list_route.add(new Route(2,list_ville.get(14),list_ville.get(15),"noire"));
         list_route.add(new Route(2,list_ville.get(9),list_ville.get(7),"jaune"));
         list_route.add(new Route(3,list_ville.get(0),list_ville.get(1),"orange"));
         list_route.add(new Route(2,list_ville.get(0),list_ville.get(2),"vert"));
@@ -255,9 +253,87 @@ public class Plateau {
     }
 
     public void checkNbJoker(){
-        while(this.get_wagon_face().nbcarte("joker",this.wagon_carte)>=3){
+        while(this.get_wagon_face().nbcarte("joker",this.get_wagon_face())>=3){
             this.wagon_face.getPaquet().clear();
             this.wagon_face.pioche(5, this.wagon_carte);
         }
     }
+
+    public int getIndexVille(Ville source){
+        for (int i=0;i< this.list_ville.size();i++){
+            if (this.list_ville.get(i).getName().equals(source.getName())){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public int indexDistMini(int tab[],ArrayList<Ville> Q){
+        int min = Integer.MAX_VALUE;
+        int index=0;
+        for (int i =0;i<this.list_ville.size();i++){
+            if (tab[i]< min && Q.contains(this.list_ville.get(i))){
+                index =i;
+                min=tab[i];
+            }
+        }
+        return index;
+    }
+
+    public boolean verifDestination (Ville depart,Ville arrivé,Joueur joueur){
+        ArrayList<Route> posession = new ArrayList<>();
+        for (Route route : this.list_route){
+            if (route.getProprietaire()!=null && route.getProprietaire().equals(joueur)){
+                posession.add(route);
+            }
+        }
+        System.out.println(posession);
+        return false;
+    }
+
+    // Algorithme de dijkstra donnant le chemin le plus court entre 2 point
+    public Object[] dijkstra(Ville depart,Ville arrivé){
+        ArrayList<Ville> Q = new ArrayList<>();
+        int dist[] = new int[this.list_ville.size()];
+        Ville prev[] = new Ville[this.list_ville.size()];
+
+        for (int i=0;i< this.list_ville.size();i++){
+            dist[i]= 1000;
+            prev[i]= null;
+            Q.add(this.list_ville.get(i));
+        }
+
+        dist[this.getIndexVille(depart)]=0;
+
+        while (Q.size()!=0){
+            Ville now =this.list_ville.get(this.indexDistMini(dist,Q));
+            int index = this.indexDistMini(dist,Q);
+            Q.remove(now);
+    
+            // Parcours des voisins
+            for (Map.Entry<Ville,Integer> voisin: now.getVoisins().entrySet()){
+                    int alt = dist[index] + voisin.getValue();
+                    int v = this.getIndexVille(voisin.getKey());
+                    if (alt<dist[v]){
+                        dist[v] = alt;
+                        prev[v] = now;
+                    }
+                
+            }
+        }
+
+        // Reconstitution du chemin
+        ArrayList<Ville> chemin = new ArrayList<>();
+        chemin.add(arrivé);
+        int j=this.getIndexVille(arrivé);
+        while (prev[j].equals(depart)==false){
+            chemin.add(prev[j]);
+            j=this.getIndexVille(prev[j]);
+        }
+        chemin.add(depart);
+        return new Object[] {dist[this.getIndexVille(arrivé)],chemin};
+        
+    }   
+
+    
 }

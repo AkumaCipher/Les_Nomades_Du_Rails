@@ -88,6 +88,10 @@ public class Joueur {
         this.point = point;
     }
 
+    public void addPoint(int point) {
+        this.point += point;
+    }
+
     public void setWagons(int nb){
         this.wagons=nb;
     }
@@ -101,7 +105,7 @@ public class Joueur {
     }
 
     public boolean equals(Joueur j){
-        if (this.nom==j.nom && this.wagons==j.wagons && this.point==j.point){
+        if (this.nom==j.nom && this.couleur==this.couleur){
             return true;
         }else{
             return false;

@@ -10,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -209,6 +208,15 @@ public class MainSceneController {
     private ImageView route8;
     @FXML
     private ImageView route9;
+    @FXML
+    private Text nom;
+    @FXML
+    private Text point;
+    @FXML
+    private Text nom2;
+    @FXML
+    private Text point2;
+
     int piocheWagonCompte = 1000;
     PaquetCarte piocheList = new PaquetCarte(3,"Destination");
     ArrayList<Boolean> checkList = new ArrayList<>();
@@ -303,7 +311,7 @@ public class MainSceneController {
             this.setFace();
 
             // Affichage nombre wagon du joueur
-            nbwagon = new Text(Integer.toString(joueur.getWagons()));
+            nbwagon.setText(Integer.toString(joueur.getWagons()));
 
             // Affichage des joueurs actuels 
             if (joueur.equals(j0)){
@@ -315,23 +323,10 @@ public class MainSceneController {
             }
 
             // Affichage statistiques joueurs
-            Text nom = new Text(j0.getNom());
-            nom.setLayoutX(100);
-            nom.setLayoutY(225);
-
-            Text point = new Text(Integer.toString(j0.getPoint())+" points");
-            point.setLayoutX(100);
-            point.setLayoutY(250);
-
-            Text nom2 = new Text(j1.getNom());
-            nom2.setLayoutX(100);
-            nom2.setLayoutY(500);
-
-            Text point2 = new Text(Integer.toString(j1.getPoint())+" points");
-            point2.setLayoutX(100);
-            point2.setLayoutY(525);
-
-            rootPane.getChildren().addAll(nom,nom2,point,point2);
+            nom.setText(j0.getNom());
+            point.setText(Integer.toString(j0.getPoint())+" points");
+            nom2.setText(j1.getNom());
+            point2.setText(Integer.toString(j1.getPoint())+" points");
             }
     }
 
@@ -664,6 +659,7 @@ public class MainSceneController {
         piocheDestination.setStyle("visibility:hidden;");
         piocheWagon.setStyle("visibility:hidden;");
         jouerPlateau.setStyle("visibility:hidden;");
+
     }
 
     // Choix de la route a prendre
@@ -700,7 +696,7 @@ public class MainSceneController {
                 verif=true;
             }
             // Sinon avec des cartes Joker en plus
-            else if (joueur.getCartesWagon().nbcarte(route.getCouleur(), joueur.getCartesWagon()) + joueur.getCartesWagon().nbcarte("joker", joueur.getCartesWagon()) >=route.getTaille()){
+            if (joueur.getCartesWagon().nbcarte(route.getCouleur(), joueur.getCartesWagon()) + joueur.getCartesWagon().nbcarte("joker", joueur.getCartesWagon()) >=route.getTaille()){
                 int numdelete = 0;
                 // On supprime les cartes wagons utilisés
                 for (int i=joueur.getCartesWagon().getPaquet().size()-1;i>=0;i--){
@@ -718,15 +714,27 @@ public class MainSceneController {
                 verif=true;
             }
             if (verif==true){
+                // Mis a jour nb wagon
                 joueur.setWagons(joueur.getWagons()-route.getTaille());
+                nbwagon.setText(Integer.toString(joueur.getWagons()));
 
                 // Mise a jour de la route
                 ImageView routePrise = (ImageView) event.getSource();
                 routePrise.setImage(new Image(".\\wagon\\r"+p.get_route().get(num-1).getTaille()+"_"+joueur.getCouleur()+".png"));
                 routePrise.setStyle("-fx-opacity:0.5;");
                 p.get_route().get(num-1).setProprietaire(joueur);
+
+                // Mis a jour du nb de point
+                joueur.addPoint(route.getPoints());
+                p.verifDestination(p.get_ville().get(0), p.get_ville().get(1), joueur);
+
                 joueR=false;
                 this.play(event);
+            }else{
+                joueR=false;
+                piocheDestination.setStyle("visibility:visible;");
+                piocheWagon.setStyle("visibility:visible;");
+                this.changeMessage("Jeu impossible changez d'option");
             }
         }
     }

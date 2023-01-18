@@ -174,7 +174,7 @@
             <Image url="@wagon/r2_bleu.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="route18" fitHeight="150.0" fitWidth="77.0" layoutX="748.0" layoutY="477.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="100.5">
+      <ImageView fx:id="route18" fitHeight="150.0" fitWidth="77.0" layoutX="750.0" layoutY="483.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="100.5">
          <image>
             <Image url="@wagon/r2_bleu.png" />
          </image>
@@ -335,5 +335,9 @@
          </image>
       </ImageView>
       <Text fx:id="nbwagon" layoutX="250.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" />
+      <Text fx:id="nom" layoutX="100.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="point" layoutX="100.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="nom2" layoutX="100.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="point2" layoutX="100.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>
