@@ -3,6 +3,7 @@ public class Route {
     private int taille;
     private Ville[] destination = new Ville[2];
     private String couleur;
+    private Joueur proprietaire;
 
     public Route() {
         this.taille = 2;
@@ -44,6 +45,14 @@ public class Route {
 
     public void setDestination(Ville[] destination) {
         this.destination = destination;
+    }
+
+    public void setProprietaire(Joueur j){
+        this.proprietaire=j;
+    }
+
+    public Joueur getProprietaire(){
+        return this.proprietaire;
     }
 
     public String getCouleur() {

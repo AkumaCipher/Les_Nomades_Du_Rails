@@ -105,10 +105,10 @@ public class PaquetCarte {
         }
     }
 
-    public int nbcarte(String couleur){
+    public int nbcarte(String couleur,PaquetCarte main){
         int nb =0;
         if (this.typeCarte.equals("Wagon")){
-            for(Carte carte : this.paquet){
+            for(Carte carte : main.getPaquet()){
                 if(carte.getCouleur().equals(couleur)){
                     nb+=1;
                 }
@@ -116,6 +116,7 @@ public class PaquetCarte {
         }
         return nb;
     }
+
 
     public void addCarte(Carte carte){
         if (this.typeCarte.equals(carte.getType())){

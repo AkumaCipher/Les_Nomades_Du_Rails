@@ -255,7 +255,7 @@ public class Plateau {
     }
 
     public void checkNbJoker(){
-        while(this.get_wagon_face().nbcarte("joker")>=3){
+        while(this.get_wagon_face().nbcarte("joker",this.wagon_carte)>=3){
             this.wagon_face.getPaquet().clear();
             this.wagon_face.pioche(5, this.wagon_carte);
         }

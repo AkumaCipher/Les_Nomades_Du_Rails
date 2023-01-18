@@ -2,9 +2,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.print.attribute.standard.Destination;
-
-import java.lang.Thread;
 import engine.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,8 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -33,8 +29,8 @@ public class MainSceneController {
 
     // Defintion des joueurs de base 
     engine.Plateau p = new Plateau();
-    engine.Joueur j0 = new Joueur("Bob",p.get_wagon_carte(),p.get_destination_carte());
-    engine.Joueur j1 = new Joueur("John",p.get_wagon_carte(),p.get_destination_carte());
+    engine.Joueur j0 = new Joueur("Bob","rouge",p.get_wagon_carte(),p.get_destination_carte());
+    engine.Joueur j1 = new Joueur("John","bleu",p.get_wagon_carte(),p.get_destination_carte());
 
     engine.Joueur joueur = j0;
     int tour = 0;
@@ -679,19 +675,59 @@ public class MainSceneController {
             return;
         }
 
-        ImageView routePrise = (ImageView) event.getSource();
-        routePrise.setStyle("-fx-opacity:0.5;");
-
-        // Erreur a regler 2 chiffres id
+        // Recuperation de la route cliquée
         String id = event.getPickResult().getIntersectedNode().getId();
-        int num = Character.getNumericValue(id.charAt(5));
+        Character charnum = id.charAt(5);
+        String strnum=""+charnum;
+        // Si id avec 2 chiffres
         if (id.length()>6){
-            num = Character.getNumericValue(id.charAt(5)+id.charAt(6));
+            strnum=""+charnum+id.charAt(6);
         }
-        System.out.println(num);
-        System.out.println(p.get_route().get(num-1).getCouleur());
-        joueR=false;
-        this.play(event);
+        Integer num=Integer.parseInt(strnum);
+        Route route =p.get_route().get(num-1);
+
+        // Si la route n'est pas encore prise
+        Boolean verif = false;
+        if (route.getProprietaire()==null){
+            // On verifie qu'on peut la prendre , d'abord avec des cartes wagon
+            if(joueur.getCartesWagon().nbcarte(route.getCouleur(), joueur.getCartesWagon())>=route.getTaille()){
+                int numdelete = 0;
+                // On supprime les cartes wagons utilisés
+                for (int i=joueur.getCartesWagon().getPaquet().size()-1;i>=0;i--){
+                    if (numdelete !=route.getTaille() && joueur.getCartesWagon().getPaquet().get(i).getCouleur().equals(route.getCouleur())){
+                        numdelete+=1;
+                        joueur.getCartesWagon().getPaquet().remove(i);
+                    }
+                }
+                verif=true;
+            }
+            // Sinon avec des cartes Joker en plus
+            else if (joueur.getCartesWagon().nbcarte(route.getCouleur(), joueur.getCartesWagon()) + joueur.getCartesWagon().nbcarte("joker", joueur.getCartesWagon()) >=route.getTaille()){
+                int numdelete = 0;
+                // On supprime les cartes wagons utilisés
+                for (int i=joueur.getCartesWagon().getPaquet().size()-1;i>=0;i--){
+                    if (joueur.getCartesWagon().getPaquet().get(i).getCouleur().equals(route.getCouleur())){
+                        numdelete+=1;
+                        joueur.getCartesWagon().getPaquet().remove(i);
+                    }
+                } // Puis les cartes joker
+                for (int i=joueur.getCartesWagon().getPaquet().size()-1;i>=0;i--){
+                    if (numdelete !=route.getTaille() && joueur.getCartesWagon().getPaquet().get(i).getCouleur().equals("joker")){
+                        numdelete+=1;
+                        joueur.getCartesWagon().getPaquet().remove(i);
+                    }
+                }
+                verif=true;
+            }
+            if (verif==true){
+                ImageView routePrise = (ImageView) event.getSource();
+                routePrise.setImage(new Image(".\\wagon\\r"+p.get_route().get(num-1).getTaille()+"_"+joueur.getCouleur()+".png"));
+                routePrise.setStyle("-fx-opacity:0.5;");
+                p.get_route().get(num-1).setProprietaire(joueur);
+                joueR=false;
+                this.play(event);
+            }
+        }
     }
 
     // Mettre a jour les cartes Wagons révélés
