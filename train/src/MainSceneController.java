@@ -48,6 +48,8 @@ public class MainSceneController {
     private ImageView joueur1;
     @FXML
     private ImageView joueur2;
+    @FXML
+    private Text nbwagon;
 
     // Carte wagon Joueur
     @FXML
@@ -301,11 +303,7 @@ public class MainSceneController {
             this.setFace();
 
             // Affichage nombre wagon du joueur
-            Text nbwagon = new Text(Integer.toString(joueur.getWagons()));
-            nbwagon.setLayoutX(250);
-            nbwagon.setLayoutY(650);
-            nbwagon.setStyle("-fx-font-size:30;");
-            rootPane.getChildren().addAll(nbwagon);
+            nbwagon = new Text(Integer.toString(joueur.getWagons()));
 
             // Affichage des joueurs actuels 
             if (joueur.equals(j0)){
@@ -625,7 +623,6 @@ public class MainSceneController {
             for (int i=0;i<checkList.size();i++){
                 if (checkList.get(i)==true){
                     joueur.getCartesDestination().getPaquet().add(piocheList.getCarte(i));
-                    System.out.println(piocheList.getPaquet().get(i));
                 }else{
                     p.get_destination_carte().getPaquet().add(piocheList.getCarte(i));
                 }
@@ -699,6 +696,7 @@ public class MainSceneController {
                         joueur.getCartesWagon().getPaquet().remove(i);
                     }
                 }
+
                 verif=true;
             }
             // Sinon avec des cartes Joker en plus
@@ -720,6 +718,9 @@ public class MainSceneController {
                 verif=true;
             }
             if (verif==true){
+                joueur.setWagons(joueur.getWagons()-route.getTaille());
+
+                // Mise a jour de la route
                 ImageView routePrise = (ImageView) event.getSource();
                 routePrise.setImage(new Image(".\\wagon\\r"+p.get_route().get(num-1).getTaille()+"_"+joueur.getCouleur()+".png"));
                 routePrise.setStyle("-fx-opacity:0.5;");

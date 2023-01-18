@@ -334,5 +334,6 @@
             <Image url="@wagon/r4_jaune.png" />
          </image>
       </ImageView>
+      <Text fx:id="nbwagon" layoutX="250.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" />
    </children>
 </AnchorPane>
