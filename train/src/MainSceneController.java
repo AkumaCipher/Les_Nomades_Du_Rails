@@ -10,6 +10,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Bloom;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -80,11 +82,23 @@ public class MainSceneController {
     @FXML
     private ImageView destination3;
     @FXML
-    private Text carteville1;
+    private Text depart1;
     @FXML
-    private Text carteville2;
+    private Text depart2;
     @FXML
-    private Text carteville3;
+    private Text depart3;
+    @FXML
+    private Text point1;
+    @FXML
+    private Text point2;
+    @FXML
+    private Text point3;
+    @FXML
+    private Text arrive1;
+    @FXML
+    private Text arrive2;
+    @FXML
+    private Text arrive3;
     @FXML
     private Button conserveButton;
     @FXML
@@ -119,15 +133,27 @@ public class MainSceneController {
     @FXML
     private ImageView piocheD1;
     @FXML
+    private Text piocheD1a;
+    @FXML
+    private Text piocheD1d;
+    @FXML
+    private Text piocheD1p;
+    @FXML
     private ImageView piocheD2;
+    @FXML
+    private Text piocheD2a;
+    @FXML
+    private Text piocheD2d;
+    @FXML
+    private Text piocheD2p;
     @FXML
     private ImageView piocheD3;
     @FXML
-    private Text piocheD1Text;
+    private Text piocheD3a;
     @FXML
-    private Text piocheD2Text;
+    private Text piocheD3d;
     @FXML
-    private Text piocheD3Text;
+    private Text piocheD3p;
     @FXML
     private Button piocheDButton;
     @FXML
@@ -215,7 +241,7 @@ public class MainSceneController {
     @FXML
     private Text nom2;
     @FXML
-    private Text point2;
+    private Text point_2;
 
     int piocheWagonCompte = 1000;
     PaquetCarte piocheList = new PaquetCarte(3,"Destination");
@@ -223,9 +249,9 @@ public class MainSceneController {
     boolean joueW = false;
     boolean joueD = false;
     boolean joueR = false;
+    boolean last = false;
 
-
-    Image vide = new Image(".\\wagon\\cartevide.png",100,150,true,true);
+    Image destination = new Image(".\\wagon\\cartedestination.png",100,150,true,true);
 
     // Creation nouvelle partie
     public void newPartie(ActionEvent event) throws Exception{
@@ -284,6 +310,13 @@ public class MainSceneController {
                 jouerPlateau.setStyle("visibility:visible;");
             }
 
+            if (last==true){
+                this.changeMessage("C'est le dernier tour");
+            }
+            else if (j0.getWagons()<3 || j1.getWagons()<3){
+                last=true;
+            }
+
             // Initialisation des images et textes wagons
             if (tour==0){
                 this.setupWagon();
@@ -326,7 +359,7 @@ public class MainSceneController {
             nom.setText(j0.getNom());
             point.setText(Integer.toString(j0.getPoint())+" points");
             nom2.setText(j1.getNom());
-            point2.setText(Integer.toString(j1.getPoint())+" points");
+            point_2.setText(Integer.toString(j1.getPoint())+" points");
             }
     }
 
@@ -399,14 +432,29 @@ public class MainSceneController {
             conserveButton.setStyle("visibility:hidden;");
         }
         int taille = joueur.getCartesDestination().getPaquet().size();
-        destination1.setImage(vide);
-        carteville1.setText(joueur.getCartesDestination().getCarte(0).getDepart()+" --> "+joueur.getCartesDestination().getCarte(0).getArrive());
+
+        // Calcul des points et remplissage de la carte
+        destination1.setImage(destination);
+        depart1.setText(joueur.getCartesDestination().getCarte(0).getDepart());
+        int i =p.get_index_ville(joueur.getCartesDestination().getCarte(0).getDepart());
+        int i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(0).getArrive());
+        point1.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+        arrive1.setText(joueur.getCartesDestination().getCarte(0).getArrive());
         if (taille>=2){
-            destination2.setImage(vide);
-            carteville2.setText(joueur.getCartesDestination().getCarte(1).getDepart()+" --> "+joueur.getCartesDestination().getCarte(1).getArrive());
+            destination2.setImage(destination);
+            depart2.setText(joueur.getCartesDestination().getCarte(1).getDepart());
+            i =p.get_index_ville(joueur.getCartesDestination().getCarte(1).getDepart());
+            i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(1).getArrive());
+            point2.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+            arrive2.setText(joueur.getCartesDestination().getCarte(1).getArrive());
         }if (taille>=3){
-            destination3.setImage(vide);
-            carteville3.setText(joueur.getCartesDestination().getCarte(2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(2).getArrive());
+            destination3.setImage(destination);
+            depart3.setText(joueur.getCartesDestination().getCarte(2).getDepart());
+            i =p.get_index_ville(joueur.getCartesDestination().getCarte(2).getDepart());
+            i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(2).getArrive());
+            point3.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+            arrive3.setText(joueur.getCartesDestination().getCarte(2).getArrive());
+            
         }if (taille>3){
             nextButton.setStyle("visibility:visible;");
         }else{
@@ -422,9 +470,17 @@ public class MainSceneController {
         destination1.setImage(null);
         destination2.setImage(null);
         destination3.setImage(null);
-        carteville1.setText(null);
-        carteville2.setText(null);
-        carteville3.setText(null);
+
+        depart1.setText(null);
+        depart2.setText(null);
+        depart3.setText(null);
+        point1.setText(null);
+        point2.setText(null);
+        point3.setText(null);
+        arrive1.setText(null);
+        arrive2.setText(null);
+        arrive3.setText(null);
+
         cartePane2.setVisible(false);
         face1.setVisible(true);
         face2.setVisible(true);
@@ -442,32 +498,51 @@ public class MainSceneController {
             if (indice2>taille){
                 indice2=0;
             }
-            if (taille-indiceD >3){
-                destination1.setImage(vide);
-                destination2.setImage(vide);
-                destination3.setImage(vide);
-                carteville1.setText(joueur.getCartesDestination().getCarte(indiceD).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD).getArrive());
-                carteville2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+1).getArrive());
-                carteville3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+2).getArrive());
-                indiceD+=3;
+            destination1.setImage(destination);
+            destination2.setImage(null);
+            destination3.setImage(null);
+
+            depart1.setText(joueur.getCartesDestination().getCarte(indiceD).getDepart());
+            int i =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD).getDepart());
+            int i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD).getArrive());
+            point1.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+            arrive1.setText(joueur.getCartesDestination().getCarte(indiceD).getArrive());
+
+            depart2.setText(null);
+            depart3.setText(null);
+            point2.setText(null);
+            point3.setText(null);
+            arrive2.setText(null);
+            arrive3.setText(null);
+
+            if (taille-indiceD>=2){
+                destination2.setImage(destination);
+
+                depart2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getDepart());
+                i =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD+1).getDepart());
+                i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD+1).getArrive());
+                point2.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+                arrive2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getArrive());
+
+                depart3.setText(null);
+                point3.setText(null);
+                arrive3.setText(null);
             }
-            else{
-                destination1.setImage(vide);
-                destination2.setImage(null);
-                destination3.setImage(null);
-                carteville1.setText(joueur.getCartesDestination().getCarte(indiceD).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD).getArrive());
-                carteville2.setText(null);
-                carteville3.setText(null);
-                if (taille-indiceD>=2){
-                    destination2.setImage(vide);
-                    carteville2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+1).getArrive());
-                }
-                if (taille-indiceD==3){
-                    destination3.setImage(vide);
-                    carteville3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getDepart()+" --> "+joueur.getCartesDestination().getCarte(indiceD+2).getArrive());
-                }
+            if (taille-indiceD>=3){
+                destination3.setImage(destination);
+
+                depart3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getDepart());
+                i =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD+2).getDepart());
+                i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD+2).getArrive());
+                point3.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+                arrive3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getArrive());
+            }
+            if (taille-indiceD>3){
+                indiceD+=3;
+            }else{
                 indiceD=0;
             }
+            
         }
     }
 
@@ -604,9 +679,25 @@ public class MainSceneController {
         cartePane2.setOpacity(1);
         // Affichage des cartes
         piocheList.pioche(3, p.get_destination_carte()); 
-        piocheD1Text.setText(piocheList.getCarte(0).getDepart()+" --> "+piocheList.getCarte(0).getArrive());
-        piocheD2Text.setText(piocheList.getCarte(1).getDepart()+" --> "+piocheList.getCarte(1).getArrive());
-        piocheD3Text.setText(piocheList.getCarte(2).getDepart()+" --> "+piocheList.getCarte(2).getArrive());
+
+        piocheD1d.setText(piocheList.getCarte(0).getDepart());
+        int i =p.get_index_ville(piocheList.getCarte(0).getDepart());
+        int i2 =p.get_index_ville(piocheList.getCarte(0).getArrive());
+        piocheD1p.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+        piocheD1a.setText(piocheList.getCarte(0).getArrive());
+
+        piocheD2d.setText(piocheList.getCarte(1).getDepart());
+        i =p.get_index_ville(piocheList.getCarte(1).getDepart());
+        i2 =p.get_index_ville(piocheList.getCarte(1).getArrive());
+        piocheD2p.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+        piocheD2a.setText(piocheList.getCarte(1).getArrive());
+
+        piocheD3d.setText(piocheList.getCarte(2).getDepart());
+        i =p.get_index_ville(piocheList.getCarte(2).getDepart());
+        i2 =p.get_index_ville(piocheList.getCarte(2).getArrive());
+        piocheD3p.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+        piocheD3a.setText(piocheList.getCarte(2).getArrive());
+        
         checkList.clear();
         checkList.add(false);checkList.add(false);checkList.add(false);
     }
@@ -645,8 +736,9 @@ public class MainSceneController {
         ImageView selectImage = (ImageView) event.getSource();
         if (checkList.get(num)==false){
             checkList.set(num, true);
-            Glow glow = new Glow(1);
-            selectImage.setEffect(glow);
+            ColorAdjust colorAdjust = new ColorAdjust();
+            colorAdjust.setBrightness(0.8);
+            selectImage.setEffect(colorAdjust);
         }else{
             checkList.set(num, false);
             selectImage.setEffect(null);
@@ -726,7 +818,8 @@ public class MainSceneController {
 
                 // Mis a jour du nb de point
                 joueur.addPoint(route.getPoints());
-                p.verifDestination(p.get_ville().get(0), p.get_ville().get(1), joueur);
+                // Verif point carte destination
+                /* p.verifDestination(p.get_ville().get(0), p.get_ville().get(1), joueur); */
 
                 joueR=false;
                 this.play(event);
@@ -738,6 +831,7 @@ public class MainSceneController {
             }
         }
     }
+
 
     // Mettre a jour les cartes Wagons révélés
     public void setFace(){

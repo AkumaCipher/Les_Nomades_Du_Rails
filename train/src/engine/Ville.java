@@ -43,4 +43,13 @@ public class Ville {
         this.name = name;
     }
 
+    public boolean verifVoisin (Ville v){
+        for (Map.Entry<Ville,Integer> voisins: this.getVoisins().entrySet()){
+            if (voisins.getKey().equals(v)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

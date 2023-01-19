@@ -16,6 +16,7 @@ public abstract class Carte {
 
     public abstract String getDepart();
     public abstract String getArrive();
+    public abstract Ville[] getVilleDestination();
 
     
     

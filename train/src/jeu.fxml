@@ -22,11 +22,50 @@
             <ImageView fx:id="destination1" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="40.0" onMouseClicked="#removeCard" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="destination2" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="230.0" onMouseClicked="#removeCard" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="destination3" fitHeight="150.0" fitWidth="104.0" layoutX="40.0" layoutY="420.0" onMouseClicked="#removeCard" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
-            <Text fx:id="carteville1" layoutX="40.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="carteville2" layoutX="40.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Text fx:id="carteville3" layoutX="40.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="depart1" layoutX="50.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.70738213602709">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font></Text>
+            <Text fx:id="point1" layoutX="75.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="35.27343749999977">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font></Text>
+            <Text fx:id="arrive1" layoutX="50.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.70738213602709">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font></Text>
             <Button fx:id="conserveButton" layoutX="160.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#ConserveCarte" style="visibility: hidden;" text="Conserver" />
             <Button fx:id="nextButton" layoutX="160.0" layoutY="300.0" mnemonicParsing="false" onAction="#nextCardDestination" style="visibility: hidden;" text="Suivant" />
+            <Text fx:id="depart2" layoutX="50.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.70738213602709">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="point2" layoutX="75.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="35.80474391770076">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="arrive2" layoutX="50.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.70738213602709">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="depart3" layoutX="50.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.70738213602709">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="point3" layoutX="75.0" layoutY="501.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="35.27343749999977">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="arrive3" layoutX="50.0" layoutY="544.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.70738213602658">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <BorderPane fx:id="cartePane" layoutX="300.0" prefHeight="894.0" prefWidth="878.0">
@@ -66,9 +105,9 @@
             <Image url="@../../design/wagon_icone.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="carteD" fitHeight="150.0" fitWidth="100.0" layoutX="1305.0" layoutY="60.0" onMouseClicked="#showCardDestination" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="carteD" fitHeight="150.0" fitWidth="100.0" layoutX="1305.0" layoutY="60.0" onMouseClicked="#showCardDestination" pickOnBounds="true" preserveRatio="true" style="visibility: true;">
          <image>
-            <Image url="@wagon/cartevide.png" />
+            <Image url="@wagon/destinationbutton.png" />
          </image>
       </ImageView>
       <ImageView fx:id="carteW" fitHeight="150.0" fitWidth="145.0" layoutX="300.0" layoutY="700.0" onMouseClicked="#showCardWagon" pickOnBounds="true" preserveRatio="true">
@@ -120,28 +159,67 @@
             </Text>
             <ImageView fx:id="piocheD1" fitHeight="150.0" fitWidth="100.0" layoutX="40.0" layoutY="50.0" onMouseClicked="#selectPiocheDestination" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@wagon/cartevide.png" />
+                  <Image url="@wagon/cartedestination.png" />
                </image>
             </ImageView>
             <ImageView fx:id="piocheD2" fitHeight="150.0" fitWidth="100.0" layoutX="180.0" layoutY="50.0" onMouseClicked="#selectPiocheDestination" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@wagon/cartevide.png" />
+                  <Image url="@wagon/cartedestination.png" />
                </image>
             </ImageView>
             <ImageView fx:id="piocheD3" fitHeight="150.0" fitWidth="100.0" layoutX="320.0" layoutY="50.0" onMouseClicked="#selectPiocheDestination" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@wagon/cartevide.png" />
+                  <Image url="@wagon/cartedestination.png" />
                </image>
             </ImageView>
             <Button fx:id="piocheDButton" layoutX="480.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#hidePiocheDestination" text="Valider" />
-            <Text fx:id="piocheD1Text" layoutX="40.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="100.0" />
-            <Text fx:id="piocheD2Text" layoutX="180.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="100.0" />
-            <Text fx:id="piocheD3Text" layoutX="320.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="100.0" />
+            <Text fx:id="piocheD1d" layoutX="49.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.0">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font></Text>
+            <Text fx:id="piocheD2d" layoutX="189.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.0">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font></Text>
+            <Text fx:id="piocheD3d" layoutX="329.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.0">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font></Text>
+            <Text fx:id="piocheD1a" layoutX="49.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.0">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="piocheD2a" layoutX="189.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.0">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="piocheD3a" layoutX="329.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.0">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="piocheD1p" layoutX="72.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="35.6">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="piocheD2p" layoutX="212.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="35.6">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="piocheD3p" layoutX="352.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="35.6">
+               <font>
+                  <Font name="Harrington" size="20.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <ImageView fx:id="piocheCarteWagon" fitHeight="150.0" fitWidth="100.0" layoutX="85.0" layoutY="715.0" onMouseClicked="#carteWagonPioche" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@wagon/cartevide.png" />
+            <Image url="@wagon/wagonpioche.png" />
          </image>
       </ImageView>
       <ImageView fx:id="route35" fitHeight="150.0" fitWidth="77.0" layoutX="943.0" layoutY="317.0" onMouseClicked="#prendreRoute" pickOnBounds="true" preserveRatio="true" rotate="18.4">
@@ -338,6 +416,6 @@
       <Text fx:id="nom" layoutX="100.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text fx:id="point" layoutX="100.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text fx:id="nom2" layoutX="100.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text fx:id="point2" layoutX="100.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="point_2" layoutX="100.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>

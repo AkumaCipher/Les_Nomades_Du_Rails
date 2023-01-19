@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Plateau {
 
-    private ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Dolk","Aillk","Kuri","Rimu","Kolg","Guine","Varass","Trarbe","Nita","Solis","Xewood","Fefield","Brosa","Erbolis","Danir","Ouaïbe","New Varass","Bafao","Sandre","Motlen","Soles","Draille","Qimyss"));                                          
+    private ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Dolk","Aillk","Kuri","Rimu","Kolg","Guine","Varass","Trarbe","Nita","Solis","Xewood","Fefield","Brosa","Erbolis","Danir","Ouaïbe","Virusse","Bafao","Sandre","Motlen","Soles","Draille","Qimyss"));                                          
 
 
     private ArrayList<Ville> list_ville = new ArrayList<Ville>();
@@ -282,12 +282,26 @@ public class Plateau {
 
     public boolean verifDestination (Ville depart,Ville arrivé,Joueur joueur){
         ArrayList<Route> posession = new ArrayList<>();
+        boolean vd = false;
+        boolean va = false;
         for (Route route : this.list_route){
             if (route.getProprietaire()!=null && route.getProprietaire().equals(joueur)){
                 posession.add(route);
             }
         }
-        System.out.println(posession);
+        for (Route route : posession){
+            Ville v1 = route.getDestination()[0];
+            Ville v2 = route.getDestination()[1];
+            /* 
+                if (v1.equals(depart)&& v1.verifVoisin()){
+                    
+                }
+            */
+            
+            if (v2.equals(depart) || v2.equals(arrivé)){
+
+            }
+        }
         return false;
     }
 

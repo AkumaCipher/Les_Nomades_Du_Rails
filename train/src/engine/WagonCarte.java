@@ -63,4 +63,10 @@ public class WagonCarte extends Carte {
     public String getArrive(){
         return "error";
     }
+
+    @Override
+    public Ville[] getVilleDestination() {
+        return null;
+        
+    }
 }
