@@ -9,8 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+// Controlleur de la Scene de jeu
 public class MainSceneController{
 
     private Stage stage;
@@ -242,6 +241,7 @@ public class MainSceneController{
     @FXML
     private Text point_2;
 
+    // Variable de base pour le jeu
     int piocheWagonCompte = 1000;
     PaquetCarte piocheList = new PaquetCarte(3,"Destination");
     ArrayList<Boolean> checkList = new ArrayList<>();
@@ -429,7 +429,7 @@ public class MainSceneController{
 
             // Affichage de chaque carte
             carteW.setVisible(false);
-            bottom.setStyle("visibility:visible;-fx-background-color:white;");
+            bottom.setStyle("visibility:visible;-fx-background-color:white;-fx-background-image:url('./design/fond2.jpg');");
 
         } 
     }
@@ -551,6 +551,7 @@ public class MainSceneController{
             arrive2.setText(null);
             arrive3.setText(null);
 
+            // Affiche plus ou moins de carte selon le nombre qu'il reste a afficher
             if (taille-indiceD>=2){
                 destination2.setImage(destination);
 
@@ -620,6 +621,7 @@ public class MainSceneController{
         }
     }
 
+    // Conserve les carte destination du premier tour
     public void ConserveCarte(MouseEvent event) throws Exception{
         if(joueur.equals(j0)){
             elimine1=true;
@@ -703,7 +705,7 @@ public class MainSceneController{
     public void piocheCarteDestination(MouseEvent event) throws Exception{
         joueD=true;
         // Affichage du paneau de pioche
-        piocheDestinationPane.setStyle("visibility:visible;-fx-background-color:white;");
+        piocheDestinationPane.setStyle("visibility:visible;-fx-background-color:white;-fx-background-image:url('./design/fond2.jpg');");
         piocheDText.setText("Selectionnez les cartes a garder");
         piocheDestination.setStyle("visibility:hidden;");
         piocheWagon.setStyle("visibility:hidden;");
@@ -714,21 +716,25 @@ public class MainSceneController{
         }
         piocheDestinationPane.setOpacity(1);
         cartePane2.setOpacity(1);
+
         // Affichage des cartes
         piocheList.pioche(3, p.get_destination_carte()); 
 
+        // 1ere carte
         piocheD1d.setText(piocheList.getCarte(0).getDepart());
         int i =p.get_index_ville(piocheList.getCarte(0).getDepart());
         int i2 =p.get_index_ville(piocheList.getCarte(0).getArrive());
         piocheD1p.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
         piocheD1a.setText(piocheList.getCarte(0).getArrive());
 
+        // 2eme carte
         piocheD2d.setText(piocheList.getCarte(1).getDepart());
         i =p.get_index_ville(piocheList.getCarte(1).getDepart());
         i2 =p.get_index_ville(piocheList.getCarte(1).getArrive());
         piocheD2p.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
         piocheD2a.setText(piocheList.getCarte(1).getArrive());
 
+        // 3 eme carte
         piocheD3d.setText(piocheList.getCarte(2).getDepart());
         i =p.get_index_ville(piocheList.getCarte(2).getDepart());
         i2 =p.get_index_ville(piocheList.getCarte(2).getArrive());
@@ -877,6 +883,7 @@ public class MainSceneController{
                 joueR=false;
                 this.play(event);
             }else{
+                // Si erreur et route impossible a prendre
                 joueR=false;
                 piocheDestination.setStyle("visibility:visible;");
                 piocheWagon.setStyle("visibility:visible;");

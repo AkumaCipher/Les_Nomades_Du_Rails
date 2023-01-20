@@ -5,6 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
+/**
+ * Lance l'application 
+ */
 public class App extends Application {
     
     @Override

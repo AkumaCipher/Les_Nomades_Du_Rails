@@ -3,15 +3,34 @@ import java.util.*;
 
 public class Plateau {
 
+    /**
+     * Attribut : les noms des villes
+     */
     private ArrayList<String> nom_ville = new ArrayList(Arrays.asList("Dolk","Aillk","Kuri","Rimu","Kolg","Guine","Varass","Trarbe","Nita","Solis","Xewood","Fefield","Brosa","Erbolis","Danir","Ouaïbe","Virusse","Bafao","Sandre","Motlen","Soles","Draille","Qimyss"));                                          
-
-
+    /**
+     * Attribut : liste des villes
+     */
     private ArrayList<Ville> list_ville = new ArrayList<Ville>();
+    /**
+     * Attribut : liste des routes
+     */
     private ArrayList<Route> list_route= new ArrayList<Route>();
+    /**
+     * Attribut : paquet de carte wagon
+     */
     private PaquetCarte wagon_carte ;
+    /**
+     * Attribut : paquet de carte destination
+     */
     private PaquetCarte destination_carte ;
+    /**
+     * Attribut : paquet de carte des wagons face révélés
+     */
     private PaquetCarte wagon_face ;
 
+    /**
+     * Constructeur par défaut
+     */
     public Plateau(){
         for (int i=0;i<this.nom_ville.size();i++){
             list_ville.add(new Ville(this.nom_ville.get(i)));
@@ -169,25 +188,50 @@ public class Plateau {
         this.checkNbJoker();
     }
 
+    /**
+     * Getter de la liste de ville
+     * @return
+     */
     public ArrayList<Ville> get_ville(){
         return this.list_ville;
     }
 
+    /**
+     * Getter de la liste de route
+     * @return
+     */
     public ArrayList<Route> get_route(){
         return this.list_route;
     }
 
+    /**
+     * Getter des carte wagons
+     * @return
+     */
     public PaquetCarte get_wagon_carte(){
         return this.wagon_carte;
     }
+
+    /**
+     * Getter des carte destination
+     * @return
+     */
     public PaquetCarte get_destination_carte(){
         return this.destination_carte;
     }
-
+    /**
+     * Getter des carte wagon révélés
+     * @return
+     */
     public PaquetCarte get_wagon_face(){
         return this.wagon_face;
     }
 
+    /**
+     * Getter de l'index d'une ville
+     * @param ville
+     * @return
+     */
     public int get_index_ville(String ville){
         for (int i=0;i<nom_ville.size();i++){
             if (nom_ville.get(i)==(ville)) {
@@ -197,6 +241,12 @@ public class Plateau {
         return 0;
     }
 
+    /**
+     * Verifie la presence d'une ville dans une liste
+     * @param ville
+     * @param liste
+     * @return
+     */
     public Boolean parcouru (Object ville , ArrayList<Ville> liste){
         for (int i=0; i<liste.size();i++){
             if (ville.equals(liste.get(i))){
@@ -206,7 +256,10 @@ public class Plateau {
         return false;
     }
 
-    // Permet un affichage pour les test des tableau
+    /**
+     * Affichage to String
+     * @param tab
+     */
     public void tabString (ArrayList<Ville> tab){
         String chaine = "[ ";
         for (int i=0;i<tab.size();i++){
@@ -217,41 +270,17 @@ public class Plateau {
         // System.out.println(chaine);
     }
 
-    // Permet d'avoir le chemin entre 2 villes (pas encore optimal) afin de calculer les point des cartes destination générés aleatoirement
-    public int get_chemin_court(String depart , String arrive ,ArrayList<Ville> deja_parcouru){
-        //System.out.println("------------------- "+depart+" ------------------");
-        int chemin=0;
-        int v1 = this.get_index_ville(depart);
-        int v2 = this.get_index_ville(arrive);
-        for (Map.Entry mapentry : list_ville.get(v1).getVoisins().entrySet()){
-            //System.out.println("Voisin de "+depart+" : "+mapentry.getKey());
-            if (mapentry.getKey().equals(list_ville.get(v2))){
-                //System.out.println(mapentry.getKey()+" - "+list_ville.get(v2));
-                int x = ((Number)mapentry.getValue()).intValue();
-                chemin+=x;
-                return chemin;
-            }
-        }
-        deja_parcouru.add(list_ville.get(v1));
-        for (Map.Entry ville : list_ville.get(v1).getVoisins().entrySet()){
-            String new_ville = ville.getKey().toString();
-            if (this.parcouru(list_ville.get(this.get_index_ville(new_ville)), deja_parcouru)== false){
-                int x = ((Number)ville.getValue()).intValue();
-                chemin+=x;
-                //System.out.println(""+ville.getKey()+","+arrive);
-                this.tabString(deja_parcouru);
-                return chemin +this.get_chemin_court(new_ville, arrive,deja_parcouru);
-            }
-        }
-        
-        
-        return chemin;
-    }
-
+    /**
+     * Enleve une carte des face révélés
+     * @param indice
+     */
     public void removeCarteFace(int indice){
         this.get_wagon_face().getPaquet().remove(indice);
     }
 
+    /**
+     * Verifie le nombre de joker sur les cartes révélés
+     */
     public void checkNbJoker(){
         while(this.get_wagon_face().nbcarte("joker",this.get_wagon_face())>=3){
             this.wagon_face.getPaquet().clear();
@@ -259,6 +288,11 @@ public class Plateau {
         }
     }
 
+    /**
+     * Donne l'index d'une Ville
+     * @param source
+     * @return
+     */
     public int getIndexVille(Ville source){
         for (int i=0;i< this.list_ville.size();i++){
             if (this.list_ville.get(i).getName().equals(source.getName())){
@@ -268,6 +302,12 @@ public class Plateau {
         return 0;
     }
 
+    /**
+     * Donne l'index de la ville avec la distance la plus courte (dijkstra)
+     * @param tab
+     * @param Q
+     * @return
+     */
     public int indexDistMini(int tab[],ArrayList<Ville> Q){
         int min = Integer.MAX_VALUE;
         int index=0;
@@ -280,32 +320,12 @@ public class Plateau {
         return index;
     }
 
-    public boolean verifDestination (Ville depart,Ville arrivé,Joueur joueur){
-        ArrayList<Route> posession = new ArrayList<>();
-        boolean vd = false;
-        boolean va = false;
-        for (Route route : this.list_route){
-            if (route.getProprietaire()!=null && route.getProprietaire().equals(joueur)){
-                posession.add(route);
-            }
-        }
-        for (Route route : posession){
-            Ville v1 = route.getDestination()[0];
-            Ville v2 = route.getDestination()[1];
-            /* 
-                if (v1.equals(depart)&& v1.verifVoisin()){
-                    
-                }
-            */
-            
-            if (v2.equals(depart) || v2.equals(arrivé)){
-
-            }
-        }
-        return false;
-    }
-
-    // Algorithme de dijkstra donnant le chemin le plus court entre 2 point
+    /**
+     * Algorithme de dijkstra donnant le chemin le plus court entre 2 point
+     * @param depart
+     * @param arrivé
+     * @return
+     */
     public Object[] dijkstra(Ville depart,Ville arrivé){
         ArrayList<Ville> Q = new ArrayList<>();
         int dist[] = new int[this.list_ville.size()];

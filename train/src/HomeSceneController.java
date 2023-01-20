@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +14,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+// Controlleur de la Scene d'acceuil et de connexion
 public class HomeSceneController {
+    // Declaration d'elements graphique de la scene
     @FXML
     private Button charge;
     @FXML
@@ -60,6 +60,7 @@ public class HomeSceneController {
     private String[] color = {"blanc", "bleu", "jaune", "vert", "rouge", "violet", "noire", "orange"};
     int click=0;
 
+    // Creer la partie et passe sur la scene jeu si les joueurs sont rempli correctement
     @FXML
     void newPartie(MouseEvent event) throws Exception{
         // On verifie qu'il a choisi 2 couleurs différentes et tout rempli
@@ -77,6 +78,7 @@ public class HomeSceneController {
         }
     }
 
+    // Si nouvelle partie cliqué, on met en place l'ecran de connexion des joueurs
     @FXML
     void setupJoueur(ActionEvent event) {
         charge.setVisible(false);
@@ -87,17 +89,20 @@ public class HomeSceneController {
         couleurField2.getItems().addAll(color);
     }
 
+    // Permet de quitter la fenetre 
     @FXML
     void close(ActionEvent event){
         Stage window = (Stage) quitter.getScene().getWindow();
         window.close();
     }
 
+    // Affiche les règles
     @FXML 
     void showRegle(ActionEvent event){
         imageRegle.setVisible(true);
     }
 
+    // Défile les pages de règles 
     @FXML 
     void updateRegle(MouseEvent event){
         click+=1;
