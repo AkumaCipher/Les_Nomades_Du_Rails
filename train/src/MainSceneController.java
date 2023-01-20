@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import engine.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +9,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.effect.Bloom;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class MainSceneController {
+public class MainSceneController{
 
     private Stage stage;
     private Scene scene;
@@ -30,8 +29,8 @@ public class MainSceneController {
 
     // Defintion des joueurs de base 
     engine.Plateau p = new Plateau();
-    engine.Joueur j0 = new Joueur("Bob","rouge",p.get_wagon_carte(),p.get_destination_carte());
-    engine.Joueur j1 = new Joueur("John","bleu",p.get_wagon_carte(),p.get_destination_carte());
+    engine.Joueur j0 =new Joueur();
+    engine.Joueur j1 =new Joueur();
 
     engine.Joueur joueur = j0;
     int tour = 0;
@@ -254,14 +253,11 @@ public class MainSceneController {
     Image destination = new Image(".\\wagon\\cartedestination.png",100,150,true,true);
 
     // Creation nouvelle partie
-    public void newPartie(ActionEvent event) throws Exception{
-        root = FXMLLoader.load(getClass().getResource("jeu.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.setResizable(true);
-        stage.show();
+    public void Start(String nom1,String nom2,String couleur1, String couleur2) throws Exception{
+        System.out.print(" T sur");
+        j0= new Joueur(nom1,couleur1,p.get_wagon_carte(),p.get_destination_carte());
+        j1= new Joueur(nom2,couleur2,p.get_wagon_carte(),p.get_destination_carte());
+        
     }
 
     public void exit(ScrollEvent event) throws Exception{
@@ -269,8 +265,16 @@ public class MainSceneController {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        //stage.setFullScreen(false);
         stage.show();
+    }
+
+    public void flouRoute(){
+        for (Node n : rootPane.getChildren()){
+            String id = n.getId();
+            if (id != null && id.charAt(0)=='r' && id.charAt(1)=='o' && id.charAt(2)=='u'){
+                n.setOpacity(0.4);
+            }
+        }
     }
 
     public void setupWagon(){
@@ -296,8 +300,15 @@ public class MainSceneController {
     // Bouton debut de tour
     public void play(MouseEvent event) throws Exception{
         if (joueW==false && joueD==false && joueR==false){
+
+            // Floutage des routes
+            if (tour==0){
+                this.flouRoute();
+            }
+
             // Carte a eliminer au premier tour 
             if (elimine1==false && tour==1 && joueur.equals(j0)){
+                
                 return;
             }else if(elimine2==false && tour==1 && joueur.equals(j1)){
                 return;
@@ -668,6 +679,7 @@ public class MainSceneController {
         joueD=true;
         // Affichage du paneau de pioche
         piocheDestinationPane.setStyle("visibility:visible;-fx-background-color:white;");
+        piocheDText.setText("Selectionnez les cartes a garder");
         piocheDestination.setStyle("visibility:hidden;");
         piocheWagon.setStyle("visibility:hidden;");
         jouerPlateau.setStyle("visibility:hidden;");
@@ -705,6 +717,17 @@ public class MainSceneController {
     // Validation du choix de pioche Destination
     public void hidePiocheDestination(MouseEvent event) throws Exception{
         if (joueD==true){
+            // Verification qu'une carte est bien cochée
+            int count =0;
+            for (boolean b : checkList){
+                if (b==false){
+                    count+=1;
+                }
+            }
+            if (count==3){
+                piocheDText.setText("Selectionnez au moins 1 carte");
+                return;
+            }
             // Recuperation des cartes
             for (int i=0;i<checkList.size();i++){
                 if (checkList.get(i)==true){
@@ -813,7 +836,7 @@ public class MainSceneController {
                 // Mise a jour de la route
                 ImageView routePrise = (ImageView) event.getSource();
                 routePrise.setImage(new Image(".\\wagon\\r"+p.get_route().get(num-1).getTaille()+"_"+joueur.getCouleur()+".png"));
-                routePrise.setStyle("-fx-opacity:0.5;");
+                routePrise.setStyle("-fx-opacity:1;");
                 p.get_route().get(num-1).setProprietaire(joueur);
 
                 // Mis a jour du nb de point
@@ -848,6 +871,5 @@ public class MainSceneController {
         face5.setImage(f5);
 
     }
-
     
 }

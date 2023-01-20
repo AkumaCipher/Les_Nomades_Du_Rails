@@ -10,8 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onScroll="#exit" prefHeight="889.0" prefWidth="1601.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onScroll="#exit" prefHeight="889.0" prefWidth="1601.0" style="-fx-background-color: lightgrey; -fx-background-image: url(&quot;./design/fond.jpg&quot;);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
    <children>
+      <AnchorPane layoutY="1.0" prefHeight="617.0" prefWidth="341.0" style="-fx-background-image: url(&quot;./design/fond.jpg&quot;);" />
       <AnchorPane fx:id="cartePane2" layoutX="1275.0" layoutY="40.0" prefHeight="600.0" prefWidth="238.0" style="-fx-background-color: white; visibility: false;">
          <children>
             <ImageView fx:id="closebutton1" fitHeight="38.0" fitWidth="46.0" layoutX="190.0" onMouseClicked="#hideCardDestination" pickOnBounds="true" preserveRatio="true">
@@ -100,7 +101,7 @@
          </bottom>
       </BorderPane>
       <Button layoutX="1281.0" layoutY="745.0" mnemonicParsing="false" onMouseClicked="#play" text="Play" />
-      <ImageView fitHeight="145.0" fitWidth="145.0" layoutX="64.0" layoutY="568.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="110.0" fitWidth="117.0" layoutX="116.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../design/wagon_icone.png" />
          </image>
@@ -115,9 +116,9 @@
             <Image url="@wagon/logocartewagon.png" />
          </image>
       </ImageView>
-      <VBox layoutX="25.0" layoutY="17.0" prefHeight="406.0" prefWidth="185.0" spacing="75.0">
+      <VBox layoutX="116.0" layoutY="17.0" prefHeight="406.0" prefWidth="185.0" spacing="75.0">
          <children>
-            <ImageView fx:id="joueur1" fitHeight="218.0" fitWidth="189.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="joueur1" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../design/profi.png" />
                </image>
@@ -125,7 +126,7 @@
                   <Insets />
                </VBox.margin>
             </ImageView>
-            <ImageView fx:id="joueur2" fitHeight="193.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="joueur2" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../design/profi.png" />
                </image>
@@ -152,9 +153,9 @@
       <Button fx:id="piocheDestination" layoutX="809.0" layoutY="585.0" mnemonicParsing="false" onMouseClicked="#piocheCarteDestination" style="visibility: hidden;" text="Destination" />
       <AnchorPane fx:id="piocheDestinationPane" layoutX="500.0" layoutY="600.0" prefHeight="200.0" prefWidth="600.0" style="visibility: hidden;">
          <children>
-            <Text fx:id="piocheDText" layoutX="40.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Selectionnez les cartes a garder" wrappingWidth="506.4034423828125">
+            <Text fx:id="piocheDText" layoutX="40.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center; -fx-font-weight: bold;" text="Selectionnez les cartes a garder" wrappingWidth="506.4034423828125">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Harrington" size="32.0" />
                </font>
             </Text>
             <ImageView fx:id="piocheD1" fitHeight="150.0" fitWidth="100.0" layoutX="40.0" layoutY="50.0" onMouseClicked="#selectPiocheDestination" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true">
@@ -217,7 +218,7 @@
             </Text>
          </children>
       </AnchorPane>
-      <ImageView fx:id="piocheCarteWagon" fitHeight="150.0" fitWidth="100.0" layoutX="85.0" layoutY="715.0" onMouseClicked="#carteWagonPioche" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="piocheCarteWagon" fitHeight="150.0" fitWidth="100.0" layoutX="126.0" layoutY="685.0" onMouseClicked="#carteWagonPioche" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@wagon/wagonpioche.png" />
          </image>
@@ -412,10 +413,10 @@
             <Image url="@wagon/r4_jaune.png" />
          </image>
       </ImageView>
-      <Text fx:id="nbwagon" layoutX="250.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" />
-      <Text fx:id="nom" layoutX="100.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text fx:id="point" layoutX="100.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text fx:id="nom2" layoutX="100.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text fx:id="point_2" layoutX="100.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="nbwagon" layoutX="250.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" />
+      <Text fx:id="nom" layoutX="150.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="point" layoutX="150.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="nom2" layoutX="150.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="point_2" layoutX="150.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>
