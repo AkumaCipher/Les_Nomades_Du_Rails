@@ -172,7 +172,7 @@
                   <Image url="@wagon/cartedestination.png" />
                </image>
             </ImageView>
-            <Button fx:id="piocheDButton" layoutX="480.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#hidePiocheDestination" text="Valider" />
+            <Button fx:id="piocheDButton" layoutX="480.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#hidePiocheDestination" text="Valider" />
             <Text fx:id="piocheD1d" layoutX="49.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="Text" wrappingWidth="82.0">
                <font>
                   <Font name="Harrington" size="20.0" />
@@ -433,7 +433,7 @@
             <Font name="Harrington" size="18.0" />
          </font>
       </Text>
-      <ImageView fitHeight="110.0" fitWidth="118.0" layoutX="1265.0" layoutY="690.0" onMouseClicked="#play" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="85.0" fitWidth="99.0" layoutX="1309.0" layoutY="664.0" onMouseClicked="#play" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@design/play.png" />
          </image>
