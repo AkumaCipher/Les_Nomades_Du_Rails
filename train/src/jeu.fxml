@@ -143,7 +143,7 @@
       <ImageView fx:id="face3" fitHeight="150.0" fitWidth="104.0" layoutX="1301.0" layoutY="474.0" onMouseClicked="#piocheFace" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="face4" fitHeight="150.0" fitWidth="104.0" layoutX="1416.0" layoutY="476.0" onMouseClicked="#piocheFace" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="face5" fitHeight="150.0" fitWidth="104.0" layoutX="1414.0" layoutY="644.0" onMouseClicked="#piocheFace" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="text1" layoutX="350.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" style="visibility: hidden; -fx-text-alignment: center;" text="Choisissez une carte a retirer" wrappingWidth="860.800048828125">
+      <Text fx:id="text1" layoutX="350.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" style="visibility: hidden; -fx-text-alignment: center;" text="Retirez une carte Destination ou conservez" wrappingWidth="860.800048828125">
          <font>
             <Font size="24.0" />
          </font>

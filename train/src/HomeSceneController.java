@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -48,11 +49,16 @@ public class HomeSceneController {
     private Button play;
     @FXML
     private Button quitter;
+    @FXML
+    private ImageView imageRegle;
+    @FXML
+    private Button regle;
 
     private Stage stage;
     private Scene scene;
     private Parent root;
     private String[] color = {"blanc", "bleu", "jaune", "vert", "rouge", "violet", "noire", "orange"};
+    int click=0;
 
     @FXML
     void newPartie(MouseEvent event) throws Exception{
@@ -79,6 +85,33 @@ public class HomeSceneController {
         joueurPane.setVisible(true);
         couleurField1.getItems().addAll(color);
         couleurField2.getItems().addAll(color);
+    }
+
+    @FXML
+    void close(ActionEvent event){
+        Stage window = (Stage) quitter.getScene().getWindow();
+        window.close();
+    }
+
+    @FXML 
+    void showRegle(ActionEvent event){
+        imageRegle.setVisible(true);
+    }
+
+    @FXML 
+    void updateRegle(MouseEvent event){
+        click+=1;
+        if (click==1){
+            imageRegle.setImage(new Image("./design/regle2.png"));
+        }
+        if (click==2){
+            imageRegle.setImage(new Image("./design/regle3.png"));
+        }
+        if (click==3){
+            imageRegle.setImage(new Image("./design/regle1.png"));
+            imageRegle.setVisible(false);
+            click=0;
+        }
     }
 
 }

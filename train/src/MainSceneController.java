@@ -250,16 +250,17 @@ public class MainSceneController{
     boolean joueR = false;
     boolean last = false;
 
+
     Image destination = new Image(".\\wagon\\cartedestination.png",100,150,true,true);
 
     // Creation nouvelle partie
     public void Start(String nom1,String nom2,String couleur1, String couleur2) throws Exception{
-        System.out.print(" T sur");
         j0= new Joueur(nom1,couleur1,p.get_wagon_carte(),p.get_destination_carte());
         j1= new Joueur(nom2,couleur2,p.get_wagon_carte(),p.get_destination_carte());
         
     }
 
+    // Quitter la partie en cours 
     public void exit(ScrollEvent event) throws Exception{
         root = FXMLLoader.load(getClass().getResource("acceuil.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -268,6 +269,7 @@ public class MainSceneController{
         stage.show();
     }
 
+    // Applique un flou au route non prises au début
     public void flouRoute(){
         for (Node n : rootPane.getChildren()){
             String id = n.getId();
@@ -277,8 +279,31 @@ public class MainSceneController{
         }
     }
 
+    // Renvoie le code hexadecimal de la couleur 
+    public String getHexaColor(String couleur){
+        String code = "";
+        if (couleur.charAt(0)=='b' && couleur.charAt(2)=='a' ){
+            code= "#FFFFFF";
+        }else if (couleur.charAt(0)=='b' && couleur.charAt(2)=='e' ){
+            code ="#0000FF";
+        }else if (couleur.charAt(0)=='j' ){
+            code ="#FFFF00";
+        }else if (couleur.charAt(0)=='v' && couleur.charAt(1)=='e'){
+            code ="#00FF00";
+        }else if (couleur.charAt(0)=='r' ){
+            code ="#FF0000";
+        }else if (couleur.charAt(0)=='v' && couleur.charAt(1)=='i' ){
+            code ="#EE82EE";
+        }else if (couleur.charAt(0)=='o' ){
+            code ="#FFA500";
+        }else{
+            code ="#000000";
+        }
+        return code;
+    }
+
+    // Recuperation des prochaines images pour les wagons
     public void setupWagon(){
-        // Recuperation des prochaines images pour les wagons
 
         // On recupere la liste des images prévus 
         int indice =0;
@@ -301,14 +326,13 @@ public class MainSceneController{
     public void play(MouseEvent event) throws Exception{
         if (joueW==false && joueD==false && joueR==false){
 
-            // Floutage des routes
+            // Floutage des routes et affichage des couleurs
             if (tour==0){
                 this.flouRoute();
             }
 
             // Carte a eliminer au premier tour 
             if (elimine1==false && tour==1 && joueur.equals(j0)){
-                
                 return;
             }else if(elimine2==false && tour==1 && joueur.equals(j1)){
                 return;
@@ -347,6 +371,7 @@ public class MainSceneController{
 
             if (tour==1){
                 text1.setStyle("visibility : visible;-fx-text-alignment:center;");
+                this.changeMessage("Retirez une carte Destination ou conservez");
             }else{
                 this.changeMessage("Choisissez votre action pour ce tour");
             }
@@ -359,11 +384,11 @@ public class MainSceneController{
 
             // Affichage des joueurs actuels 
             if (joueur.equals(j0)){
-                joueur2.setStyle("-fx-opacity:0.4;");
-                joueur1.setStyle("-fx-opacity:1;");
+                joueur2.setStyle("-fx-opacity:0.4;-fx-effect: innershadow(gaussian, "+this.getHexaColor(j1.getCouleur())+", 40, 0.5, 0, 0);");
+                joueur1.setStyle("-fx-opacity:1;-fx-effect: innershadow(gaussian, "+this.getHexaColor(j0.getCouleur())+", 40, 0.5, 0, 0);");
             }else{
-                joueur1.setStyle("-fx-opacity:0.4;");
-                joueur2.setStyle("-fx-opacity:1;");
+                joueur1.setStyle("-fx-opacity:0.4;-fx-effect: innershadow(gaussian, "+this.getHexaColor(j0.getCouleur())+", 40, 0.5, 0, 0);");
+                joueur2.setStyle("-fx-opacity:1;-fx-effect: innershadow(gaussian, "+this.getHexaColor(j1.getCouleur())+", 40, 0.5, 0, 0);");
             }
 
             // Affichage statistiques joueurs
@@ -836,13 +861,18 @@ public class MainSceneController{
                 // Mise a jour de la route
                 ImageView routePrise = (ImageView) event.getSource();
                 routePrise.setImage(new Image(".\\wagon\\r"+p.get_route().get(num-1).getTaille()+"_"+joueur.getCouleur()+".png"));
-                routePrise.setStyle("-fx-opacity:1;");
+                if (joueur.equals(j0)){
+                    routePrise.setStyle("-fx-opacity:1;-fx-effect: innershadow(gaussian, #039ed3, 10, 0.5, 0, 0);");
+                }else{
+                    routePrise.setStyle("-fx-opacity:1;-fx-effect: innershadow(gaussian, #FF0000, 10, 0.5, 0, 0);");
+                }
+
                 p.get_route().get(num-1).setProprietaire(joueur);
 
                 // Mis a jour du nb de point
                 joueur.addPoint(route.getPoints());
-                // Verif point carte destination
-                /* p.verifDestination(p.get_ville().get(0), p.get_ville().get(1), joueur); */
+                // Verif point carte destination *Coming Soon*
+                
 
                 joueR=false;
                 this.play(event);
