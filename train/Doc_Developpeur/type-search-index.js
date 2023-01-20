@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"engine","l":"Carte"},{"p":"engine","l":"DestinationCarte"},{"p":"engine","l":"Joueur"},{"p":"engine","l":"PaquetCarte"},{"p":"engine","l":"Plateau"},{"p":"engine","l":"Route"},{"p":"engine","l":"Ville"},{"p":"engine","l":"WagonCarte"}];updateSearchResults();

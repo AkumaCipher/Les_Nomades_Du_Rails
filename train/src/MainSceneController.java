@@ -776,6 +776,7 @@ public class MainSceneController{
             for (Node n : rootPane.getChildren()){
                 n.setOpacity(1);
             }
+            this.flouRoute();
             this.hideCardDestination(event);
             this.showCardDestination(event);
             joueD=false;

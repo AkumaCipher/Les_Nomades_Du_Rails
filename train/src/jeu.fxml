@@ -87,15 +87,42 @@
                   <ImageView fx:id="wagon7" fitHeight="150.0" fitWidth="100.0" layoutX="635.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="wagon8" fitHeight="150.0" fitWidth="100.0" layoutX="740.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="wagon9" fitHeight="150.0" fitWidth="100.0" layoutX="850.0" layoutY="40.0" onMouseExited="#normal" onMouseMoved="#survol" pickOnBounds="true" preserveRatio="true" />
-                  <Text layoutX="80.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Text layoutX="185.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Text layoutX="290.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Text layoutX="395.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Text layoutX="500.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Text layoutX="605.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Text fx:id="Txt7" layoutX="710.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Text layoutX="815.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                  <Text layoutX="920.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text layoutX="85.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+                  <Text layoutX="190.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+                  <Text layoutX="295.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+                  <Text layoutX="400.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+                  <Text layoutX="505.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+                  <Text layoutX="610.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+                  <Text fx:id="Txt7" layoutX="715.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+                  <Text layoutX="820.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+                  <Text layoutX="925.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
                </children>
             </AnchorPane>
          </bottom>
@@ -438,5 +465,120 @@
             <Image url="@design/play.png" />
          </image>
       </ImageView>
+      <Text layoutX="607.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rimu">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="454.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brosa">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="426.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Soles">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="502.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Draille">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="374.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qimyss">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="565.0" layoutY="558.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sandre">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="755.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bafao">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="962.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danir">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="843.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ouaïbe">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="723.0" layoutY="445.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Virusse">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="1022.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nita">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="1055.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varass">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="1104.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guine">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="1025.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kolg">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="917.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dolk">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="805.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aillk">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="832.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kuri">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="860.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trarbe">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="769.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Xewood">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="847.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solis">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="674.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fefield">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="617.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motlen">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="692.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Erbolis">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
