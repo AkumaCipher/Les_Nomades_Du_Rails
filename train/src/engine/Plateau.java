@@ -369,5 +369,13 @@ public class Plateau {
         
     }   
 
+    /**
+     * Algorithme de verification des destinations
+     */
+
+    public void verif_destination(Ville depart,Ville arrivé){
+        
+    }
+
     
 }

@@ -324,6 +324,7 @@ public class MainSceneController{
 
     // Bouton debut de tour
     public void play(MouseEvent event) throws Exception{
+        
         if (joueW==false && joueD==false && joueR==false){
 
             // Floutage des routes et affichage des couleurs
