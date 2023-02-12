@@ -24,5 +24,6 @@ Developers : **GUARIM Raphaël et MASSIAS Théo**.
 
 <h3> Overview </h3>
 
+Some Illustrations of game elements
 
-
+<img height="300" src="https://github.com/AkumaCipher/Les_Nomades_Du_Rails/blob/main/Illustration/doc1.png" alt="Illustration" />                                         <img height="300" align="right" src="https://github.com/AkumaCipher/Les_Nomades_Du_Rails/blob/main/Illustration/doc2.png" alt="Illustration" style="display:none;"/>
