@@ -1,10 +1,11 @@
 # Les Nomades Du Rails
 
-## L'équipe
+## The Development Team
 
-Chef de Projet : **Enzo Lutic**.
+Project Manager : **Enzo Lutic**.
 
-Développeurs : **GUARIM Raphaël et MASSIAS Théo**.
+Developers : **GUARIM Raphaël et MASSIAS Théo**.
 
-## Pour l'instant.
-Nous avons rajouter les classes "de base", qui nous permettent de commencer le développement.
+## Progress.
+
+
