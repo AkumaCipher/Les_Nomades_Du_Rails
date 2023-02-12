@@ -1,4 +1,4 @@
-<h1>Les Nomades du Rails</h1>
+<h1 align="center">Les Nomades du Rails</h1>
 
 
 ## The Development Team
