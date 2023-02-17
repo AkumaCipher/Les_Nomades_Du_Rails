@@ -1,4 +1,7 @@
 package engine;
+
+import java.util.ArrayList;
+
 /**
  * Classe d'une route
  */
@@ -64,6 +67,7 @@ public class Route {
         this.taille = other.getTaille();
         this.destination = other.getDestination();
         this.couleur = new String(other.getCouleur());
+        this.proprietaire= other.getProprietaire();
     }
 
     /**
@@ -145,4 +149,27 @@ public class Route {
         return 7;
     }
 
+    /**
+     * Methode to String
+     * @return
+     */
+    public String toString(){
+        return this.destination[0]+" -> "+this.destination[1];
+    }
+
+    /**
+     * Getter des voisins de la route dans la liste
+     * @return
+     * @param liste
+     */
+    public ArrayList<Route> getVoisins(ArrayList<Route> liste){
+        ArrayList<Route> listeVoisins = new ArrayList<>();
+        for (Route route : liste){
+            if (route.getDestination()[0].getName().equals(this.destination[0].getName()) || route.getDestination()[1].getName().equals(this.destination[0].getName()) || route.getDestination()[0].getName().equals(this.destination[1].getName()) || route.getDestination()[1].getName().equals(this.destination[1].getName()) ){
+                listeVoisins.add(route);
+            }
+        }
+        listeVoisins.remove(this);
+        return listeVoisins;
+    }
 }

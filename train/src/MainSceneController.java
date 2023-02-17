@@ -690,13 +690,13 @@ public class MainSceneController{
 
     // Prendre dans la pioche Wagon
     public void carteWagonPioche(MouseEvent event) throws Exception{
-        if (piocheWagonCompte<2){
+        if (piocheWagonCompte<2 && joueW==true){
             joueur.getCartesWagon().pioche(1, p.get_wagon_carte());
             this.hideCardWagon(event);
             this.showCardWagon(event);
             this.changeMessage("Il reste une carte a piocher");
             piocheWagonCompte+=1;
-        }if (piocheWagonCompte==2){
+        }if (piocheWagonCompte==2 && joueW==true){
             joueW=false;
             this.play(event);
         }
@@ -807,7 +807,6 @@ public class MainSceneController{
         piocheDestination.setStyle("visibility:hidden;");
         piocheWagon.setStyle("visibility:hidden;");
         jouerPlateau.setStyle("visibility:hidden;");
-
     }
 
     // Choix de la route a prendre
@@ -879,8 +878,9 @@ public class MainSceneController{
 
                 // Mis a jour du nb de point
                 joueur.addPoint(route.getPoints());
+
                 // Verif point carte destination *Coming Soon*
-                
+                this.verifCarteDestination(joueur.getCartesDestination().getCarte(0).getVilleDestination()[0],joueur.getCartesDestination().getCarte(0).getVilleDestination()[1]);
 
                 joueR=false;
                 this.play(event);
@@ -893,7 +893,6 @@ public class MainSceneController{
             }
         }
     }
-
 
     // Mettre a jour les cartes Wagons révélés
     public void setFace(){
@@ -911,4 +910,55 @@ public class MainSceneController{
 
     }
     
+    // Verification des points des carte destinations en fin de partie 
+    public boolean verifCarteDestination(Ville depart, Ville arrive){
+        boolean verif=false;
+
+        // Récuperation des route possédés par le joueur
+        ArrayList<Route> routePrises = new ArrayList<>();
+        Route routeDepart=new Route();
+        for (Route element :p.get_route()){
+            if (element.getProprietaire()!= null && element.getProprietaire().getNom().equals(joueur.getNom())){
+                routePrises.add(element);
+            }
+        }
+        // On verifie si le depart et l'arrivé sont sur 2 route qui lui appartiennent
+        boolean dTrouve = false;
+        boolean aTrouve = false;
+        for (Route element :routePrises){
+            if (element.getDestination()[0].getName().equals(depart.getName()) || element.getDestination()[1].getName().equals(depart.getName())){
+                routeDepart=new Route(element);
+                dTrouve=true;
+            }
+            if (element.getDestination()[0].getName().equals(arrive.getName()) || element.getDestination()[1].getName().equals(arrive.getName())){
+                aTrouve=true;
+            }
+        }
+
+        // Si le début et la fin sont présent on verifie qu'ils sont reliés
+        if (aTrouve==true && dTrouve==true){
+            
+            // Parcours en largeur
+            ArrayList<Route> file = new ArrayList<>();
+            ArrayList<Route> deja_parcouru = new ArrayList<>();
+            file.add(routeDepart);
+            deja_parcouru.add(routeDepart);
+    
+            while (file.size()!=0){
+                for (Route voisin : file.get(0).getVoisins(routePrises) ){
+                    if (deja_parcouru.contains(voisin)==false){
+                        file.add(voisin);
+                        deja_parcouru.add(voisin);
+                        if (voisin.getDestination()[0].getName().equals(arrive.getName()) || voisin.getDestination()[1].getName().equals(arrive.getName())){
+                            verif=true;
+                        }
+                    }
+                }
+                file.remove(file.get(0));
+            }
+        }
+        return verif;
+    }
+    
+
 }
