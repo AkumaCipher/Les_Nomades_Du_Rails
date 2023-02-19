@@ -880,7 +880,7 @@ public class MainSceneController{
                 joueur.addPoint(route.getPoints());
 
                 // Verif point carte destination *Coming Soon*
-                this.verifCarteDestination(joueur.getCartesDestination().getCarte(0).getVilleDestination()[0],joueur.getCartesDestination().getCarte(0).getVilleDestination()[1]);
+                System.out.println("Carte 1 validé "+this.verifCarteDestination(joueur.getCartesDestination().getCarte(0).getVilleDestination()[0],joueur.getCartesDestination().getCarte(0).getVilleDestination()[1]));
 
                 joueR=false;
                 this.play(event);
@@ -943,7 +943,6 @@ public class MainSceneController{
             ArrayList<Route> deja_parcouru = new ArrayList<>();
             file.add(routeDepart);
             deja_parcouru.add(routeDepart);
-    
             while (file.size()!=0){
                 for (Route voisin : file.get(0).getVoisins(routePrises) ){
                     if (deja_parcouru.contains(voisin)==false){
