@@ -580,5 +580,119 @@
             <Font name="Harrington" size="16.0" />
          </font>
       </Text>
+      <ImageView fitHeight="890.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@design/FondFin.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="EndPane" prefHeight="890.0" prefWidth="1600.0" style="-fx-background-image: url(&quot;./design/FondFin.png&quot;);">
+         <children>
+            <Text fx:id="tourj1" fill="#ececec" layoutX="947.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="dpiochej1" fill="#ececec" layoutX="947.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="wpiochej1" fill="#ececec" layoutX="947.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="routej1" fill="#ececec" layoutX="947.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="wposej1" fill="#ececec" layoutX="947.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="dreussij1" fill="#ececec" layoutX="947.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="dratej1" fill="#ececec" layoutX="947.0" layoutY="635.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="longj1" fill="#ececec" layoutX="947.0" layoutY="701.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="tourj2" fill="#ececec" layoutX="1336.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="dpiochej2" fill="#ececec" layoutX="1336.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="wpiochej2" fill="#ececec" layoutX="1336.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="routej2" fill="#ececec" layoutX="1336.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="wposej2" fill="#ececec" layoutX="1336.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="dreussij2" fill="#ececec" layoutX="1336.0" layoutY="567.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="dratej2" fill="#ececec" layoutX="1336.0" layoutY="635.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="longj2" fill="#ececec" layoutX="1336.0" layoutY="701.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="vainqueur" fill="WHITE" layoutX="140.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="600.0">
+               <font>
+                  <Font name="Amiri Bold" size="68.0" />
+               </font>
+            </Text>
+            <Text fx:id="nomj1" fill="WHITE" layoutX="833.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="300.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="nomj2" fill="WHITE" layoutX="1229.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="300.0">
+               <font>
+                  <Font name="Amiri" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="pointj1" fill="WHITE" layoutX="930.0" layoutY="785.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="100.0">
+               <font>
+                  <Font name="Amiri Bold" size="65.0" />
+               </font>
+            </Text>
+            <Text fx:id="pointj2" fill="WHITE" layoutX="1318.0" layoutY="785.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="100.0">
+               <font>
+                  <Font name="Amiri Bold" size="65.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

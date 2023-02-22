@@ -240,6 +240,53 @@ public class MainSceneController{
     private Text nom2;
     @FXML
     private Text point_2;
+    @FXML
+    private AnchorPane EndPane;
+    @FXML
+    private Text wpiochej1;
+    @FXML
+    private Text wpiochej2;
+    @FXML
+    private Text wposej1;
+    @FXML
+    private Text wposej2;
+    @FXML
+    private Text tourj1;
+    @FXML
+    private Text tourj2;
+    @FXML
+    private Text vainqueur;
+    @FXML
+    private Text routej1;
+    @FXML
+    private Text routej2;
+    @FXML
+    private Text pointj1;
+    @FXML
+    private Text pointj2;
+    @FXML
+    private Text nomj1;
+    @FXML
+    private Text nomj2;
+    @FXML
+    private Text longj1;
+    @FXML
+    private Text longj2;
+    @FXML
+    private Text dratej1;
+    @FXML
+    private Text dratej2;
+    @FXML
+    private Text dreussij1;
+    @FXML
+    private Text dreussij2;
+    @FXML
+    private Text dpiochej1;
+    @FXML
+    private Text dpiochej2;
+
+
+
 
     // Variable de base pour le jeu
     int piocheWagonCompte = 1000;
@@ -257,7 +304,7 @@ public class MainSceneController{
     public void Start(String nom1,String nom2,String couleur1, String couleur2) throws Exception{
         j0= new Joueur(nom1,couleur1,p.get_wagon_carte(),p.get_destination_carte());
         j1= new Joueur(nom2,couleur2,p.get_wagon_carte(),p.get_destination_carte());
-        
+        EndPane.setVisible(false);
     }
 
     // Quitter la partie en cours 
@@ -346,10 +393,22 @@ public class MainSceneController{
                 jouerPlateau.setStyle("visibility:visible;");
             }
 
+            // Verification de la fin de jeu
             if (last==true){
-                this.changeMessage("C'est le dernier tour");
+                // Affichage panneau de fin de jeu 
+                for (Node n : rootPane.getChildren()){
+                    n.setOpacity(0.0);
+                }
+                EndPane.setOpacity(1.0);
+                EndPane.setVisible(true);
+                // Mis a jour des points carte destination
+                //System.out.println("Carte 1 validé "+this.verifCarteDestination(joueur.getCartesDestination().getCarte(0).getVilleDestination()[0],joueur.getCartesDestination().getCarte(0).getVilleDestination()[1]));
             }
-            else if (j0.getWagons()<3 || j1.getWagons()<3){
+            else if (joueur.equals(j0) && j1.getWagons()<43){
+                this.changeMessage("C'est le dernier tour");
+                last=true;
+            }else if (joueur.equals(j1) && j0.getWagons()<43){
+                this.changeMessage("C'est le dernier tour");
                 last=true;
             }
 
@@ -878,9 +937,6 @@ public class MainSceneController{
 
                 // Mis a jour du nb de point
                 joueur.addPoint(route.getPoints());
-
-                // Verif point carte destination *Coming Soon*
-                System.out.println("Carte 1 validé "+this.verifCarteDestination(joueur.getCartesDestination().getCarte(0).getVilleDestination()[0],joueur.getCartesDestination().getCarte(0).getVilleDestination()[1]));
 
                 joueR=false;
                 this.play(event);
