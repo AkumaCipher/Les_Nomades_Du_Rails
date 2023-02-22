@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -285,9 +286,6 @@ public class MainSceneController{
     @FXML
     private Text dpiochej2;
 
-
-
-
     // Variable de base pour le jeu
     int piocheWagonCompte = 1000;
     PaquetCarte piocheList = new PaquetCarte(3,"Destination");
@@ -296,7 +294,15 @@ public class MainSceneController{
     boolean joueD = false;
     boolean joueR = false;
     boolean last = false;
-
+    // Statistiques
+    int piochewj1=0;
+    int piochewj2=0;
+    int piochedj1=0;
+    int piochedj2=0;
+    int toursj1 =0;
+    int toursj2 =0;
+    int routepj1=0;
+    int routepj2=0;
 
     Image destination = new Image(".\\wagon\\cartedestination.png",100,150,true,true);
 
@@ -305,6 +311,7 @@ public class MainSceneController{
         j0= new Joueur(nom1,couleur1,p.get_wagon_carte(),p.get_destination_carte());
         j1= new Joueur(nom2,couleur2,p.get_wagon_carte(),p.get_destination_carte());
         EndPane.setVisible(false);
+        this.cheminLong(j0);
     }
 
     // Quitter la partie en cours 
@@ -401,13 +408,88 @@ public class MainSceneController{
                 }
                 EndPane.setOpacity(1.0);
                 EndPane.setVisible(true);
+
+                int reussij1=0;
+                int reussij2=0;
+                int echouej1=0;
+                int echouej2=0;
+
                 // Mis a jour des points carte destination
-                //System.out.println("Carte 1 validé "+this.verifCarteDestination(joueur.getCartesDestination().getCarte(0).getVilleDestination()[0],joueur.getCartesDestination().getCarte(0).getVilleDestination()[1]));
+                for (Carte element :j0.getCartesDestination().getPaquet()){
+                    if (this.verifCarteDestination(element.getVilleDestination()[0], element.getVilleDestination()[1])){
+                        j0.addPoint(element.getPoint());
+                        reussij1+=1;
+                    }else{
+                        j0.addPoint(-element.getPoint());
+                        echouej1+=1;
+                    }
+                }
+                for (Carte element :j1.getCartesDestination().getPaquet()){
+                    if (this.verifCarteDestination(element.getVilleDestination()[0], element.getVilleDestination()[1])){
+                        j1.addPoint(element.getPoint());
+                        reussij2+=1;
+                    }else{
+                        j1.addPoint(-element.getPoint());
+                        echouej2+=1;
+                    }
+                }
+
+                if (cheminLong(j0)>cheminLong(j1)){
+                    j0.addPoint(10);
+                    longj1.setFill(Color.GREEN);
+                }else if (cheminLong(j0)<cheminLong(j1)){
+                    j1.addPoint(10);
+                    longj2.setFill(Color.GREEN);
+                }else{
+                    j0.addPoint(10);
+                    longj1.setFill(Color.GREEN);
+                    j1.addPoint(10);
+                    longj2.setFill(Color.GREEN);
+                }
+    
+                nomj1.setText(j0.getNom());
+                nomj2.setText(j1.getNom());
+                tourj1.setText(toursj1+"");
+                tourj2.setText(toursj2+"");
+                dpiochej1.setText(piochedj1+"");
+                dpiochej2.setText(piochedj2+"");
+                wpiochej1.setText(piochewj1+"");
+                wpiochej2.setText(piochewj2+"");
+                routej1.setText(routepj1+"");
+                routej2.setText(routepj2+"");
+                wposej1.setText((45-j0.getWagons())+"");
+                wposej2.setText((45-j1.getWagons())+"");
+                longj1.setText(cheminLong(j0)+"");
+                longj2.setText(cheminLong(j1)+"");
+                pointj1.setText(j0.getPoint()+"");
+                pointj2.setText(j1.getPoint()+"");
+                dreussij1.setText(reussij1+"");
+                dreussij2.setText(reussij2+"");
+                dratej1.setText(echouej1+"");
+                dratej2.setText(echouej2+"");
+                
+
+                // Vainqueur
+                if (j0.getPoint()>j1.getPoint()){
+                    vainqueur.setText(j0.getNom()+" a gagné !");
+                }else if (j1.getPoint()>j0.getPoint()){
+                    vainqueur.setText(j1.getNom()+" a gagné !");
+                }else{
+                    if (reussij1>reussij2){
+                        vainqueur.setText(j0.getNom()+" a gagné !");
+                    }else if (reussij2>reussij1){
+                        vainqueur.setText(j1.getNom()+" a gagné !");
+                    }else{
+                        // Chemin le plus long
+                    }
+                }
+
             }
-            else if (joueur.equals(j0) && j1.getWagons()<43){
+
+            else if (joueur.equals(j0) && j1.getWagons()<40){
                 this.changeMessage("C'est le dernier tour");
                 last=true;
-            }else if (joueur.equals(j1) && j0.getWagons()<43){
+            }else if (joueur.equals(j1) && j0.getWagons()<40){
                 this.changeMessage("C'est le dernier tour");
                 last=true;
             }
@@ -424,9 +506,11 @@ public class MainSceneController{
             // Changement de joueur et de tour
             if(joueur.equals(j0) && tour!=0){
                 joueur=j1;
+                toursj2+=1;
             }else{
                 joueur=j0;
                 tour+=1;
+                toursj1+=1;
             }
 
             if (tour==1){
@@ -532,23 +616,17 @@ public class MainSceneController{
         // Calcul des points et remplissage de la carte
         destination1.setImage(destination);
         depart1.setText(joueur.getCartesDestination().getCarte(0).getDepart());
-        int i =p.get_index_ville(joueur.getCartesDestination().getCarte(0).getDepart());
-        int i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(0).getArrive());
-        point1.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+        point1.setText(joueur.getCartesDestination().getCarte(0).getPoint()+"");
         arrive1.setText(joueur.getCartesDestination().getCarte(0).getArrive());
         if (taille>=2){
             destination2.setImage(destination);
             depart2.setText(joueur.getCartesDestination().getCarte(1).getDepart());
-            i =p.get_index_ville(joueur.getCartesDestination().getCarte(1).getDepart());
-            i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(1).getArrive());
-            point2.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+            point2.setText(joueur.getCartesDestination().getCarte(1).getPoint()+"");
             arrive2.setText(joueur.getCartesDestination().getCarte(1).getArrive());
         }if (taille>=3){
             destination3.setImage(destination);
             depart3.setText(joueur.getCartesDestination().getCarte(2).getDepart());
-            i =p.get_index_ville(joueur.getCartesDestination().getCarte(2).getDepart());
-            i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(2).getArrive());
-            point3.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+            point3.setText(joueur.getCartesDestination().getCarte(2).getPoint()+"");
             arrive3.setText(joueur.getCartesDestination().getCarte(2).getArrive());
             
         }if (taille>3){
@@ -599,9 +677,7 @@ public class MainSceneController{
             destination3.setImage(null);
 
             depart1.setText(joueur.getCartesDestination().getCarte(indiceD).getDepart());
-            int i =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD).getDepart());
-            int i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD).getArrive());
-            point1.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+            point1.setText(joueur.getCartesDestination().getCarte(indiceD).getPoint()+"");
             arrive1.setText(joueur.getCartesDestination().getCarte(indiceD).getArrive());
 
             depart2.setText(null);
@@ -616,9 +692,7 @@ public class MainSceneController{
                 destination2.setImage(destination);
 
                 depart2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getDepart());
-                i =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD+1).getDepart());
-                i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD+1).getArrive());
-                point2.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+                point2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getPoint()+"");
                 arrive2.setText(joueur.getCartesDestination().getCarte(indiceD+1).getArrive());
 
                 depart3.setText(null);
@@ -629,9 +703,7 @@ public class MainSceneController{
                 destination3.setImage(destination);
 
                 depart3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getDepart());
-                i =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD+2).getDepart());
-                i2 =p.get_index_ville(joueur.getCartesDestination().getCarte(indiceD+2).getArrive());
-                point3.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+                point3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getPoint()+"");
                 arrive3.setText(joueur.getCartesDestination().getCarte(indiceD+2).getArrive());
             }
             if (taille-indiceD>3){
@@ -728,6 +800,23 @@ public class MainSceneController{
             }else{
                 if(piocheWagonCompte==0 && p.get_wagon_face().getCarte(num).getCouleur().equals("joker")){
                     piocheWagonCompte+=1;
+                    if (joueur.equals(j0)){
+                        piochewj1+=1;
+                    }else{
+                        piochewj2+=1;
+                    }
+                }else if (piocheWagonCompte==0 && p.get_wagon_face().getCarte(num).getCouleur().equals("joker")==false){
+                    if (joueur.equals(j0)){
+                        piochewj1+=1;
+                    }else{
+                        piochewj2+=1;
+                    }
+                }else if (piocheWagonCompte==1 ){
+                    if (joueur.equals(j0)){
+                        piochewj1+=1;
+                    }else{
+                        piochewj2+=1;
+                    }
                 }
                 joueur.getCartesWagon().getPaquet().add(p.get_wagon_face().getCarte(num));
                 p.removeCarteFace(num);
@@ -755,7 +844,13 @@ public class MainSceneController{
             this.showCardWagon(event);
             this.changeMessage("Il reste une carte a piocher");
             piocheWagonCompte+=1;
-        }if (piocheWagonCompte==2 && joueW==true){
+        }
+        if (joueur.equals(j0)){
+            piochewj1+=1;
+        }else{
+            piochewj2+=1;
+        }
+        if (piocheWagonCompte==2 && joueW==true){
             joueW=false;
             this.play(event);
         }
@@ -782,23 +877,17 @@ public class MainSceneController{
 
         // 1ere carte
         piocheD1d.setText(piocheList.getCarte(0).getDepart());
-        int i =p.get_index_ville(piocheList.getCarte(0).getDepart());
-        int i2 =p.get_index_ville(piocheList.getCarte(0).getArrive());
-        piocheD1p.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+        piocheD1p.setText(piocheList.getCarte(0).getPoint()+"");
         piocheD1a.setText(piocheList.getCarte(0).getArrive());
 
         // 2eme carte
         piocheD2d.setText(piocheList.getCarte(1).getDepart());
-        i =p.get_index_ville(piocheList.getCarte(1).getDepart());
-        i2 =p.get_index_ville(piocheList.getCarte(1).getArrive());
-        piocheD2p.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+        piocheD2p.setText(piocheList.getCarte(1).getPoint()+"");
         piocheD2a.setText(piocheList.getCarte(1).getArrive());
 
         // 3 eme carte
         piocheD3d.setText(piocheList.getCarte(2).getDepart());
-        i =p.get_index_ville(piocheList.getCarte(2).getDepart());
-        i2 =p.get_index_ville(piocheList.getCarte(2).getArrive());
-        piocheD3p.setText(p.dijkstra(p.get_ville().get(i), p.get_ville().get(i2))[0]+"");
+        piocheD3p.setText(piocheList.getCarte(2).getPoint()+"");
         piocheD3a.setText(piocheList.getCarte(2).getArrive());
         
         checkList.clear();
@@ -814,6 +903,11 @@ public class MainSceneController{
                 if (b==false){
                     count+=1;
                 }
+            }
+            if (joueur.equals(j0)){
+                piochedj1+=3-count;
+            }else{
+                piochedj2+=3-count;
             }
             if (count==3){
                 piocheDText.setText("Selectionnez au moins 1 carte");
@@ -873,7 +967,11 @@ public class MainSceneController{
         if (joueR==false){
             return;
         }
-
+        if (joueur.equals(j0)){
+            routepj1+=1;
+        }else{
+            routepj2+=1;
+        }
         // Recuperation de la route cliquée
         String id = event.getPickResult().getIntersectedNode().getId();
         Character charnum = id.charAt(5);
@@ -1014,6 +1112,57 @@ public class MainSceneController{
         }
         return verif;
     }
-    
 
+    // Calcul du plus long chemin
+    public int cheminLong(Joueur j){
+
+        // Récuperation des route possédés par le joueur
+        ArrayList<Route> routePrises = new ArrayList<>();
+        for (Route element :p.get_route()){
+            if (element.getProprietaire()!= null && element.getProprietaire().getNom().equals(j.getNom())){
+                routePrises.add(element);
+            }
+        }
+
+        // On parcoure en longueur depuis chaque sommet et on prend le maximum
+        int max=0;
+        for (Route element : routePrises){
+            if (calculerProfondeur(routePrises.indexOf(element), routePrises)>max){
+                max=calculerProfondeur(routePrises.indexOf(element), routePrises);
+            }
+        }
+
+        return max;
+    }
+
+    // Mesure des parcours en profondeur
+    public static int calculerProfondeur(int sommetDepart, ArrayList<Route> routePrises) {
+        int nombreSommets = routePrises.size();
+        ArrayList<Route> parcouru = new ArrayList<>(); // Pour garder une trace des sommets visités
+        int[] profondeur = new int[nombreSommets]; // Pour stocker la profondeur de chaque sommet
+    
+        dfs(sommetDepart, parcouru, profondeur, routePrises.get(sommetDepart).getTaille(), routePrises); // Recherche en profondeur
+    
+        int maxProfondeur = 0;
+        for (int i = 0; i < nombreSommets; ++i) {
+            if (profondeur[i] > maxProfondeur) {
+                maxProfondeur = profondeur[i];
+            }
+        }
+    
+        return maxProfondeur;
+    }
+
+    // Parcours en profondeur
+    private static void dfs(int sommet, ArrayList<Route> parcouru, int[] profondeur, int niveau, ArrayList<Route> routePrises) {
+        parcouru.add(routePrises.get(sommet));
+        profondeur[sommet] = niveau; // Stocker la profondeur du sommet
+    
+        for (Route voisin: routePrises.get(sommet).getVoisins(routePrises)) { 
+            if (parcouru.contains(voisin)==false) { // Si le voisin n'a pas été visité, le visiter
+                dfs(routePrises.indexOf(voisin), parcouru, profondeur, niveau + routePrises.get(routePrises.indexOf(voisin)).getTaille(), routePrises); // Recherche en profondeur récursive
+            }
+        }
+    }
+    
 }

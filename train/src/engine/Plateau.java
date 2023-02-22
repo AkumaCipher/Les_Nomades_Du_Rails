@@ -182,6 +182,13 @@ public class Plateau {
 
         this.wagon_carte = new PaquetCarte("Wagon",this);
         this.destination_carte = new PaquetCarte("Destination",this);
+        // Calcul des points de la carte
+        for (Carte element:this.get_destination_carte().getPaquet()){
+            int i =this.get_index_ville(element.getDepart());
+            int i2 =this.get_index_ville(element.getArrive());
+            String points =this.dijkstra(this.get_ville().get(i), this.get_ville().get(i2))[0]+"";
+            element.setPoint(Integer.parseInt(points));
+        }
 
         this.wagon_face= new PaquetCarte(5, new String("Wagon"));
         this.wagon_face.pioche(5, this.wagon_carte);

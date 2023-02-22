@@ -125,7 +125,22 @@ public class WagonCarte extends Carte {
      */
     @Override
     public Ville[] getVilleDestination() {
-        return null;
+        return null; 
+    }
+
+    /**
+     * Methode abstraite
+     */
+    @Override
+    public int getPoint() {
+        return 0;
+    }
+
+    /**
+     * Methode abstraite
+     */
+    @Override
+    public void setPoint(int point) {
         
     }
 }

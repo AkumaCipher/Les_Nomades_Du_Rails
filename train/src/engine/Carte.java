@@ -54,6 +54,14 @@ public abstract class Carte {
      */
     public abstract Ville[] getVilleDestination();
 
+    /**
+     * Donne les points d'une carte Destination
+     * @return un entier
+    */
+    public abstract int getPoint();
     
-    
+    /**
+     * Donne les points d'une carte Destination
+    */
+    public abstract void setPoint(int point);
 }

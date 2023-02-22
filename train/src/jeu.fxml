@@ -580,11 +580,6 @@
             <Font name="Harrington" size="16.0" />
          </font>
       </Text>
-      <ImageView fitHeight="890.0" fitWidth="1600.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@design/FondFin.png" />
-         </image>
-      </ImageView>
       <AnchorPane fx:id="EndPane" prefHeight="890.0" prefWidth="1600.0" style="-fx-background-image: url(&quot;./design/FondFin.png&quot;);">
          <children>
             <Text fx:id="tourj1" fill="#ececec" layoutX="947.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="64.0">
