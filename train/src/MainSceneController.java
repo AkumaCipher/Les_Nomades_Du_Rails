@@ -307,11 +307,15 @@ public class MainSceneController{
     Image destination = new Image(".\\wagon\\cartedestination.png",100,150,true,true);
 
     // Creation nouvelle partie
-    public void Start(String nom1,String nom2,String couleur1, String couleur2) throws Exception{
-        j0= new Joueur(nom1,couleur1,p.get_wagon_carte(),p.get_destination_carte());
-        j1= new Joueur(nom2,couleur2,p.get_wagon_carte(),p.get_destination_carte());
+    public void Start(String nom1,String nom2,String couleur1, String couleur2,boolean intelligence) throws Exception{
+        if(intelligence == false){
+            j0= new Joueur(nom1,couleur1,p.get_wagon_carte(),p.get_destination_carte());
+            j1= new Joueur(nom2,couleur2,p.get_wagon_carte(),p.get_destination_carte());
+        }else{
+            j0= new Joueur(nom1,couleur1,p.get_wagon_carte(),p.get_destination_carte());
+            j1= new Joueur(intelligence,p.get_wagon_carte(),p.get_destination_carte(),couleur1);
+        }
         EndPane.setVisible(false);
-        this.cheminLong(j0);
     }
 
     // Quitter la partie en cours 

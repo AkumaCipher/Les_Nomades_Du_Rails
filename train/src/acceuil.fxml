@@ -74,6 +74,11 @@
                   <Font size="16.0" />
                </font>
             </Button>
+            <Button fx:id="adversaire" layoutX="350.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#changeAdversaire" prefHeight="37.0" prefWidth="100.0" text="IA">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <ImageView fx:id="imageRegle" fitHeight="622.0" fitWidth="882.0" layoutX="324.0" layoutY="164.0" onMouseClicked="#updateRegle" pickOnBounds="true" preserveRatio="true" style="visibility: false;">

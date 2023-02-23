@@ -53,18 +53,21 @@ public class HomeSceneController {
     private ImageView imageRegle;
     @FXML
     private Button regle;
+    @FXML
+    private Button adversaire;
 
     private Stage stage;
     private Scene scene;
     private Parent root;
     private String[] color = {"blanc", "bleu", "jaune", "vert", "rouge", "violet", "noire", "orange"};
     int click=0;
+    int click2=0;
 
     // Creer la partie et passe sur la scene jeu si les joueurs sont rempli correctement
     @FXML
     void newPartie(MouseEvent event) throws Exception{
         // On verifie qu'il a choisi 2 couleurs différentes et tout rempli
-        if (couleurField1.getValue().equals(couleurField2.getValue())==false && nomField1.getText()!=null && nomField2.getText()!=null && couleurField1.getValue()!=null && couleurField2.getValue()!=null){
+        if (click2==0 && couleurField1.getValue().equals(couleurField2.getValue())==false && nomField1.getText()!=null && nomField2.getText()!=null && couleurField1.getValue()!=null && couleurField2.getValue()!=null){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("jeu.fxml"));
             root=loader.load();
             MainSceneController mainController = loader.getController();
@@ -74,7 +77,19 @@ public class HomeSceneController {
             stage.setFullScreen(true);
             stage.setResizable(true);
             stage.show();
-            mainController.Start(nomField1.getText(),nomField2.getText(),couleurField1.getValue(),couleurField2.getValue());
+            mainController.Start(nomField1.getText(),nomField2.getText(),couleurField1.getValue(),couleurField2.getValue(),false);
+        }
+        if (click2==1 && couleurField1.getValue()!=null && nomField1.getText()!=null){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("jeu.fxml"));
+            root=loader.load();
+            MainSceneController mainController = loader.getController();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.setResizable(true);
+            stage.show();
+            mainController.Start(nomField1.getText(),null,couleurField1.getValue(),null,true);
         }
     }
 
@@ -117,6 +132,33 @@ public class HomeSceneController {
             imageRegle.setVisible(false);
             click=0;
         }
+    }
+
+    // Change d'adversaire et active l'IA
+    @FXML
+    void changeAdversaire(MouseEvent event){
+        if (click2==0){
+            adversaire.setText("Autre Joueur");
+            adversaire.setLayoutX(340);
+            adversaire.setMinWidth(120);
+            nomField2.setVisible(false);
+            nomText2.setVisible(false);
+            photo2.setVisible(false);
+            couleurField2.setVisible(false);
+            couleurText2.setVisible(false);
+            click2+=1;
+        }else{
+            adversaire.setText("IA");
+            adversaire.setLayoutX(350);
+            adversaire.setMinWidth(100);
+            nomField2.setVisible(true);
+            nomText2.setVisible(true);
+            photo2.setVisible(true);
+            couleurField2.setVisible(true);
+            couleurText2.setVisible(true);
+            click2=0;
+        }
+        
     }
 
 }

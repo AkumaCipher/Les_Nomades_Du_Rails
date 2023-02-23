@@ -1,4 +1,9 @@
 package engine;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  * Classe qui definit un joueur
  */
@@ -27,6 +32,14 @@ public class Joueur {
      * Attribut : couleur du joueur
      */
     String couleur;
+    /**
+     * Attribut: IA
+     */
+    boolean IA = false;
+    /**
+     * Attribut: Liste des couleurs
+     */
+    public ArrayList<String> couleurList = new ArrayList(Arrays.asList("blanc", "bleu", "jaune", "vert", "rouge", "violet", "noire", "orange"));
 
     /**
      * Constructeur par défaut
@@ -85,6 +98,25 @@ public class Joueur {
         this.point = other.getPoint();
         this.wagons=other.getWagons();
         this.couleur=other.couleur;
+    }
+
+    /**
+     * Constructeur de l'IA
+     * @param intelligence
+     * @param wagonPioche
+     * @param destinationPioche
+     * @param couleur
+     */
+    public Joueur(boolean intelligence,PaquetCarte wagonPioche,PaquetCarte destinationPioche,String couleur){
+        this.IA=true;
+        this.nom="IA";
+        this.cartesDestination = new PaquetCarte(3, new String("Destination"));
+        this.cartesWagon = new PaquetCarte(4, new String("Wagon"));
+        this.cartesWagon.pioche(4, wagonPioche);
+        this.cartesDestination.pioche(3,destinationPioche);
+        this.point = 0;
+        this.wagons=45;
+        this.couleur=this.couleurIA(couleur);
     }
 
     /**
@@ -208,6 +240,17 @@ public class Joueur {
         }else{
             return false;
         }
+    }
+
+    public String couleurIA(String couleur){
+        String newCouleur = couleur;
+        while(newCouleur.equals(couleur)){
+            Random random = new Random();
+            int nb;
+            nb = random.nextInt(couleurList.size());
+            newCouleur=couleurList.get(nb);
+        }
+        return newCouleur;
     }
 
 }
