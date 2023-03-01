@@ -327,15 +327,6 @@ public class MainSceneController{
         stage.show();
     }
 
-    // Applique un flou au route non prises au début
-    public void flouRoute(){
-        for (Node n : rootPane.getChildren()){
-            String id = n.getId();
-            if (id != null && id.charAt(0)=='r' && id.charAt(1)=='o' && id.charAt(2)=='u'){
-                n.setOpacity(0.4);
-            }
-        }
-    }
 
     // Renvoie le code hexadecimal de la couleur 
     public String getHexaColor(String couleur){
@@ -385,9 +376,10 @@ public class MainSceneController{
         
         if (joueW==false && joueD==false && joueR==false){
 
-            // Floutage des routes et affichage des couleurs
-            if (tour==0){
-                this.flouRoute();
+            // Si cet au tour d'une IA :
+            if (joueur.getIA()){
+                
+                this.play(event);
             }
 
             // Carte a eliminer au premier tour 
@@ -934,7 +926,6 @@ public class MainSceneController{
             for (Node n : rootPane.getChildren()){
                 n.setOpacity(1);
             }
-            this.flouRoute();
             this.hideCardDestination(event);
             this.showCardDestination(event);
             joueD=false;
@@ -1028,12 +1019,8 @@ public class MainSceneController{
 
                 // Mise a jour de la route
                 ImageView routePrise = (ImageView) event.getSource();
-                routePrise.setImage(new Image(".\\wagon\\r"+p.get_route().get(num-1).getTaille()+"_"+joueur.getCouleur()+".png"));
-                if (joueur.equals(j0)){
-                    routePrise.setStyle("-fx-opacity:1;-fx-effect: innershadow(gaussian, #039ed3, 10, 0.5, 0, 0);");
-                }else{
-                    routePrise.setStyle("-fx-opacity:1;-fx-effect: innershadow(gaussian, #FF0000, 10, 0.5, 0, 0);");
-                }
+                routePrise.setImage(new Image(".\\wagon\\w"+p.get_route().get(num-1).getTaille()+"_"+joueur.getCouleur()+".png"));
+                routePrise.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
 
                 p.get_route().get(num-1).setProprietaire(joueur);
 

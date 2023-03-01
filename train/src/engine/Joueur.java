@@ -242,6 +242,11 @@ public class Joueur {
         }
     }
 
+    /**
+     * Permet de choisir une couleur qui n'a pas été prise pour l'IA
+     * @param couleur
+     * @return
+     */
     public String couleurIA(String couleur){
         String newCouleur = couleur;
         while(newCouleur.equals(couleur)){
@@ -251,6 +256,14 @@ public class Joueur {
             newCouleur=couleurList.get(nb);
         }
         return newCouleur;
+    }
+
+    /**
+     * Renvoit si le joueur est une IA
+     * @return
+     */
+    public boolean getIA(){
+        return this.IA;
     }
 
 }

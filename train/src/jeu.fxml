@@ -672,7 +672,7 @@
                   <Font name="Amiri" size="41.0" />
                </font>
             </Text>
-            <Text fx:id="nomj2" fill="WHITE" layoutX="1229.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="300.0">
+            <Text fx:id="nomj2" fill="WHITE" layoutX="1220.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" wrappingWidth="300.0">
                <font>
                   <Font name="Amiri" size="41.0" />
                </font>
