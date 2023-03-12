@@ -1,4 +1,5 @@
 package engine;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -97,6 +98,16 @@ public class Ville {
             }
         }
         return false;
+    }
+
+    public Map<Ville,Integer> getVraiVoisins(Plateau p,Joueur j){
+        Map<Ville, Integer> vraiVoisin = new HashMap<>(); 
+        for (Map.Entry<Ville,Integer> voisin : this.voisins.entrySet()){
+            if (p.getOneRoute(this,voisin.getKey()).getProprietaire()== null || p.getOneRoute(this,voisin.getKey()).getProprietaire().equals(j)){
+                vraiVoisin.put(voisin.getKey(), voisin.getValue());
+            }
+        }
+        return vraiVoisin;
     }
 
 }

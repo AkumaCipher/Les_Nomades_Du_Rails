@@ -31,6 +31,7 @@ public class Route {
         this.destination[0] = new Ville();
         this.destination[1] = new Ville();
         this.couleur = new String("rouge");
+        this.proprietaire=null;
     }
 
     /**

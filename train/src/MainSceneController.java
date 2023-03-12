@@ -376,11 +376,13 @@ public class MainSceneController{
         
         if (joueW==false && joueD==false && joueR==false){
 
+            /* 
             // Si cet au tour d'une IA :
             if (joueur.getIA()){
-                
-                this.play(event);
+                System.out.println("ia");
+                //this.play(event);
             }
+            */
 
             // Carte a eliminer au premier tour 
             if (elimine1==false && tour==1 && joueur.equals(j0)){
@@ -951,6 +953,7 @@ public class MainSceneController{
 
     // Choix de jouer des cartes dans le tour 
     public void joueRoute(MouseEvent event)throws Exception{
+        this.evaluation(joueur);
         joueR=true;
         piocheDestination.setStyle("visibility:hidden;");
         piocheWagon.setStyle("visibility:hidden;");
@@ -1155,5 +1158,83 @@ public class MainSceneController{
             }
         }
     }
-    
+
+    // Evaluation de la situation
+    public void evaluation(Joueur joueur){
+        int pwagon = 0;
+        int pDestination = 0;
+        int jouer = 0;
+
+        ArrayList<Route> route_possibles = new ArrayList<>();
+        int joker=0;
+        joker = joueur.getCartesWagon().nbcarte("joker", joueur.getCartesWagon());
+
+        for (Route route : p.get_route()){
+            if (route.getProprietaire()==null){
+                if(joueur.getCartesWagon().nbcarte(route.getCouleur(), joueur.getCartesWagon())>=route.getTaille()-joker){
+                    route_possibles.add(route);
+                }
+            }
+        }
+
+        boolean route_jouable = false ;
+
+        for (Route route : route_possibles){
+            if(route.getTaille()>2 ){
+                route_jouable = true;
+                jouer=5;
+            }
+
+            for (Carte destination : joueur.getCartesDestination().getPaquet()){
+                System.out.println(destination);
+                if(verifCarteDestination(destination.getVilleDestination()[0], destination.getVilleDestination()[1])==false){
+                    System.out.println(this.cheminCourt(joueur, destination.getVilleDestination()[0],destination.getVilleDestination()[1]));
+                }
+            }
+        }
+    }
+
+    // Chemin le plus court pour accomplir sa carte destination 
+    public ArrayList<Ville> cheminCourt(Joueur joueur, Ville depart, Ville arrivé){
+        // Dijkstra
+        ArrayList<Ville> Q = new ArrayList<>();
+        int dist[] = new int[p.get_ville().size()];
+        Ville prev[] = new Ville[p.get_ville().size()];
+
+        for (int i=0;i< p.get_ville().size();i++){
+            dist[i]= 1000;
+            prev[i]= null;
+            Q.add(p.get_ville().get(i));
+        }
+
+        dist[p.getIndexVille(depart)]=0;
+
+        while (Q.size()!=0){
+            Ville now = p.get_ville().get(p.indexDistMini(dist,Q));
+            int index = p.indexDistMini(dist,Q);
+            Q.remove(now);
+            // Parcours des voisins
+            for (Map.Entry<Ville,Integer> voisin: now.getVraiVoisins(p, joueur).entrySet()){
+                // On verifie que la route est libre
+                int alt = dist[index] + voisin.getValue();
+                int v = p.getIndexVille(voisin.getKey());
+                if (alt<dist[v]){
+                    dist[v] = alt;
+                    prev[v] = now;
+                }
+            }
+        }
+
+        // Reconstitution du chemin
+        ArrayList<Ville> chemin = new ArrayList<>();
+        chemin.add(arrivé);
+        int j=p.getIndexVille(arrivé);
+        
+        while (prev[j]!=null){
+            chemin.add(prev[j]);
+            j=p.getIndexVille(prev[j]);
+        }
+        return chemin;
+    }
+
 }

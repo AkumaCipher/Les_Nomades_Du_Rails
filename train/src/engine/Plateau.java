@@ -376,12 +376,13 @@ public class Plateau {
         
     }   
 
-    /**
-     * Algorithme de verification des destinations
-     */
-
-    public void verif_destination(Ville depart,Ville arrivé){
-        
+    public Route getOneRoute(Ville depart, Ville arrive){
+        for (Route route: this.list_route){
+            if ((route.getDestination()[0].equals(depart) && route.getDestination()[1].equals(arrive)) || (route.getDestination()[1].equals(depart) && route.getDestination()[0].equals(arrive))){
+                return route;
+            }
+        }
+        return new Route();
     }
 
     
