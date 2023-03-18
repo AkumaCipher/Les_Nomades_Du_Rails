@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import engine.*;
@@ -289,6 +290,7 @@ public class MainSceneController{
     // Variable de base pour le jeu
     int piocheWagonCompte = 1000;
     PaquetCarte piocheList = new PaquetCarte(3,"Destination");
+    public ArrayList<String> couleur = new ArrayList(Arrays.asList("blanc", "bleu", "jaune", "vert", "rouge", "violet", "noire", "orange"));
     ArrayList<Boolean> checkList = new ArrayList<>();
     boolean joueW = false;
     boolean joueD = false;
@@ -351,6 +353,179 @@ public class MainSceneController{
         return code;
     }
 
+    public void trouveRoute(Plateau p,Joueur joueur,int num){
+        if (num == 1) {
+            route1.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route1.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        } else if (num == 2) {
+            route2.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route2.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        } else if (num == 3) {
+            route3.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route3.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }else if (num == 4) {
+            route4.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route4.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        } else if (num == 5) {
+            route5.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route5.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }else if (num == 6) {
+            route6.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route6.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 7) {
+            route7.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route7.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 8) {
+            route8.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route8.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 9) {
+            route9.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route9.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 10) {
+            route10.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route10.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 11) {
+            route11.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route11.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 12) {
+            route12.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route12.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 13) {
+            route13.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route13.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 14) {
+            route14.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route14.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 15) {
+            route15.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route15.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 16) {
+            route16.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route16.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 17) {
+            route17.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route17.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 18) {
+            route18.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route18.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 19) {
+            route19.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route19.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 20) {
+            route20.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route20.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 21) {
+            route21.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route21.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 22) {
+            route22.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route22.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 23) {
+            route23.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route23.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 24) {
+            route24.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route24.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 25) {
+            route25.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route25.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 26) {
+            route26.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route26.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 27) {
+            route27.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route27.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 28) {
+            route28.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route28.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 29) {
+            route29.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route29.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 30) {
+            route30.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route30.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 31) {
+            route31.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route31.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 32) {
+            route32.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route32.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 33) {
+            route33.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route33.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 34) {
+            route34.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route34.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 35) {
+            route35.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route35.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 36) {
+            route36.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route36.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 37) {
+            route37.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route37.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }if (num == 38) {
+            route38.setImage(new Image(".\\wagon\\w" + p.get_route().get(num).getTaille() + "_" + joueur.getCouleur() + ".png"));
+            route38.setStyle("-fx-effect: dropshadow(gaussian, #000000, 30, 0, 0, 0);");
+            p.get_route().get(num).setProprietaire(joueur);
+        }
+
+    }
+
+    public int[] besoinCouleur(Joueur j){
+        int[] besoin = new int[8];
+        for (Carte destination : joueur.getCartesDestination().getPaquet()){
+            if(verifCarteDestination(destination.getVilleDestination()[0], destination.getVilleDestination()[1])==false){
+                ArrayList<Ville> chemin = this.cheminCourt(joueur, destination.getVilleDestination()[0],destination.getVilleDestination()[1]);
+                for (int i=0; i<chemin.size()-2; i++){
+                    Route route_actuel = p.getOneRoute(chemin.get(i), chemin.get(i+1));
+                    besoin[couleur.indexOf(route_actuel.getCouleur())]= route_actuel.getTaille();
+                }
+            }
+        }for (int i=0; i<8; i++){
+            besoin[i]=besoin[i]-joueur.getCartesWagon().nbcarte(couleur.get(i),joueur.getCartesWagon());
+        }
+        return besoin;
+    }
+
     // Recuperation des prochaines images pour les wagons
     public void setupWagon(){
 
@@ -376,13 +551,13 @@ public class MainSceneController{
         
         if (joueW==false && joueD==false && joueR==false){
 
-            /* 
-            // Si cet au tour d'une IA :
+
             if (joueur.getIA()){
                 System.out.println("ia");
+                this.evaluation(joueur);
                 //this.play(event);
             }
-            */
+            
 
             // Carte a eliminer au premier tour 
             if (elimine1==false && tour==1 && joueur.equals(j0)){
@@ -953,7 +1128,6 @@ public class MainSceneController{
 
     // Choix de jouer des cartes dans le tour 
     public void joueRoute(MouseEvent event)throws Exception{
-        this.evaluation(joueur);
         joueR=true;
         piocheDestination.setStyle("visibility:hidden;");
         piocheWagon.setStyle("visibility:hidden;");
@@ -1166,6 +1340,8 @@ public class MainSceneController{
         int jouer = 0;
 
         ArrayList<Route> route_possibles = new ArrayList<>();
+        ArrayList<Route> route_def = new ArrayList<>();
+        ArrayList<Route> route_val = new ArrayList<>();
         int joker=0;
         joker = joueur.getCartesWagon().nbcarte("joker", joueur.getCartesWagon());
 
@@ -1180,16 +1356,156 @@ public class MainSceneController{
         boolean route_jouable = false ;
 
         for (Route route : route_possibles){
-            if(route.getTaille()>2 ){
+            
+            for (Carte destination : joueur.getCartesDestination().getPaquet()){
+                if(verifCarteDestination(destination.getVilleDestination()[0], destination.getVilleDestination()[1])==false){
+                    ArrayList<Ville> chemin = this.cheminCourt(joueur, destination.getVilleDestination()[0],destination.getVilleDestination()[1]);
+
+                    for (int i=0; i<chemin.size()-2; i++){
+                        if ((chemin.get(i).equals(route.getDestination()[0]) && chemin.get(i+1).equals(route.getDestination()[1])) || (chemin.get(i).equals(route.getDestination()[1]) && chemin.get(i+1).equals(route.getDestination()[0]))){
+                            route_val.add(route);
+                            route_jouable=true;
+                            jouer = 10;
+                        }
+                    }
+                }
+            }
+
+            // Route par défaut
+            if(route.getTaille()>3 ){
+                route_def.add(route);
                 route_jouable = true;
                 jouer=5;
             }
+        }
 
-            for (Carte destination : joueur.getCartesDestination().getPaquet()){
-                System.out.println(destination);
-                if(verifCarteDestination(destination.getVilleDestination()[0], destination.getVilleDestination()[1])==false){
-                    System.out.println(this.cheminCourt(joueur, destination.getVilleDestination()[0],destination.getVilleDestination()[1]));
+        if(route_jouable ==false){
+            // Carte destination
+            ArrayList<Carte> paquet_destination = joueur.getCartesDestination().getPaquet() ;
+            if (paquet_destination.size()<3 && this.verifCarteDestination(paquet_destination.get(0).getVilleDestination()[0], paquet_destination.get(0).getVilleDestination()[1]) && this.verifCarteDestination(paquet_destination.get(1).getVilleDestination()[0], paquet_destination.get(1).getVilleDestination()[1])==false){
+                System.out.println("destination");
+                piocheList.pioche(3, p.get_destination_carte()); 
+                int max =100;
+                for (Carte element : piocheList.getPaquet()){
+                    if (element.getPoint()<max){
+                        max=element.getPoint();
+                    }
+                }for (Carte element : piocheList.getPaquet()){
+                    if (element.getPoint()==max){
+                        joueur.getCartesDestination().getPaquet().add(element);
+                    }else{
+                        p.get_destination_carte().getPaquet().add(element);
+                    }
                 }
+                piocheList.getPaquet().clear();
+            }else{
+                // Carte Wagon 
+                boolean fini = false;
+                int indice=0;
+                // si Joker 
+                for (Carte element : p.get_wagon_face().getPaquet()){
+                    if (element.getCouleur().equals("joker")){
+                        p.removeCarteFace(indice);
+                        p.get_wagon_face().pioche(1, p.get_wagon_carte());
+                        p.checkNbJoker();
+                        joueur.getCartesWagon().getPaquet().add(element);
+                        fini=true;
+                        break;
+                    }
+                    indice+=1;
+                } // Sinon
+                if (fini == false){
+                    int[] tableau = this.besoinCouleur(joueur);
+                    int max =0;
+                    for (int i =0; i<8 ;i++){
+                        if (tableau[i]>max && p.get_wagon_face().nbcarte(couleur.get(i), p.get_wagon_face())>0){
+                            max=tableau[i];
+                            indice =i;
+                        }
+                    }if (max!=0){
+                        System.out.println("Wagon face");
+                        int indice2=0;
+                        for (Carte element : p.get_wagon_face().getPaquet()){
+                            if(element.getCouleur().equals(couleur.get(indice))){
+                                p.removeCarteFace(indice2);
+                                p.get_wagon_face().pioche(1, p.get_wagon_carte());
+                                p.checkNbJoker();
+                                joueur.getCartesWagon().getPaquet().add(element);
+                                break;
+                            }
+                            indice2+=1;
+                        }
+                        indice2=0;
+                        // 2eme carte 
+                        for (Carte element : p.get_wagon_face().getPaquet()){
+                            if(element.getCouleur().equals("joker")==false){
+                                p.removeCarteFace(indice2);
+                                p.get_wagon_face().pioche(1, p.get_wagon_carte());
+                                p.checkNbJoker();
+                                joueur.getCartesWagon().getPaquet().add(element);
+                                break;
+                            }
+                            indice2+=1;
+                        }
+                    }else{
+                        System.out.println("Wagon pioche");
+                        joueur.getCartesWagon().pioche(2, p.get_wagon_carte());
+                    }
+                }
+            }
+        }else{
+            System.out.println("route");
+            // Choix de la route :
+            Route route_cible = new Route();
+            if (jouer == 5){
+                route_cible=route_def.get(0);
+            }else{
+                int max =0;
+                for (Route route : route_val){
+                    if (route.getTaille()>max ){
+                        max=route.getTaille();
+                        route_cible=route;
+                    }
+                }
+            }
+
+            boolean verif=false;
+            // Prise avec carte wagon
+            if(joueur.getCartesWagon().nbcarte(route_cible.getCouleur(), joueur.getCartesWagon())>=route_cible.getTaille()){
+                int numdelete = 0;
+                // On supprime les cartes wagons utilisés
+                for (int i=joueur.getCartesWagon().getPaquet().size()-1;i>=0;i--){
+                    if (numdelete !=route_cible.getTaille() && joueur.getCartesWagon().getPaquet().get(i).getCouleur().equals(route_cible.getCouleur())){
+                        numdelete+=1;
+                        joueur.getCartesWagon().getPaquet().remove(i);
+                    }
+                }
+                verif = true;
+            } // Prise avec joker 
+            else{
+                int numdelete = 0;
+                // On supprime les cartes wagons utilisés
+                for (int i=joueur.getCartesWagon().getPaquet().size()-1;i>=0;i--){
+                    if (joueur.getCartesWagon().getPaquet().get(i).getCouleur().equals(route_cible.getCouleur())){
+                        numdelete+=1;
+                        joueur.getCartesWagon().getPaquet().remove(i);
+                    }
+                } // Puis les cartes joker
+                for (int i=joueur.getCartesWagon().getPaquet().size()-1;i>=0;i--){
+                    if (numdelete !=route_cible.getTaille() && joueur.getCartesWagon().getPaquet().get(i).getCouleur().equals("joker")){
+                        numdelete+=1;
+                        joueur.getCartesWagon().getPaquet().remove(i);
+                    }
+                }
+                verif=true;
+            }
+            if (verif=true){
+                joueur.setWagons(joueur.getWagons()-route_cible.getTaille());
+                nbwagon.setText(Integer.toString(joueur.getWagons()));
+                int num = p.get_route().indexOf(route_cible);
+                this.trouveRoute(p, joueur, num);
+                // Mis a jour du nb de point
+                joueur.addPoint(route_cible.getPoints());
             }
         }
     }
