@@ -18,7 +18,7 @@ Developers : **GUARIM Raphaël et MASSIAS Théo**.
   
   - Graphical interface with 2 player game on the same computer ✔️
   
-  - IA ⌛
+  - IA ✔️
   
   - Game playable on network 🔜
 
