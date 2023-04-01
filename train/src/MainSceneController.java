@@ -26,6 +26,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import org.json.JSONObject;
 
 // Controlleur de la Scene de jeu
 public class MainSceneController{
@@ -683,12 +686,18 @@ public class MainSceneController{
                     }
                 }
 
+                // Mise a jour de la base de donnée
+                String json = new String(Files.readAllBytes(Paths.get("src/data.json")));
+                System.out.println(json);
+                // JSONObject jsonObject = new JSONObject(json);
+
+
             }
 
-            else if (joueur.equals(j0) && j1.getWagons()<40){
+            else if (joueur.equals(j0) && j1.getWagons()<45){
                 this.changeMessage("C'est le dernier tour");
                 last=true;
-            }else if (joueur.equals(j1) && j0.getWagons()<40){
+            }else if (joueur.equals(j1) && j0.getWagons()<45){
                 this.changeMessage("C'est le dernier tour");
                 last=true;
             }
