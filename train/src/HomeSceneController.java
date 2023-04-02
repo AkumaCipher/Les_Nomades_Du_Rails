@@ -1,3 +1,9 @@
+import org.json.JSONObject;
+import org.json.JSONArray;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -55,6 +62,59 @@ public class HomeSceneController {
     private Button regle;
     @FXML
     private Button adversaire;
+    @FXML
+    private Button stat;
+    @FXML
+    private AnchorPane statPane;
+    @FXML
+    private Button backButton;
+    @FXML
+    private Text ad1;
+    @FXML
+    private Text ad2;
+    @FXML
+    private Text ad3;
+    @FXML
+    private Text ad4;
+    @FXML
+    private Text ad5;
+    @FXML
+    private Text date1;
+    @FXML
+    private Text date2;
+    @FXML
+    private Text date3;
+    @FXML
+    private Text date4;
+    @FXML
+    private Text date5;
+    @FXML
+    private Text res1;
+    @FXML
+    private Text res2;
+    @FXML
+    private Text res3;
+    @FXML
+    private Text res4;
+    @FXML
+    private Text res5;
+    @FXML
+    private Text score1;
+    @FXML
+    private Text score2;
+    @FXML
+    private Text score3;
+    @FXML
+    private Text score4;
+    @FXML
+    private Text score5;
+    @FXML
+    private Button nextButton;
+    @FXML
+    private Button previousButton;
+    @FXML
+    private Text index;
+
 
     private Stage stage;
     private Scene scene;
@@ -62,6 +122,8 @@ public class HomeSceneController {
     private String[] color = {"blanc", "bleu", "jaune", "vert", "rouge", "violet", "noire", "orange"};
     int click=0;
     int click2=0;
+    int indice =0;
+    
 
     // Creer la partie et passe sur la scene jeu si les joueurs sont rempli correctement
     @FXML
@@ -100,6 +162,7 @@ public class HomeSceneController {
         partie.setVisible(false);
         quitter.setVisible(false);
         joueurPane.setVisible(true);
+        stat.setVisible(false);
         couleurField1.getItems().addAll(color);
         couleurField2.getItems().addAll(color);
     }
@@ -157,8 +220,279 @@ public class HomeSceneController {
             couleurField2.setVisible(true);
             couleurText2.setVisible(true);
             click2=0;
+        } 
+    }
+
+    @FXML
+    void data(MouseEvent event) throws IOException{
+        for (Node n : pageAcceuil.getChildren()){
+            n.setOpacity(0.0);
         }
+        statPane.setOpacity(1);
+        String json = new String(Files.readAllBytes(Paths.get("src/data.json")));
+        JSONObject jsonObject = new JSONObject(json);
+        JSONArray parties = jsonObject.getJSONArray("parties");
+        this.updateStat();
+        index.setText("1/" + String.valueOf(parties.length() / 5 + 1));
+        indice=0;
+    }
+
+    @FXML
+    void back(MouseEvent event) throws IOException{
+        for (Node n : pageAcceuil.getChildren()){
+            n.setOpacity(1);
+        }
+        statPane.setOpacity(0);
         
+    }
+
+    @FXML
+    void previous() throws IOException{
+        String json = new String(Files.readAllBytes(Paths.get("src/data.json")));
+        JSONObject jsonObject = new JSONObject(json);
+        JSONArray parties = jsonObject.getJSONArray("parties");
+        if (parties.length()-1-indice+5<parties.length()){
+            indice-=9;
+            System.out.println(indice);
+            if (parties.length()-1-indice>=0){
+                JSONObject actual = parties.getJSONObject(parties.length() - 1 - indice);
+                date1.setText(actual.getString("date"));
+                JSONObject joueur1=actual.getJSONObject("joueur1");
+                JSONObject joueur2=actual.getJSONObject("joueur2");
+                score1.setText(String.valueOf(joueur1.get("score"))+" | "+String.valueOf(joueur2.get("score")));
+                ad1.setText(joueur2.getString("nom"));
+                if (actual.getInt("win")==0){
+                    res1.setText("Victoire");
+                    res1.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                    res1.setFill(Color.GREEN);
+                }else{
+                    res1.setText("Défaite");
+                    res1.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                    res1.setFill(Color.RED);
+                }
+            }
+            indice+=1;
+            if (parties.length()-1-indice>=0){
+                JSONObject actual = parties.getJSONObject(parties.length() - 1 - indice);
+                date2.setText(actual.getString("date"));
+                JSONObject joueur1=actual.getJSONObject("joueur1");
+                JSONObject joueur2=actual.getJSONObject("joueur2");
+                score2.setText(String.valueOf(joueur1.get("score"))+" | "+String.valueOf(joueur2.get("score")));
+                ad2.setText(joueur2.getString("nom"));
+                if (actual.getInt("win")==0){
+                    res2.setText("Victoire");
+                    res2.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                    res2.setFill(Color.GREEN);
+                }else{
+                    res2.setText("Défaite");
+                    res2.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                    res2.setFill(Color.RED);
+                }
+            }else{
+                date2.setText("|");
+            }
+            indice+=1;
+            if (parties.length()-1-indice>=0){
+                JSONObject actual = parties.getJSONObject(parties.length() - 1 - indice);
+                date3.setText(actual.getString("date"));
+                JSONObject joueur1=actual.getJSONObject("joueur1");
+                JSONObject joueur2=actual.getJSONObject("joueur2");
+                score3.setText(String.valueOf(joueur1.get("score"))+" | "+String.valueOf(joueur2.get("score")));
+                ad3.setText(joueur2.getString("nom"));
+                if (actual.getInt("win")==0){
+                    res3.setText("Victoire");
+                    res3.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                    res3.setFill(Color.GREEN);
+                }else{
+                    res3.setText("Défaite");
+                    res3.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                    res3.setFill(Color.RED);
+                }
+            }else{
+                date3.setText("|");
+            }
+            indice+=1;
+            if (parties.length()-1-indice>=0){
+                JSONObject actual = parties.getJSONObject(parties.length() - 1 - indice);
+                date4.setText(actual.getString("date"));
+                JSONObject joueur1=actual.getJSONObject("joueur1");
+                JSONObject joueur2=actual.getJSONObject("joueur2");
+                score4.setText(String.valueOf(joueur1.get("score"))+" | "+String.valueOf(joueur2.get("score")));
+                ad4.setText(joueur2.getString("nom"));
+                if (actual.getInt("win")==0){
+                    res4.setText("Victoire");
+                    res4.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                    res4.setFill(Color.GREEN);
+                }else{
+                    res4.setText("Défaite");
+                    res4.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                    res4.setFill(Color.RED);
+                }
+            }else{
+                date4.setText("|");
+            }
+            indice+=1;
+            if (parties.length()-1-indice>=0){
+                JSONObject actual = parties.getJSONObject(parties.length() - 1 - indice);
+                date5.setText(actual.getString("date"));
+                JSONObject joueur1=actual.getJSONObject("joueur1");
+            JSONObject joueur2=actual.getJSONObject("joueur2");
+            score5.setText(String.valueOf(joueur1.get("score"))+" | "+String.valueOf(joueur2.get("score")));
+            ad5.setText(joueur2.getString("nom"));
+            if (actual.getInt("win")==0){
+                res5.setText("Victoire");
+                res5.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res5.setFill(Color.GREEN);
+            }else{
+                res5.setText("Défaite");
+                res5.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res5.setFill(Color.RED);
+            }
+            }else{
+                date5.setText("|");
+            }
+            indice-=4;
+            index.setText(String.valueOf(indice / 5 + 1)+"/" + String.valueOf(parties.length() / 5 + 1));
+        }
+    }
+
+    @FXML
+    void next() throws IOException{
+        String json = new String(Files.readAllBytes(Paths.get("src/data.json")));
+        JSONObject jsonObject = new JSONObject(json);
+        JSONArray parties = jsonObject.getJSONArray("parties");
+        if (parties.length()-1-indice-5>=0){
+            indice+=5;
+            System.out.println(indice);
+            updateStat();
+            index.setText(String.valueOf(indice / 5 + 1)+"/" + String.valueOf(parties.length() / 5 + 1));
+        }else{
+            indice=0;
+            this.updateStat();
+            indice=0;
+            index.setText("1/" + String.valueOf(parties.length() / 5 + 1));
+        }
+    }
+
+    @FXML
+    void updateStat() throws IOException{
+        String json = new String(Files.readAllBytes(Paths.get("src/data.json")));
+        JSONObject jsonObject = new JSONObject(json);
+        JSONArray parties = jsonObject.getJSONArray("parties");
+        if (parties.length()-1-indice>=0){
+            JSONObject actual = parties.getJSONObject(parties.length() - 1 - indice);
+            date1.setText(actual.getString("date"));
+            JSONObject joueur1=actual.getJSONObject("joueur1");
+            JSONObject joueur2=actual.getJSONObject("joueur2");
+            score1.setText(String.valueOf(joueur1.get("score"))+" | "+String.valueOf(joueur2.get("score")));
+            ad1.setText(joueur2.getString("nom"));
+            if (actual.getInt("win")==0){
+                res1.setText("Victoire");
+                res1.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res1.setFill(Color.GREEN);
+            }else{
+                res1.setText("Défaite");
+                res1.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res1.setFill(Color.RED);
+            }
+
+        }
+        indice+=1;
+        if (parties.length()-1-indice>=0){
+            JSONObject actual = parties.getJSONObject(parties.length() - 1 - indice);
+            date2.setText(actual.getString("date"));
+            JSONObject joueur1=actual.getJSONObject("joueur1");
+            JSONObject joueur2=actual.getJSONObject("joueur2");
+            score2.setText(String.valueOf(joueur1.get("score"))+" | "+String.valueOf(joueur2.get("score")));
+            ad2.setText(joueur2.getString("nom"));
+            if (actual.getInt("win")==0){
+                res2.setText("Victoire");
+                res2.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res2.setFill(Color.GREEN);
+            }else{
+                res2.setText("Défaite");
+                res2.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res2.setFill(Color.RED);
+            }
+        }else{
+            date2.setText("|");
+            res2.setText("|");
+            ad2.setText("|");
+            score2.setText("|");
+            res2.setFill(Color.WHITE);
+        }
+        indice+=1;
+        if (parties.length()-1-indice>=0){
+            JSONObject actual = parties.getJSONObject(parties.length() - 1 - indice);
+            date3.setText(actual.getString("date"));
+            JSONObject joueur1=actual.getJSONObject("joueur1");
+            JSONObject joueur2=actual.getJSONObject("joueur2");
+            score3.setText(String.valueOf(joueur1.get("score"))+" | "+String.valueOf(joueur2.get("score")));
+            ad3.setText(joueur2.getString("nom"));
+            if (actual.getInt("win")==0){
+                res3.setText("Victoire");
+                res3.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res3.setFill(Color.GREEN);
+            }else{
+                res3.setText("Défaite");
+                res3.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res3.setFill(Color.RED);
+            }
+        }else{
+            date3.setText("|");
+            res3.setText("|");
+            ad3.setText("|");
+            score3.setText("|");
+            res3.setFill(Color.WHITE);
+        }
+        indice+=1;
+        if (parties.length()-1-indice>=0){
+            JSONObject actual = parties.getJSONObject(parties.length() - 1 - indice);
+            date4.setText(actual.getString("date"));
+            JSONObject joueur1=actual.getJSONObject("joueur1");
+            JSONObject joueur2=actual.getJSONObject("joueur2");
+            score4.setText(String.valueOf(joueur1.get("score"))+" | "+String.valueOf(joueur2.get("score")));
+            ad4.setText(joueur2.getString("nom"));
+            if (actual.getInt("win")==0){
+                res4.setText("Victoire");
+                res4.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res4.setFill(Color.GREEN);
+            }else{
+                res4.setText("Défaite");
+                res4.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res4.setFill(Color.RED);
+            }
+        }else{
+            date4.setText("|");
+            res4.setText("|");
+            ad4.setText("|");
+            score4.setText("|");
+            res4.setFill(Color.WHITE);
+        }
+        indice+=1;
+        if (parties.length()-1-indice>=0){
+            JSONObject actual = parties.getJSONObject(parties.length() - 1 - indice);
+            date5.setText(actual.getString("date"));
+            JSONObject joueur1=actual.getJSONObject("joueur1");
+            JSONObject joueur2=actual.getJSONObject("joueur2");
+            score5.setText(String.valueOf(joueur1.get("score"))+" | "+String.valueOf(joueur2.get("score")));
+            ad5.setText(joueur2.getString("nom"));
+            if (actual.getInt("win")==0){
+                res5.setText("Victoire");
+                res5.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res5.setFill(Color.GREEN);
+            }else{
+                res5.setText("Défaite");
+                res5.setStyle("-fx-text-alignment: center; -fx-font-weight: bold;");
+                res5.setFill(Color.RED);
+            }
+        }else{
+            date5.setText("|");
+            res5.setText("|");
+            res5.setFill(Color.WHITE);
+            ad5.setText("|");
+            score5.setText("|");
+        }
     }
 
 }

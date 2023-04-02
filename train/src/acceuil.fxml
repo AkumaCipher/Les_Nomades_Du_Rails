@@ -11,20 +11,143 @@
 
 <AnchorPane fx:id="pageAcceuil" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1600.0" stylesheets="@design/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomeSceneController">
    <children>
+      <AnchorPane fx:id="statPane" prefHeight="890.0" prefWidth="1600.0" style="-fx-background-image: url(&quot;./design/FondStat.png&quot;); -fx-opacity: 0;">
+         <children>
+            <Button fx:id="backButton" layoutX="24.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="41.0" prefWidth="107.0" text="Acceuil">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Text fx:id="res1" fill="WHITE" layoutX="306.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="res2" fill="WHITE" layoutX="306.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="res3" fill="WHITE" layoutX="306.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="res5" fill="WHITE" layoutX="306.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="ad1" fill="WHITE" layoutX="535.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="275.7332763671875">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="ad2" fill="WHITE" layoutX="535.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="275.7332763671875">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="ad3" fill="WHITE" layoutX="535.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="275.7332763671875">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="ad4" fill="WHITE" layoutX="535.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="275.7332763671875">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="ad5" fill="WHITE" layoutX="535.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="275.7332763671875">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="date1" fill="WHITE" layoutX="1040.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="275.7332763671875">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="date2" fill="WHITE" layoutX="1040.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="275.7332763671875">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="date3" fill="WHITE" layoutX="1040.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="275.7332763671875">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="date5" fill="WHITE" layoutX="1040.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="275.7332763671875">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="score1" fill="WHITE" layoutX="825.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="score2" fill="WHITE" layoutX="825.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="score3" fill="WHITE" layoutX="825.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Button fx:id="previousButton" layoutX="325.0" layoutY="784.0" mnemonicParsing="false" onMouseClicked="#previous" prefHeight="41.0" prefWidth="107.0" text="Précédent">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="nextButton" layoutX="1190.0" layoutY="784.0" mnemonicParsing="false" onMouseClicked="#next" prefHeight="41.0" prefWidth="107.0" text="Suivant">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Text fx:id="index" fill="WHITE" layoutX="719.0" layoutY="816.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="1/1" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="date4" fill="WHITE" layoutX="1040.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="275.7332763671875">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="res4" fill="WHITE" layoutX="306.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="score5" fill="WHITE" layoutX="825.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+            <Text fx:id="score4" fill="WHITE" layoutX="825.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="-" wrappingWidth="200.0">
+               <font>
+                  <Font name="Amiri Bold" size="41.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
       <Text layoutX="417.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Les Nomades du Rails" textAlignment="CENTER">
          <font>
             <Font name="Harrington" size="77.0" />
          </font>
       </Text>
-      <Button fx:id="partie" layoutX="1240.0" layoutY="320.0" mnemonicParsing="false" onAction="#setupJoueur" prefHeight="43.0" prefWidth="300.0" style="-fx-pref-width: 200;" text="Nouvelle Partie">
+      <Button fx:id="partie" layoutX="1240.0" layoutY="320.0" mnemonicParsing="false" onAction="#setupJoueur" prefHeight="43.0" prefWidth="300.0" style="-fx-pref-width: 200;" text="Partie Locale">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button fx:id="charge" layoutX="1240.0" layoutY="420.0" mnemonicParsing="false" style="-fx-pref-width: 200;" text="Charger une Partie">
+      <Button fx:id="charge" layoutX="1240.0" layoutY="420.0" mnemonicParsing="false" style="-fx-pref-width: 200;" text="Partie en Ligne">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button fx:id="quitter" layoutX="1240.0" layoutY="520.0" mnemonicParsing="false" onAction="#close" style="-fx-pref-width: 200;" text="Quitter">
+      <Button fx:id="quitter" layoutX="1240.0" layoutY="620.0" mnemonicParsing="false" onAction="#close" style="-fx-pref-width: 200;" text="Quitter">
          <font>
             <Font size="20.0" />
          </font></Button>
@@ -86,5 +209,10 @@
             <Image url="@design/regle1.png" />
          </image>
       </ImageView>
+      <Button fx:id="stat" layoutX="1240.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#data" style="-fx-pref-width: 200;" text="Statistiques">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

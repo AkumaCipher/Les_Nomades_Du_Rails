@@ -17,17 +17,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 // Controlleur de la Scene de jeu
@@ -44,6 +41,7 @@ public class MainSceneController{
 
     engine.Joueur joueur = j0;
     int tour = 0;
+    int win=0;
 
     // Page Acceuil
     @FXML 
@@ -674,13 +672,17 @@ public class MainSceneController{
                 // Vainqueur
                 if (j0.getPoint()>j1.getPoint()){
                     vainqueur.setText(j0.getNom()+" a gagné !");
+                    win=0;
                 }else if (j1.getPoint()>j0.getPoint()){
                     vainqueur.setText(j1.getNom()+" a gagné !");
+                    win=1;
                 }else{
                     if (reussij1>reussij2){
                         vainqueur.setText(j0.getNom()+" a gagné !");
+                        win=0;
                     }else if (reussij2>reussij1){
                         vainqueur.setText(j1.getNom()+" a gagné !");
+                        win=1;
                     }else{
                         // Chemin le plus long
                     }
@@ -688,10 +690,46 @@ public class MainSceneController{
 
                 // Mise a jour de la base de donnée
                 String json = new String(Files.readAllBytes(Paths.get("src/data.json")));
-                System.out.println(json);
-                // JSONObject jsonObject = new JSONObject(json);
+                JSONObject jsonObject = new JSONObject(json);
+                JSONArray parties = jsonObject.getJSONArray("parties");
 
+                JSONObject nouvellePartie = new JSONObject();
+                nouvellePartie.put("id", parties.length() );
+                nouvellePartie.put("date",LocalDate.now().toString() );
+                nouvellePartie.put("win",win );
 
+                JSONObject joueur1 = new JSONObject();
+                joueur1.put("nom", j0.getNom());
+                joueur1.put("score", j0.getPoint());
+                joueur1.put("tours_joues", toursj1);
+                joueur1.put("destinations_piochees", piochedj1);
+                joueur1.put("wagons_pioches", piochewj1);
+                joueur1.put("routes_prises", routepj1);
+                joueur1.put("wagons_poses", 45-j0.getWagons());
+                joueur1.put("destinations_reussies", reussij1);
+                joueur1.put("destinations_ratees", echouej1);
+                joueur1.put("chemin_plus_long", cheminLong(j0));
+
+                JSONObject joueur2 = new JSONObject();
+                joueur2.put("nom", j1.getNom());
+                joueur2.put("score", j1.getPoint());
+                joueur2.put("tours_joues", toursj2);
+                joueur2.put("destinations_piochees", piochedj2);
+                joueur2.put("wagons_pioches", piochewj2);
+                joueur2.put("routes_prises", routepj2);
+                joueur2.put("wagons_poses", 45-j1.getWagons());
+                joueur2.put("destinations_reussies", reussij2);
+                joueur2.put("destinations_ratees", echouej2);
+                joueur2.put("chemin_plus_long", cheminLong(j1));
+
+                nouvellePartie.put("joueur1", joueur1);
+                nouvellePartie.put("joueur2", joueur2);
+
+                // Ajout de la nouvelle partie dans le JSON
+                parties.put(nouvellePartie);
+                jsonObject.put("parties", parties);
+                System.out.println(jsonObject);
+                Files.write(Paths.get("src/data.json"), jsonObject.toString(4).getBytes());
             }
 
             else if (joueur.equals(j0) && j1.getWagons()<45){
@@ -715,7 +753,7 @@ public class MainSceneController{
             if (j1.getIA()){
                 IA = true ;
                 joueur=j0;
-                toursj1+=1;
+                toursj2+=1;
                 tour+=1;
             }else{
                 if(joueur.equals(j0) && tour!=0){

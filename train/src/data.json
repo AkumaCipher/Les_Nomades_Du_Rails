@@ -1,61 +1,205 @@
-{
-    "parties": [
-      {
-        "id": 1,
-        "date": "2022-04-01T14:30:00Z",
+{"parties": [
+    {
+        "date": "2023-03-30",
         "joueur1": {
-          "nom": "Alice",
-          "score": 10,
-          "tours_joues": 8,
-          "destinations_piochees": 7,
-          "wagons_pioches": 4,
-          "routes_prises": 3,
-          "wagons_poses": 12,
-          "destinations_reussies": 1,
-          "destinations_ratees": 2,
-          "chemin_plus_long": true
-        },
-        "joueur2": {
-            "nom": "Bob",
-            "score": 12,
-            "tours_joues": 9,
-            "destinations_piochees": 6,
-            "wagons_pioches": 5,
-            "routes_prises": 4,
-            "wagons_poses": 13,
-            "destinations_reussies": 1,
-            "destinations_ratees": 1,
-            "chemin_plus_long": false
-        }
-      },
-      {
-        "id": 2,
-        "date": "2022-04-02T10:00:00Z",
-        "joueur1": {
-            "nom": "Alice",
             "score": 10,
             "tours_joues": 8,
-            "destinations_piochees": 7,
-            "wagons_pioches": 4,
             "routes_prises": 3,
-            "wagons_poses": 12,
-            "destinations_reussies": 1,
             "destinations_ratees": 2,
-            "chemin_plus_long": true
-          },
-          "joueur2": {
-              "nom": "Charlie",
-              "score": 12,
-              "tours_joues": 9,
-              "destinations_piochees": 6,
-              "wagons_pioches": 5,
-              "routes_prises": 4,
-              "wagons_poses": 13,
-              "destinations_reussies": 1,
-              "destinations_ratees": 1,
-              "chemin_plus_long": false
-          }
-      }
-    ]
-  }
-  
+            "destinations_piochees": 7,
+            "wagons_poses": 12,
+            "chemin_plus_long": true,
+            "nom": "Alice",
+            "destinations_reussies": 1,
+            "wagons_pioches": 4
+        },
+        "id": 0,
+        "win": 0,
+        "joueur2": {
+            "score": 12,
+            "tours_joues": 9,
+            "routes_prises": 4,
+            "destinations_ratees": 1,
+            "destinations_piochees": 6,
+            "wagons_poses": 13,
+            "chemin_plus_long": false,
+            "nom": "Bob",
+            "destinations_reussies": 1,
+            "wagons_pioches": 5
+        }
+    },
+    {
+        "date": "2023-03-31",
+        "joueur1": {
+            "score": 10,
+            "tours_joues": 8,
+            "routes_prises": 3,
+            "destinations_ratees": 2,
+            "destinations_piochees": 7,
+            "wagons_poses": 12,
+            "chemin_plus_long": true,
+            "nom": "Alice",
+            "destinations_reussies": 1,
+            "wagons_pioches": 4
+        },
+        "id": 1,
+        "win": 1,
+        "joueur2": {
+            "score": 12,
+            "tours_joues": 9,
+            "routes_prises": 4,
+            "destinations_ratees": 1,
+            "destinations_piochees": 6,
+            "wagons_poses": 13,
+            "chemin_plus_long": false,
+            "nom": "Charlie",
+            "destinations_reussies": 1,
+            "wagons_pioches": 5
+        }
+    },
+    {
+        "date": "2023-04-01",
+        "joueur1": {
+            "score": -12,
+            "tours_joues": 6,
+            "routes_prises": 1,
+            "destinations_ratees": 3,
+            "destinations_piochees": 0,
+            "wagons_poses": 1,
+            "chemin_plus_long": 1,
+            "nom": "",
+            "destinations_reussies": 0,
+            "wagons_pioches": 4
+        },
+        "id": 2,
+        "win": 1,
+        "joueur2": {
+            "score": 11,
+            "tours_joues": 0,
+            "routes_prises": 1,
+            "destinations_ratees": 2,
+            "destinations_piochees": 0,
+            "wagons_poses": 4,
+            "chemin_plus_long": 4,
+            "nom": "IA",
+            "destinations_reussies": 0,
+            "wagons_pioches": 4
+        }
+    },
+    {
+        "date": "2023-04-01",
+        "joueur1": {
+            "score": -5,
+            "tours_joues": 6,
+            "routes_prises": 1,
+            "destinations_ratees": 3,
+            "destinations_piochees": 0,
+            "wagons_poses": 3,
+            "chemin_plus_long": 3,
+            "nom": "",
+            "destinations_reussies": 0,
+            "wagons_pioches": 4
+        },
+        "id": 3,
+        "win": 1,
+        "joueur2": {
+            "score": -10,
+            "tours_joues": 0,
+            "routes_prises": 1,
+            "destinations_ratees": 2,
+            "destinations_piochees": 0,
+            "wagons_poses": 2,
+            "chemin_plus_long": 2,
+            "nom": "IA",
+            "destinations_reussies": 0,
+            "wagons_pioches": 4
+        }
+    },
+    {
+        "date": "2023-03-32",
+        "joueur1": {
+            "score": 10,
+            "tours_joues": 8,
+            "routes_prises": 3,
+            "destinations_ratees": 2,
+            "destinations_piochees": 7,
+            "wagons_poses": 12,
+            "chemin_plus_long": true,
+            "nom": "Alice",
+            "destinations_reussies": 1,
+            "wagons_pioches": 4
+        },
+        "id": 0,
+        "win": 1,
+        "joueur2": {
+            "score": 12,
+            "tours_joues": 9,
+            "routes_prises": 4,
+            "destinations_ratees": 1,
+            "destinations_piochees": 6,
+            "wagons_poses": 13,
+            "chemin_plus_long": false,
+            "nom": "Bob",
+            "destinations_reussies": 1,
+            "wagons_pioches": 5
+        }
+    },
+    {
+        "date": "2023-03-33",
+        "joueur1": {
+            "score": 10,
+            "tours_joues": 8,
+            "routes_prises": 3,
+            "destinations_ratees": 2,
+            "destinations_piochees": 7,
+            "wagons_poses": 12,
+            "chemin_plus_long": true,
+            "nom": "Alice",
+            "destinations_reussies": 1,
+            "wagons_pioches": 4
+        },
+        "id": 0,
+        "win": 1,
+        "joueur2": {
+            "score": 12,
+            "tours_joues": 9,
+            "routes_prises": 4,
+            "destinations_ratees": 1,
+            "destinations_piochees": 6,
+            "wagons_poses": 13,
+            "chemin_plus_long": false,
+            "nom": "Bob",
+            "destinations_reussies": 1,
+            "wagons_pioches": 5
+        }
+    },
+    {
+        "date": "2023-04-02",
+        "joueur1": {
+            "score": -3,
+            "tours_joues": 3,
+            "routes_prises": 2,
+            "destinations_ratees": 3,
+            "destinations_piochees": 0,
+            "wagons_poses": 3,
+            "chemin_plus_long": 2,
+            "nom": "",
+            "destinations_reussies": 0,
+            "wagons_pioches": 2
+        },
+        "id": 6,
+        "win": 1,
+        "joueur2": {
+            "score": 0,
+            "tours_joues": 3,
+            "routes_prises": 1,
+            "destinations_ratees": 2,
+            "destinations_piochees": 0,
+            "wagons_poses": 2,
+            "chemin_plus_long": 2,
+            "nom": "IA",
+            "destinations_reussies": 0,
+            "wagons_pioches": 4
+        }
+    }
+]}
