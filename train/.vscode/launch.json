@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Client",
+            "request": "launch",
+            "mainClass": "Client",
+            "projectName": "train_7f3d9671"
+        },
+        {
+            "type": "java",
+            "name": "Serveur",
+            "request": "launch",
+            "mainClass": "Serveur",
+            "projectName": "train_7f3d9671"
+        },
+        {
+            "type": "java",
             "name": "Launch main",
             "request": "launch",
             "mainClass": "engine.main",
@@ -21,7 +35,7 @@
             "type": "java",
             "name": "Launch App",
             "request": "launch",
-            "vmArgs": "--module-path /Users/RG21262/Downloads/openjfx-19_windows-x64_bin-sdk/javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml",
+            "vmArgs": "--module-path lib/javafx-sdk-19/lib --add-modules=javafx.controls,javafx.fxml",
             "mainClass": "App",
             "projectName": "train_7f3d9671"
         }
