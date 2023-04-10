@@ -1,9 +1,15 @@
 import org.json.JSONObject;
 import org.json.JSONArray;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +31,7 @@ import javafx.stage.Stage;
 public class HomeSceneController {
     // Declaration d'elements graphique de la scene
     @FXML
-    private Button charge;
+    private Button online;
     @FXML
     private ChoiceBox<String> couleurField1;
     @FXML
@@ -114,7 +120,16 @@ public class HomeSceneController {
     private Button previousButton;
     @FXML
     private Text index;
-
+    @FXML
+    private AnchorPane onlinePane;
+    @FXML
+    private TextField nomFieldO;
+    @FXML
+    private ChoiceBox<String> couleurFieldO;
+    @FXML
+    private Button playO;
+    @FXML
+    private AnchorPane connectPane;
 
     private Stage stage;
     private Scene scene;
@@ -123,6 +138,8 @@ public class HomeSceneController {
     int click=0;
     int click2=0;
     int indice =0;
+    int count =0;
+    String confirmation =" ";
     
 
     // Creer la partie et passe sur la scene jeu si les joueurs sont rempli correctement
@@ -157,8 +174,8 @@ public class HomeSceneController {
 
     // Si nouvelle partie cliqué, on met en place l'ecran de connexion des joueurs
     @FXML
-    void setupJoueur(ActionEvent event) {
-        charge.setVisible(false);
+    void setupJoueur(MouseEvent event) {
+        online.setVisible(false);
         partie.setVisible(false);
         quitter.setVisible(false);
         joueurPane.setVisible(true);
@@ -223,6 +240,95 @@ public class HomeSceneController {
         } 
     }
 
+    @FXML 
+    void online(MouseEvent event) throws IOException{
+        for (Node n : pageAcceuil.getChildren()){
+            n.setOpacity(0.0);
+        }
+        onlinePane.setOpacity(1);
+        onlinePane.setVisible(true);
+        couleurFieldO.getItems().addAll(color);
+    }
+
+    @FXML
+    void connect(MouseEvent event) throws IOException{
+        if (count !=0 || couleurFieldO.getValue()==null || nomFieldO.getText()==null){
+            return;
+        }
+        for (Node n : onlinePane.getChildren()){
+            n.setOpacity(0.0);
+        }
+        connectPane.setOpacity(1);
+        connectPane.setVisible(true);
+
+        // Créer un nouveau thread pour la connexion
+        Thread connectThread = new Thread(() -> {
+            try {
+                Socket socket = new Socket("localhost", 8080);
+                // Lire les messages du serveur dans un nouveau thread
+                Thread readThread = new Thread(() -> {
+                    try {
+                        BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        while (confirmation.equals("partie commence")==false) {
+                            String message = input.readLine();
+                            if (message == null) {
+                                break;
+                            }
+                            confirmation=message;
+                            System.out.println(message);
+                        }
+                        // Envoyer un message au serveur
+                        OutputStream outputStream = socket.getOutputStream();
+                        outputStream.write((nomFieldO.getText()+","+couleurFieldO.getValue()+"\n").getBytes());
+                        System.out.println("Bonjour serveur");
+                        outputStream.flush();
+
+                        confirmation = "get";
+                        while (confirmation.equals("get")){
+                            String message = input.readLine();
+                            if (message == null) {
+                                break;
+                            }
+                            confirmation=message;
+                            System.out.println(message);
+                        }
+                        // Lancement du jeu
+                        String[] tab = confirmation.split("\\|");
+                        String[] tab1 = tab[0].split(",");
+                        String[] tab2 = tab[1].split(",");
+                        System.out.println(tab[0]);
+                        Platform.runLater(() -> {
+                            try{
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("jeu.fxml"));
+                                root=loader.load();
+                                MainSceneController mainController = loader.getController();
+                                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                                scene = new Scene(root);
+                                stage.setScene(scene);
+                                stage.setFullScreen(true);
+                                stage.setResizable(true);
+                                stage.show();
+                                mainController.Start(tab1[0],tab2[0],tab1[1],tab2[1],false);
+                            }catch(Exception e){
+                                System.out.println(e);
+                            }                        
+                        });
+                        
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+                readThread.start();
+
+            } catch (Exception e) {
+                System.out.println("Erreur");
+            }
+        });
+        connectThread.start();
+        count+=1;
+    }
+
     @FXML
     void data(MouseEvent event) throws IOException{
         for (Node n : pageAcceuil.getChildren()){
@@ -243,7 +349,6 @@ public class HomeSceneController {
             n.setOpacity(1);
         }
         statPane.setOpacity(0);
-        
     }
 
     @FXML
