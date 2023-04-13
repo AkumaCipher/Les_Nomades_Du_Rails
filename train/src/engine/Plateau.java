@@ -219,6 +219,10 @@ public class Plateau {
         return this.wagon_carte;
     }
 
+    public void set_wagon_face(PaquetCarte paquet){
+        this.wagon_face = paquet;
+    }
+
     /**
      * Getter des carte destination
      * @return
@@ -274,7 +278,7 @@ public class Plateau {
             chaine += tab.get(i)+", ";
         } 
         chaine+="]";
-        // System.out.println(chaine);
+        System.out.println(chaine);
     }
 
     /**

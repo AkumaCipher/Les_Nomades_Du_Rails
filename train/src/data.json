@@ -201,5 +201,63 @@
             "destinations_reussies": 0,
             "wagons_pioches": 4
         }
+    },
+    {
+        "date": "2023-04-08",
+        "joueur1": {
+            "score": -2,
+            "tours_joues": 3,
+            "routes_prises": 2,
+            "destinations_ratees": 3,
+            "destinations_piochees": 0,
+            "wagons_poses": 3,
+            "chemin_plus_long": 3,
+            "nom": "",
+            "destinations_reussies": 0,
+            "wagons_pioches": 4
+        },
+        "id": 7,
+        "win": 0,
+        "joueur2": {
+            "score": -12,
+            "tours_joues": 3,
+            "routes_prises": 0,
+            "destinations_ratees": 2,
+            "destinations_piochees": 0,
+            "wagons_poses": 0,
+            "chemin_plus_long": 0,
+            "nom": "IA",
+            "destinations_reussies": 0,
+            "wagons_pioches": 5
+        }
+    },
+    {
+        "date": "2023-04-12",
+        "joueur1": {
+            "score": -11,
+            "tours_joues": 3,
+            "routes_prises": 1,
+            "destinations_ratees": 3,
+            "destinations_piochees": 0,
+            "wagons_poses": 3,
+            "chemin_plus_long": 3,
+            "nom": "",
+            "destinations_reussies": 0,
+            "wagons_pioches": 4
+        },
+        "id": 8,
+        "win": 0,
+        "joueur2": {
+            "score": -14,
+            "tours_joues": 3,
+            "routes_prises": 2,
+            "destinations_ratees": 2,
+            "destinations_piochees": 0,
+            "wagons_poses": 2,
+            "chemin_plus_long": 2,
+            "nom": "IA",
+            "destinations_reussies": 0,
+            "wagons_pioches": 1
+        }
     }
 ]}

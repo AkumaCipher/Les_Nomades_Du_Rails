@@ -139,11 +139,20 @@
             <Font name="Harrington" size="77.0" />
          </font>
       </Text>
-      <Button fx:id="partie" layoutX="1240.0" layoutY="320.0" mnemonicParsing="false" onAction="#setupJoueur" prefHeight="43.0" prefWidth="300.0" style="-fx-pref-width: 200;" text="Partie Locale">
+      <AnchorPane fx:id="connectPane" layoutX="500.0" layoutY="250.0" prefHeight="400.0" prefWidth="600.0" style="visibility: hidden; -fx-background-color: white;">
+         <children>
+            <Text layoutX="80.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recherche d'un adversaire...">
+               <font>
+                  <Font name="Amiri" size="40.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Button fx:id="partie" layoutX="1240.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#setupJoueur" prefHeight="43.0" prefWidth="300.0" style="-fx-pref-width: 200;" text="Partie Locale">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button fx:id="charge" layoutX="1240.0" layoutY="420.0" mnemonicParsing="false" style="-fx-pref-width: 200;" text="Partie en Ligne">
+      <Button fx:id="online" layoutX="1240.0" layoutY="420.0" mnemonicParsing="false" onMouseClicked="#online" style="-fx-pref-width: 200;" text="Partie en Ligne">
          <font>
             <Font size="20.0" />
          </font></Button>
@@ -151,6 +160,32 @@
          <font>
             <Font size="20.0" />
          </font></Button>
+      <AnchorPane fx:id="onlinePane" layoutX="400.0" layoutY="250.0" prefHeight="600.0" prefWidth="800.0" style="visibility: false;">
+         <children>
+            <ImageView fitHeight="171.0" fitWidth="175.0" layoutX="312.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../design/profi.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="nomText11" fill="WHITE" layoutX="312.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom du joueur :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="couleurText11" fill="WHITE" layoutX="312.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Couleur :">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <ChoiceBox fx:id="couleurFieldO" layoutX="312.0" layoutY="310.0" prefWidth="175.0" />
+            <TextField fx:id="nomFieldO" layoutX="312.0" layoutY="230.0" prefHeight="26.0" prefWidth="175.0" />
+            <Button fx:id="playO" layoutX="350.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#connect" prefHeight="37.0" prefWidth="100.0" text="Jouer">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="joueurPane" layoutX="400.0" layoutY="250.0" prefHeight="600.0" prefWidth="801.0" style="visibility: false;">
          <children>
             <ImageView fx:id="photo1" fitHeight="171.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
