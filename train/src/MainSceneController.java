@@ -21,6 +21,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -322,6 +327,8 @@ public class MainSceneController{
     int routepj1=0;
     int routepj2=0;
 
+    int start = -1;
+
     Image destination = new Image(".\\wagon\\cartedestination.png",100,150,true,true);
 
     // Creation nouvelle partie
@@ -344,6 +351,55 @@ public class MainSceneController{
         }
         EndPane.setVisible(false);
     }
+
+    // Creation nouvelle partie en ligne
+    public void StartOnline(String nom1,String nom2,String couleur1, String couleur2,ArrayList<String> carteFace, Socket socket) throws Exception{
+        dropShadow.setRadius(50.0);
+        dropShadow.setColor(javafx.scene.paint.Color.GREEN);
+        playButton.setEffect(dropShadow);
+        for (Node n : rootPane.getChildren()){
+            n.setOpacity(1);
+        }
+        IAPane.setOpacity(0);
+        // IAPane.setBackground(background);
+        j0= new Joueur(nom1,couleur1,p.get_wagon_carte(),p.get_destination_carte());
+        j1= new Joueur(nom2,couleur2,p.get_wagon_carte(),p.get_destination_carte());
+        EndPane.setVisible(false);
+        
+        Thread readThread = new Thread(() -> {
+            try {
+                BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                while (start!=1) {
+                    String message = input.readLine();
+                    if (message == null) {
+                        break;
+                    }
+                    start=Integer.parseInt(message);
+                    System.out.println(message);
+                }       
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        });
+        readThread.start();
+
+        PaquetCarte paqueta = new PaquetCarte(5, new String("Wagon"));
+        for (String carte : carteFace){
+            if (carte.equals(new String("Destination"))){
+                System.out.println("test");
+            }else{
+                paqueta.add(new WagonCarte(carte));
+            }
+        }
+        System.out.println(paqueta);
+        p.set_wagon_face(paqueta);
+
+        MouseEvent event = new MouseEvent(MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, null, 0, false, false, false, false, false, false, false, false, false, false, null);
+        this.play(event);
+        this.play(event);
+    }
+
+
 
     // Quitter la partie en cours 
     public void exit(ScrollEvent event) throws Exception{
@@ -573,9 +629,21 @@ public class MainSceneController{
 
     // Bouton debut de tour
     public void play(MouseEvent event) throws Exception{
+
+        if (start ==0){
+            IAPane.setOpacity(1);
+            IAPane.setVisible(true);
+            textIA.setText("L'adversaire joue");
+            System.out.println(start);
+        }
         
         if (joueW==false && joueD==false && joueR==false && IA==false && jouable ==false){
             jouable=true;
+
+            if (start == 1){
+                System.out.println(start);
+            }
+
             // Desactivation des effets 
             for (Node n : rootPane.getChildren()){
                 n.setOpacity(1);

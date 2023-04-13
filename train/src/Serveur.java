@@ -1,6 +1,8 @@
 import java.io.*;
 import java.net.*;
 
+import engine.*;
+
 public class Serveur extends Thread{
 
     private ServerSocket server;
@@ -11,6 +13,8 @@ public class Serveur extends Thread{
     private InputStream inputStream2;
     private OutputStream outputStream2;
     private int port ;
+    engine.Plateau p = new Plateau();
+    private String data = "";
 
     public Serveur(){
         this.port = 8080;
@@ -74,8 +78,38 @@ public class Serveur extends Thread{
             outputStream2.write((set+"\n").getBytes());
             outputStream2.flush();
 
-            while(true){
-                clientSocket2 = server.accept();
+            String couleur = "";
+            for (Carte carte : p.get_wagon_face().getPaquet()){
+                couleur += carte.getCouleur() +",";
+            }
+
+            outputStream1.write((couleur+"\n").getBytes());
+            outputStream1.flush();
+
+            outputStream2.write((couleur+"\n").getBytes());
+            outputStream2.flush();
+
+
+            outputStream1.write(("1\n").getBytes());
+            outputStream1.flush();
+
+            System.out.println("Tour envoyé 1");
+
+            outputStream2.write(("0\n").getBytes());
+            outputStream2.flush();
+
+            System.out.println("Tour envoyé 2");
+
+            while(data.equals("fin")==false){
+
+                // On attend le message de fin du premier joueur
+                message = reader1.readLine();
+                if (message != null) {
+                    System.out.println("Message du client 1 : " + message);
+                }
+                data=message;
+
+                clientSocket1 = server.accept();
             }
 
         } catch (Exception e) {

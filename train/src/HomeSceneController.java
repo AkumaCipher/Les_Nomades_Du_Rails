@@ -1,13 +1,19 @@
 import org.json.JSONObject;
+
+import engine.*;
+
 import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -140,6 +146,7 @@ public class HomeSceneController {
     int indice =0;
     int count =0;
     String confirmation =" ";
+    String confirmation2 = " ";
     
 
     // Creer la partie et passe sur la scene jeu si les joueurs sont rempli correctement
@@ -264,7 +271,7 @@ public class HomeSceneController {
         // Créer un nouveau thread pour la connexion
         Thread connectThread = new Thread(() -> {
             try {
-                Socket socket = new Socket("localhost", 8080);
+                Socket socket = new Socket("192.168.210.114", 8080);
                 // Lire les messages du serveur dans un nouveau thread
                 Thread readThread = new Thread(() -> {
                     try {
@@ -292,11 +299,28 @@ public class HomeSceneController {
                             confirmation=message;
                             System.out.println(message);
                         }
+                        confirmation2= "get2";
+                        while (confirmation2.equals("get2")){
+                            // Reception du plateau
+                            String message = input.readLine();
+                            if (message == null) {
+                                break;
+                            }
+                            confirmation2=message;
+                            System.out.println(confirmation2);
+                            
+                        }
+
+                        ArrayList<String> carteFace = new ArrayList<>();
+
                         // Lancement du jeu
                         String[] tab = confirmation.split("\\|");
                         String[] tab1 = tab[0].split(",");
                         String[] tab2 = tab[1].split(",");
-                        System.out.println(tab[0]);
+                        String[] tab3 = confirmation2.split(",");
+                        for (int i =0; i<tab3.length ; i++){
+                            carteFace.add(tab3[i]);
+                        }
                         Platform.runLater(() -> {
                             try{
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("jeu.fxml"));
@@ -308,13 +332,11 @@ public class HomeSceneController {
                                 stage.setFullScreen(true);
                                 stage.setResizable(true);
                                 stage.show();
-                                mainController.Start(tab1[0],tab2[0],tab1[1],tab2[1],false);
+                                mainController.StartOnline(tab1[0],tab2[0],tab1[1],tab2[1],carteFace,socket);
                             }catch(Exception e){
                                 System.out.println(e);
                             }                        
                         });
-                        
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

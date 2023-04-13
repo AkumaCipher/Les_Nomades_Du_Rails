@@ -207,5 +207,9 @@ public class PaquetCarte {
             System.out.println(new String("Un probléme de type est survenue, le type attendu est ") + new String(this.typeCarte) + new String(" mais nous avons recu ce type : ") + new String(carte.getType()));
         }
     }
+
+    public void add(WagonCarte wagonCarte) {
+        this.paquet.add(wagonCarte);
+    }
     
 }
